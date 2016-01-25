@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
   validates :name, presence: true       
   
-  include ActiveModel::Validations
   validates_with EmailDomainValidator
 
 
