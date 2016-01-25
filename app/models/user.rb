@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
          :omniauthable, :omniauth_providers => [:facebook]
+  validates :name, presence: true       
+  
+  include ActiveModel::Validations
+  validates_with EmailDomainValidator
+
 
   def self.from_omniauth(auth)
       # Case 1: Find existing user by facebook uid
