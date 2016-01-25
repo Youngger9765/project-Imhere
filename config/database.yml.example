@@ -1,0 +1,12 @@
+development:
+  adapter: postgresql
+  username: 
+  password:
+  database: im_here_development
+
+production:
+  adapter: postgresql
+  username: 
+  password:
+  encoding: 
+  database: im_here
