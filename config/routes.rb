@@ -4,6 +4,13 @@ Rails.application.routes.draw do
 
   get "demo" => "demo#index"
   root :to => "demo#index"
+
+  scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
+    post "/login" => "auth#login"
+    post "/logout" => "auth#logout"
+    post "/register" => "auth#register"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
