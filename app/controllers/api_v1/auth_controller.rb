@@ -4,26 +4,49 @@ class ApiV1::AuthController < ApiController
   before_action :authenticate_user!, :except => [:login, :register]
 
   def register
-    user = User.find_by_email( params[:email] )
-    if user
+    user = User.find_by_email( params[:email].downcase )
+    
+    if params[:email].blank?
+      render :json => {
+        :error => {
+          :msg => "email is nil",         
+        }
+      }, :status => 401
+
+    elsif params[:password].blank? || params[:password].size < 8
+      render :json => {
+        :error => {
+          :msg => "password is nil or less than 8",         
+        }
+      }, :status => 401
+
+    elsif params[:name].blank? 
+      render :json => {
+        :error => {
+          :msg => "name is nil",         
+        }
+      }, :status => 401
+    elsif user
       render :json => {
         :error => {
           :msg => "Your email is already registered",         
         }
       }, :status => 401
+
     else
       user = User.new
       email = params[:email].downcase
       password = params[:password]
-      password_confirmation = params[:password_confirmation]
+      name = params[:name]
       user.email = email
       user.password = password
-      user.password_confirmation = password_confirmation
+      user.name = name
       user.authentication_token = user.generate_authentication_token
   
       if user.save
         render :json => {
           :member => {
+            "msg" => "You have to confirm your email address before continuing.",
             "message" => "Ok",
             "auth_token" => user.authentication_token,
             "user_id" => user.id

@@ -18,3 +18,4 @@
 /config/*.yml
 /public/system
 /public/uploads
+.byebug_history
