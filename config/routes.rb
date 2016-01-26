@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     
     get "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
+    post "/eraseFbLogin" => "users#eraseFbLogin"
+    
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
