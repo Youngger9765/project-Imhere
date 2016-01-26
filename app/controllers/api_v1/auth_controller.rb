@@ -2,6 +2,7 @@ class ApiV1::AuthController < ApiController
 
     # required user login for logout action
   before_action :authenticate_user!, :except => [:login, :register]
+  before_action :authenticate_user_from_token!, :except => [:login, :register]
 
   def register
     user = User.find_by_email( params[:email].downcase )
@@ -64,6 +65,7 @@ class ApiV1::AuthController < ApiController
 
   def login
     user = User.find_by_email( params[:email] )
+    
 
     if user && user.valid_password?( params[:password] )
       render :json => {

@@ -2,13 +2,19 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  resources :users
+
   get "demo" => "demo#index"
   root :to => "demo#index"
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
+    
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
     post "/register" => "auth#register"
+    
+    get "/getUserInfo" => "users#getUserInfo"
+    post "/editUserInfo" => "users#editUserInfo"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
