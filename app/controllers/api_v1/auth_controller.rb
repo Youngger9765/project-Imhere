@@ -93,7 +93,7 @@ class ApiV1::AuthController < ApiController
     end
 
     if success
-      render :json => { :message => "Ok",
+      render :json => { :message => "login Ok",
                         :auth_token => user.authentication_token,
                         :user_id => user.id}
     else
