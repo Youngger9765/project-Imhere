@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   root :to => "demo#index"
 
   namespace :admin do
-    resources :events
+    resources :events do
+      resources :activities
+    end
   end
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do

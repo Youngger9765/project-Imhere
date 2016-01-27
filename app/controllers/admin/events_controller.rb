@@ -11,7 +11,14 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
-    @event = event.find(params[:id])
+    @event = Event.find(params[:id])
+    @activities = @event.activities
+    
+    if params[:activity_id]
+      @activity = Activity.find( params[:activity_id] )
+    else
+      @activity = Activity.new
+    end
   end
 
 

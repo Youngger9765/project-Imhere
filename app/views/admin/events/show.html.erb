@@ -1,0 +1,14 @@
+<h1>admin event show</h1>
+
+<ul>
+  <% @activities.each do |a|%>
+    <li><%= a.name%>: <%= a.content %></li>
+  <%end%>  
+
+</ul>
+
+<%= form_for @activity, :url => admin_event_activities_path(@event) do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f} %>
+
+<% end %>

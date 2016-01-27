@@ -2,7 +2,7 @@
 
 <%@events.each do |event|%>
   <ul>
-    <li><%= event.id %></li>
+    <li><%= link_to event.id, admin_event_path(event) %></li>
     <li><%= event.name %></li>
     <li><%= event.content %></li>
   </ul>
