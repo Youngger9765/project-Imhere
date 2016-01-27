@@ -1,1 +1,20 @@
 <h1>admin events index </h1>
+
+<%@events.each do |event|%>
+  <ul>
+    <li><%= event.id %></li>
+    <li><%= event.name %></li>
+    <li><%= event.content %></li>
+  </ul>
+<%end%>
+
+
+
+
+<h2>create event</h2>
+
+<%= form_for @event, :url => admin_events_path do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f} %>
+
+<% end %>
