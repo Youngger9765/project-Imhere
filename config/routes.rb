@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "demo" => "demo#index"
   root :to => "demo#index"
 
+  namespace :admin do
+    resources :events
+  end
+
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
     
     post "/login" => "auth#login"
@@ -17,7 +21,6 @@ Rails.application.routes.draw do
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
-    
     
   end
 
