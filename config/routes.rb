@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
+    post "/editUserPassword" => "users#editUserPassword"
+    
     
   end
 
