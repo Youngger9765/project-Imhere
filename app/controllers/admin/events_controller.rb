@@ -1,5 +1,7 @@
 class Admin::EventsController < ApplicationController
 
+  layout "admin"
+
   def index
     @events = Event.all
 
@@ -9,6 +11,10 @@ class Admin::EventsController < ApplicationController
       @event = Event.new
     end
   end
+
+  def new
+    @event = Event.new 
+  end 
 
   def show
     @event = Event.find(params[:id])
@@ -37,7 +43,7 @@ class Admin::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :content, :start_time, :end_time)
+    params.require(:event).permit(:name, :banner, :content, :start_time, :end_time)
   end
 
 end

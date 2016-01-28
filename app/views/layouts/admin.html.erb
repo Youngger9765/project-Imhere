@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>IMHere</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+  <h1>管理員後台</h1>
   <% if current_user %>
     <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
     <%= link_to('修改密碼', edit_registration_path(:user)) %>
@@ -21,7 +24,9 @@
 
   <%= yield %>
 
+  <hr>
   <%= link_to "Admin", admin_events_path%>
 
+ 
 </body>
 </html>

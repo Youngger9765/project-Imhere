@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160127023737) do
   create_table "activities", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
+    t.text     "banner"
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "content"
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160127023737) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
+    t.text     "banner"
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "content"

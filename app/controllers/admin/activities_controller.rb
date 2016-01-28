@@ -1,5 +1,7 @@
 class Admin::ActivitiesController < ApplicationController
 
+  layout "admin"
+
   def index
     @activities = Activity.all
 

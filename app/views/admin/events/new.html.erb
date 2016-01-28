@@ -1,0 +1,7 @@
+<h3>建立新策展</h3>
+
+<%= form_for @event, :url => admin_events_path do |f| %>
+
+  <%= render :partial => 'event_form', :locals => { :f => f} %>
+
+<% end %>

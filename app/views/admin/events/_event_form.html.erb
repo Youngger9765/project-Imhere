@@ -1,0 +1,29 @@
+<div class="form-group">
+  <%= f.label :name, "策展名稱" %>
+  <%= f.text_field :name, :class => "form-control" %>
+</div>
+
+<div class="froala-view">
+  <%= f.label :banner, "Event content" %>
+  <%= f.text_field :banner, :id => "event_banner_edit" %>
+</div>
+
+<hr>
+  <h1>中間是建立活動</h1> 
+<hr>
+
+
+<div class="form-group">
+  <%= f.label :content, "Event content" %>
+  <%= f.text_field :content, :class => "form-control", :id => "event_content_edit" %>
+</div>
+
+<%= f.submit "更新",:class => "btn btn-primary" %>
+
+<hr>
+
+<script>
+  $(function() {
+      $('#event_banner_edit').froalaEditor()
+  });
+</script>

@@ -1,14 +1,43 @@
 <h1>admin event show</h1>
 
-<ul>
   <% @activities.each do |a|%>
-    <li><%= a.name%>: <%= a.content %></li>
+    <%=raw a.name%>
   <%end%>  
 
-</ul>
+<hr>
+
+
+<hr>
+
+<h1>Wysiwyg</h1>
+<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+
+<div id="froala-editor">
+  <p>Click the Code View button to see the editor content's HTML.</p>
+  <img src="/assets/editor/docs/photo14.jpg" class="fr-fil" alt="book" width="150"/>
+</div>
+
+<script>
+  $(function() {
+    $('div#froala-editor').froalaEditor();
+  });
+</script>
+
+<hr>
+
 
 <%= form_for @activity, :url => admin_event_activities_path(@event) do |f| %>
 
-  <%= render :partial => 'form', :locals => { :f => f} %>
+  <%= render :partial => 'activity_form', :locals => { :f => f} %>
 
 <% end %>
+
+<script>
+ $('#wysiwyg').editable({
+  inlineMode: false,
+  minHeight: '200px',
+  buttons: ['bold', 'italic', 'underline','formatBlock','align',
+  'insertUnorderedList', 'insertOrderedList', 'outdent', 'indent',
+  'createLink', 'html'],
+ })
+</script>
