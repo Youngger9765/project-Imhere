@@ -1,14 +1,25 @@
-<h1>admin events index </h1>
-<h1>策展列表</h1>
-<%@events.each do |event|%>
-  <ul>
-    <li><%= link_to event.id, admin_event_path(event) %></li>
-    <li><%= event.name %></li>
-    <li><%= event.content %></li>
-  </ul>
-<%end%>
+<h1>策展列表 <%=link_to "+建立新策展", new_admin_event_path, :class => "btn btn-success"%></h1>
+<table class="table">
+  <tr>
+    <td>策展名稱</td>
+    <td>頁面呈現</td>
+    <td>編輯</td>
+    <td>刪除</td>
+  </tr>
+  <%@events.each do |event|%>
+    <tr>
+      <td><%= link_to event.name, admin_event_path(event) %></td>
+      <td><%= link_to "Show", admin_event_path(event), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-success" %></td>
+      <td><%= link_to "Delete", admin_event_path(event), :method => :delete, :class => "btn btn-danger" %></td>
+    </tr>
+  <%end%>
+
+</table>
 
 
-<%=link_to "建立新策展", new_admin_event_path%>
+
+
+
 
 

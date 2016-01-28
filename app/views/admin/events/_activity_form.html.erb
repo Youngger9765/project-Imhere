@@ -1,12 +1,16 @@
-<div class="form-group">
+YYY
+
+<div class="form-group" id="froala-editor">
   <%= f.label :name %>
   <%= f.text_area :name, id: "wysiwyg" %>
 </div>
 
-<div class="form-group">
-  <%= f.label :content, "Event content" %>
-  <%= f.text_field :content, :class => "form-control"%>
+<div >
+  <p>Click the Code View button to see the editor content's HTML.</p>
+  <img src="/assets/editor/docs/photo14.jpg" class="fr-fil" alt="book" width="150"/>
 </div>
+
+
 
 
 
@@ -14,9 +18,8 @@
 
 <hr>
 
-
 <script>
   $(function() {
-      $('#wysiwyg').froalaEditor()
+    $('div#froala-editor').froalaEditor();
   });
 </script>

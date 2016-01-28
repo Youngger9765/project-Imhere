@@ -1,43 +1,21 @@
-<h1>admin event show</h1>
+<h1> 策展頁面</h1>
 
-  <% @activities.each do |a|%>
-    <%=raw a.name%>
-  <%end%>  
-
+<h2>
+  策展名稱：<%= @event.name%> <%= link_to "編輯", edit_admin_event_path(@event), :class => "btn btn-success" %>
+</h2>
 <hr>
-
-
-<hr>
-
-<h1>Wysiwyg</h1>
-<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
-
-<div id="froala-editor">
-  <p>Click the Code View button to see the editor content's HTML.</p>
-  <img src="/assets/editor/docs/photo14.jpg" class="fr-fil" alt="book" width="150"/>
+<div class="div" id="event-logo">
+  <% if @event.logo.exists? %>
+    <%= image_tag(@event.logo.url(:original))%>
+  <%end%>
 </div>
 
-<script>
-  $(function() {
-    $('div#froala-editor').froalaEditor();
-  });
-</script>
 
 <hr>
+  <h1>中間是活動s</h1>
+<hr>
 
-
-<%= form_for @activity, :url => admin_event_activities_path(@event) do |f| %>
-
-  <%= render :partial => 'activity_form', :locals => { :f => f} %>
-
-<% end %>
-
-<script>
- $('#wysiwyg').editable({
-  inlineMode: false,
-  minHeight: '200px',
-  buttons: ['bold', 'italic', 'underline','formatBlock','align',
-  'insertUnorderedList', 'insertOrderedList', 'outdent', 'indent',
-  'createLink', 'html'],
- })
-</script>
+<div class="col-md-6 col-md-offset-3 text-center">
+  <h3>策展敘事</h3>
+  <%=raw @event.content%>
+</div>

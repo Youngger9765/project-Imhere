@@ -55,6 +55,10 @@ gem 'rest-client'
 gem "jquery-rails"
 gem "wysiwyg-rails"
 gem "font-awesome-rails"
+gem 'bootstrap-sass', '~> 3.3.5'
+
+#picture
+gem "paperclip", "~> 4.3"
 
 # Use postgresql as the database for Active Record
 gem 'pg'

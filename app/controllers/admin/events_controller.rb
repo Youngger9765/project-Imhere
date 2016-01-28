@@ -1,6 +1,7 @@
 class Admin::EventsController < ApplicationController
 
   layout "admin"
+  before_action :find_event, :only =>[:show, :edit, :update, :destroy]
 
   def index
     @events = Event.all
@@ -17,7 +18,6 @@ class Admin::EventsController < ApplicationController
   end 
 
   def show
-    @event = Event.find(params[:id])
     @activities = @event.activities
     
     if params[:activity_id]
@@ -40,10 +40,35 @@ class Admin::EventsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @event.update(event_params)
+    if params[:destroy_logo] == "1"
+      @event.logo = nil
+      @event.save!
+    end
+
+    redirect_to admin_events_path
+  end
+
+  def destroy
+    @event.destroy
+
+    redirect_to admin_events_path
+  end
+
   private
 
   def event_params
-    params.require(:event).permit(:name, :banner, :content, :start_time, :end_time)
+    params.require(:event).permit(:name, :banner, :content, :start_time, 
+                                  :end_time,:logo
+                                  )
   end
+
+  def find_event
+    @event = Event.find(params[:id]) 
+  end 
 
 end

@@ -26,4 +26,5 @@
  *= require plugins/line_breaker.min.css
  *= require plugins/table.min.css
  *= require plugins/video.min.css
+ *= require bootstrap_scss
  */
