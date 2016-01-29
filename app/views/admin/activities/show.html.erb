@@ -1,0 +1,65 @@
+<h1>
+<%= link_to @event.name, admin_event_path(@event)%> 
+>
+<%= link_to "活動列表", admin_event_activities_path(@event)%> 
+>
+<%=@activity.name%>
+</h1>
+
+<h2>
+  活動名稱：<%= @activity.name%>（<%= @activity.status_word%>）
+  <%= link_to "編輯", edit_admin_event_activity_path(@event,@activity), :class => "btn btn-success" %>
+</h2>
+<hr>
+<div class="div" id="activity-logo">
+  <% if @activity.logo.exists? %>
+    <%= image_tag(@activity.logo.url(:original))%>
+
+  <%else%>
+    
+  <%end%>
+</div>
+<h2> 參與者：<%= @activity.participator %> </h2>
+<h2> 時間：<%= @activity.start_time %> - <%= @activity.end_time %> </h2>
+<h2> 地點：<%= @activity.location %> </h2>
+
+
+<div class="row">
+    <div class="col-md-8">
+      <h1 class = "text-center">活動里程碑</h1>
+      <hr>
+      <h1 class = "text-center">計畫介紹</h1>
+      <%=raw @activity.content%>
+      <hr>
+      <h1 class = "text-center">活動資訊</h1>
+
+      <% if @activity.information_picture.exists? %>
+        <div id="information_picture">
+          <%= image_tag(@activity.information_picture.url(:original))%>
+        </div>
+
+      <%else%>
+        <h1 class = "text-center">
+          <%= link_to "新增圖片", edit_admin_event_activity_path(@event,@activity), :class => "btn btn-success" %>
+        </h1>
+      <%end%>
+      <br>
+      <div class="row">
+        <div class="col-md-3">
+          <h2><i class="fa fa-home"></i><%= @activity.location%></h2>
+          <br>
+          <h2><i class="fa fa-clock-o"></i><%= @activity.start_time%></h2>
+        </div>
+        <div class="col-md-9">
+          <%=raw @activity.information%>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <h1 class = "text-center">我要支持</h1>
+        <hr>
+        <h1 class = "text-center">抽獎</h1>
+    </div> 
+</div>
+
