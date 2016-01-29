@@ -33,7 +33,7 @@ class Admin::EventsController < ApplicationController
 
     if @event.save
       flash[:notice] = "Create Success!"
-      redirect_to admin_events_path
+      redirect_to admin_event_path(@event)
     else
       flash[:alert] = "Create fail!"
       render admin_events_path
@@ -50,7 +50,7 @@ class Admin::EventsController < ApplicationController
       @event.save!
     end
 
-    redirect_to admin_events_path
+    redirect_to admin_event_path(@event)
   end
 
   def destroy

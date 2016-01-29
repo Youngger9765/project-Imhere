@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128142411) do
+ActiveRecord::Schema.define(version: 20160129065253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,25 @@ ActiveRecord::Schema.define(version: 20160128142411) do
   create_table "activities", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
-    t.text     "banner"
+    t.string   "participator"
+    t.string   "location"
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "content"
+    t.text     "information"
     t.integer  "fund"
     t.integer  "shared_people"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "status"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "information_picture_file_name"
+    t.string   "information_picture_content_type"
+    t.integer  "information_picture_file_size"
+    t.datetime "information_picture_updated_at"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree

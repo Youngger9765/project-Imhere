@@ -1,4 +1,8 @@
-<h1> 策展頁面</h1>
+<h3>
+<%= link_to "策展列表", admin_events_path%> 
+> 
+<%= @event.name%>
+</h3> 
 
 <h2>
   策展名稱：<%= @event.name%> <%= link_to "編輯", edit_admin_event_path(@event), :class => "btn btn-success" %>
@@ -7,12 +11,26 @@
 <div class="div" id="event-logo">
   <% if @event.logo.exists? %>
     <%= image_tag(@event.logo.url(:original))%>
+
+  <%else%>
+    <h1 class = "text-center">
+      <%= link_to "新增圖片", edit_admin_event_path(@event), :class => "btn btn-success btn-lg " %>
+    </h1>
+    
   <%end%>
 </div>
 
+<hr>
+  <h1 class = "text-center">支持自己喜歡的藝人</h1>
+<hr>
+
 
 <hr>
-  <h1>中間是活動s</h1>
+  <h1 class = "text-center">
+  支持策展活動 
+  <%= link_to "策展活動列表", admin_event_activities_path(@event), :class => "btn btn-info" %> 
+  <%= link_to "+建立活動", new_admin_event_activity_path(@event), :class => "btn btn-success" %>
+  </h1>
 <hr>
 
 <div class="col-md-6 col-md-offset-3 text-center">

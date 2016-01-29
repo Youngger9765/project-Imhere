@@ -1,0 +1,7 @@
+<h1>建立新活動</h1>
+
+<%= form_for @activity, :url => admin_event_activities_path(@event) do |f| %>
+
+  <%= render :partial => 'activity_form', :locals => { :f => f} %>
+
+<% end %>

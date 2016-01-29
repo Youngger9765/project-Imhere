@@ -1,0 +1,24 @@
+<h1>
+<%= link_to @event.name, admin_event_path(@event) %> 
+> 
+活動列表 <%= link_to "+建立新活動", new_admin_event_activity_path(@event), :class => "btn btn-success" %>
+
+</h1>
+
+<table class="table">
+  <tr>
+    <td>活動名稱</td>
+    <td>頁面呈現</td>
+    <td>編輯</td>
+    <td>刪除</td>
+  </tr>
+  <%@activities.each do |activity|%>
+    <tr>
+      <td><%= link_to activity.name, admin_event_activity_path(@event,activity) %></td>
+      <td><%= link_to "Show", admin_event_activity_path(@event,activity), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Edit", edit_admin_event_activity_path(@event,activity), :class => "btn btn-success" %></td>
+      <td><%= link_to "Delete", admin_event_activity_path(@event,activity), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %></td>
+    </tr>
+  <%end%>
+
+</table>

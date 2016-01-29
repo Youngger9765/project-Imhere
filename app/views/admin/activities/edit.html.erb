@@ -1,0 +1,7 @@
+<h1>編輯活動: <%= @activity.name%></h1>
+
+<%= form_for @activity, :url => admin_event_activity_path(@event,@activity) do |f| %>
+
+  <%= render :partial => 'activity_form', :locals => { :f => f} %>
+
+<% end %>
