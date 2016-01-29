@@ -62,3 +62,7 @@ gem "paperclip", "~> 4.3"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+
+#deploy
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
