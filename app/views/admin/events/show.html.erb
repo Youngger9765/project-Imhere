@@ -31,8 +31,32 @@
   <%= link_to "策展活動列表", admin_event_activities_path(@event), :class => "btn btn-info" %> 
   <%= link_to "+建立活動", new_admin_event_activity_path(@event), :class => "btn btn-success" %>
   </h1>
-<hr>
 
+<div class="row">
+  <% @activities.each do |a|%>
+    <div class="col-md-3 event-activity-logo ">
+      <%= link_to admin_event_activity_path(@event,a) do%>
+        活動名稱：<%= a.name%>
+        <br>
+        <%= image_tag(a.logo.url(:thumb))%>
+        <br>
+        活動資訊：
+        <%if a.information.size < 100%>
+          <div class="div">
+            <%= strip_tags(a.information)%>
+          </div>  
+        <%else%>
+          <div class="div">
+            <%= strip_tags(a.information[0,100])%>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  <%end%>
+</div>
+
+<div class="clearfix"></div>
+<hr>
 <div class="col-md-6 col-md-offset-3 text-center">
   <h3>策展敘事</h3>
   <%=raw @event.content%>
