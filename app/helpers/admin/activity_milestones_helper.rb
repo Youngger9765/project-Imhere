@@ -1,0 +1,2 @@
+module Admin::ActivityMilestonesHelper
+end

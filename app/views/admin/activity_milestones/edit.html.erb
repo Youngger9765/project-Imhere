@@ -1,0 +1,15 @@
+<h1>
+<%= link_to @event.name, admin_event_path(@event)%> 
+>
+<%= link_to "活動列表", admin_event_activities_path(@event)%> 
+>
+<%= link_to @activity.name, admin_event_activity_path(@event, @activity)%>
+>
+編輯里程碑：
+</h1>
+
+<h1>編輯里程碑</h1>
+
+<%= form_for @milestone, :url => admin_event_activity_activity_milestone_path(@event, @activity, @milestone) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f} %>
+<% end %>
