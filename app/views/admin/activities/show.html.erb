@@ -20,7 +20,7 @@
   <%end%>
 </div>
 <h2> 參與者：<%= @activity.participator %> </h2>
-<h2> 時間：<%= @activity.start_time %> - <%= @activity.end_time %> </h2>
+<h2> 時間：<%= @activity.start_time.strftime('%F %R') %> - <%= @activity.end_time.strftime('%F %R') %> </h2>
 <h2> 地點：<%= @activity.location %> </h2>
 
 
@@ -68,9 +68,18 @@
       <br>
       <div class="row">
         <div class="col-md-3">
-          <h2><i class="fa fa-home"></i><%= @activity.location%></h2>
+          <h4>
+            <i class="fa fa-home"></i> <br>
+            <%= @activity.location%>
+          </h4>
           <br>
-          <h2><i class="fa fa-clock-o"></i><%= @activity.start_time%></h2>
+          <h4>
+            <i class="fa fa-clock-o"></i><br>
+            開始時間：<br>
+            <%= @activity.start_time.strftime('%F %R')%> <br>
+            結束時間：<br>
+            <%= @activity.end_time.strftime('%F %R')%>
+          </h4>
         </div>
         <div class="col-md-9">
           <%=raw @activity.information%>
