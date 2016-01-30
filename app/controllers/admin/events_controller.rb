@@ -18,8 +18,9 @@ class Admin::EventsController < ApplicationController
   end 
 
   def show
-    @activities = @event.activities
-    
+    @public_activities = @event.activities.where(:status => 1)
+    @hide_activities = @event.activities.where(:status => 0)
+
     if params[:activity_id]
       @activity = Activity.find( params[:activity_id] )
     else

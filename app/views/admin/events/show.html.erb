@@ -33,8 +33,34 @@
   </h1>
 
 <div class="row">
-  <% @activities.each do |a|%>
-    <div class="col-md-3 event-activity-logo ">
+  <h3>已上架活動：</h3>
+  <% @public_activities.each do |a|%>
+    <div class="col-md-3 event-activity-logo">
+      <%= link_to admin_event_activity_path(@event,a) do%>
+        活動名稱：<%= a.name%>
+        <br>
+        <%= image_tag(a.logo.url(:thumb))%>
+        <br>
+        活動資訊：
+        <%if a.information.size < 100%>
+          <div class="div">
+            <%= strip_tags(a.information)%>
+          </div>  
+        <%else%>
+          <div class="div">
+            <%= strip_tags(a.information[0,100])%>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  <%end%>
+</div>
+
+<div class="row">
+  <h3>隱藏活動：</h3>
+  <br>
+  <% @hide_activities.each do |a|%>
+    <div class="col-md-3 event-activity-logo">
       <%= link_to admin_event_activity_path(@event,a) do%>
         活動名稱：<%= a.name%>
         <br>
