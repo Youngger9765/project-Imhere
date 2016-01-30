@@ -15,6 +15,7 @@ class Admin::ActivitiesController < ApplicationController
   end
 
   def show
+    @milestones = @activity.activity_milestones.order("people ASC")
   end
 
 

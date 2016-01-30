@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events do
-      resources :activities
+      resources :activities do
+        resources :activity_milestones
+      end
     end
   end
 

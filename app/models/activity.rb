@@ -9,6 +9,8 @@ class Activity < ActiveRecord::Base
   has_attached_file :information_picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :information_picture, content_type: /\Aimage\/.*\Z/
 
+  has_many :activity_milestones
+
   def public?
     self.status == "1"   
   end 
