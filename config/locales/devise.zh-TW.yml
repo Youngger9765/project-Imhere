@@ -1,0 +1,82 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+zh-TW:
+  devise:
+    confirmations:
+      confirmed: "您的信箱已被成功認證."
+      send_instructions: "您將會在幾分鐘內收到一封信，說明如何認證您的Email信箱."
+      send_paranoid_instructions: "如果您的信箱已存在我們的資料庫中，您將會在幾分鐘內收到一封信，說明如何認證您的Email信箱."
+    failure:
+      already_authenticated: "您已經登入."
+      inactive: "您的帳號尚未認證."
+      invalid: 'Email 或密碼是無效的。'
+      locked: "您的帳號已被鎖定."
+      last_attempt: "在您的帳號被鎖定之前，您還可以再試一次."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      timeout: "連線逾時，請重新登入."
+      unauthenticated: "在繼續之前，請先登入或註冊."
+      unconfirmed: "在繼續之前，您必須認證您的Email信箱."
+    mailer:
+      confirmation_instructions:
+        subject: "密碼確認信 | 第35年度CMJ紐約音樂節"
+      reset_password_instructions:
+        subject: "密碼修改信 | 第35年度CMJ紐約音樂節"
+      unlock_instructions:
+        subject: "解除鎖定說明"
+    omniauth_callbacks:
+      failure: "%{kind} 帳號授權失敗，原因為 \"%{reason}\"."
+      success: " %{kind} 帳號授權成功!"
+    passwords:
+      no_token: "你必須先完成帳號確認才能觀看此頁面!"
+      send_instructions: "您將會在幾分鐘內收到一封信，說明如何重設您的密碼."
+      send_paranoid_instructions: "如果您的信箱已存在我們的資料庫中，您將會在幾分鐘內收到密碼恢復信在您的信箱中."
+      updated: "您的密碼已被更改成功，現在已經登入."
+      updated_not_active: "您的密碼已被更改成功."
+    registrations:
+      destroyed: "再見！您的帳號已成功取消，希望能盡快再見到您."
+      signed_up: "歡迎！註冊已經完成!"
+      signed_up_but_inactive: "您已成功註冊，但是您的帳號尚未認證，無法進行登入."
+      signed_up_but_locked: "您已成功註冊，但是您的帳號已被鎖定，無法進行登入."
+      signed_up_but_unconfirmed: "確認信已經發送到您的信箱，請點擊連結來認證您的帳號."
+      update_needs_confirmation: "您已成功更新您的帳號，但我們需要重新認證您的Email信箱."
+      updated: "資料更新成功"
+    sessions:
+      signed_in: "登入成功"
+      signed_out: "登出成功"
+      already_signed_out: "已登出"
+    unlocks:
+      send_instructions: "您將會在幾分鐘內收到一封信，說明如何解鎖您的帳號."
+      send_paranoid_instructions: "如果您的帳號已存在我們的資料庫中，您將會在幾分鐘內收到一封信，說明如何解鎖您的帳號."
+      unlocked: "您的帳號已被成功解鎖，請登入繼續."
+  errors:
+    messages:
+      already_confirmed: "已認證成功，請嘗試重新登入"
+      confirmation_period_expired: "帳號確認需要在%{period}小時內完成，請重新申請一次確認信!"
+      expired: "已過期，請另外申請"
+      not_found: "未找到，請再確認一次"
+      not_locked: "沒有被鎖定"
+      not_saved:
+        one: "有一個錯誤使%{resource}儲存失敗!"
+        other: "有%{count}個錯誤使%{resource}儲存失敗!"
+    #Below attributes for error messages
+  activerecord:
+    attributes:
+      user: 
+        email: "Email"
+        name: "名稱"
+        password: "密碼"
+        password_confirmation: "確認密碼"
+        current_password: "目前的密碼"
+      artist:
+        location: "居住位置"
+        name: "樂團/歌手名稱(英文)"
+        name_ch: "樂團/歌手名稱(中文)"
+        member: "成員資料"
+        certificate: "身分證影本圖片"
+      music:
+        name: "音樂名稱(中文)"
+        name_en: "音樂名稱(英文)"
+        introduction: "歌詞介紹(中英文)"
+        genre_list: "音樂類別"
+        youtube_or_soundcloud: "音樂來源"
+        link: "連結網址"
