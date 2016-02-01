@@ -1,0 +1,28 @@
+<h1>
+<%= link_to @event.name, admin_event_path(@event)%> 
+>
+<%= link_to "活動列表", admin_event_activities_path(@event)%> 
+>
+<%= link_to @activity.name, admin_event_activity_path(@event,@activity)%>
+>
+商品列表 <%= link_to "+建立新商品", new_admin_event_activity_merchant_path(@event,@activity), :class => "btn btn-success" %>
+
+</h1>
+
+<table class="table">
+  <tr>
+    <td>商品名稱</td>
+    <td>頁面呈現</td>
+    <td>編輯</td>
+    <td>刪除</td>
+  </tr>
+  <%@merchants.each do |merchant|%>
+    <tr>
+      <td><%= link_to merchant.name, admin_event_activity_merchant_path(@event,@activity,merchant) %></td>
+      <td><%= link_to "Show", admin_event_activity_merchant_path(@event,@activity,merchant), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Edit", edit_admin_event_activity_merchant_path(@event,@activity,merchant), :class => "btn btn-success" %></td>
+      <td><%= link_to "Delete", admin_event_activity_merchant_path(@event,@activity,merchant), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %></td>
+    </tr>
+  <%end%>
+
+</table>

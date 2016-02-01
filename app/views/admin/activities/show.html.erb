@@ -61,13 +61,13 @@
       <h1 class = "text-center">計畫介紹</h1>
       <%=raw @activity.content%>
       <hr>
+
       <h1 class = "text-center">活動資訊</h1>
 
       <% if @activity.information_picture.exists? %>
         <div id="information_picture">
           <%= image_tag(@activity.information_picture.url(:original))%>
         </div>
-
       <%else%>
         <h1 class = "text-center">
           <%= link_to "新增圖片", edit_admin_event_activity_path(@event,@activity), :class => "btn btn-success" %>
@@ -97,6 +97,23 @@
         <div class="col-md-9">
           <%=raw @activity.information%>
         </div>
+      </div>
+      <hr>
+
+      <h1 class = "text-center">
+        商品介紹
+        <%= link_to "所有商品列表", admin_event_activity_merchants_path(@event,@activity), :class => "btn btn-info" %> 
+        <%= link_to "+建立商品", new_admin_event_activity_merchant_path(@event,@activity), :class => "btn btn-success" %>
+      </h1>
+
+      <div class="row">
+        <% @merchants.each do |merchant|%>
+          <%= link_to admin_event_activity_merchant_path(@event,@activity, merchant) do%>
+            <div class="merchant-description">
+              <%= raw merchant.description%>
+            </div>
+          <%end%>
+        <%end%>
       </div>
     </div>
 
