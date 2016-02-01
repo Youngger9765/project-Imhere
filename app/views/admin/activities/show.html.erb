@@ -1,10 +1,10 @@
-<h1>
+<h3>
 <%= link_to @event.name, admin_event_path(@event)%> 
 >
 <%= link_to "活動列表", admin_event_activities_path(@event)%> 
 >
 <%=@activity.name%>
-</h1>
+</h3>
 
 <h2>
   活動名稱：<%= @activity.name%>（<%= @activity.status_word%>）
