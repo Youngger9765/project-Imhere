@@ -51,7 +51,12 @@ class Admin::MerchantsController < ApplicationController
   private
 
   def merchant_params
-    params.require(:merchant).permit(:description, :name, :content, :price, :logo)
+    params.require(:merchant).permit( :description, :name, :content, 
+                                      :price, :logo,
+                                      specs_attributes: [:id, :name, :selection, :_destroy, 
+                                          selections_attributes:[:id, :name, :_destroy ]
+                                      ]
+                                    )
   end
 
   def find_event
