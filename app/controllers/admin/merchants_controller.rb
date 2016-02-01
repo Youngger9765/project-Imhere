@@ -34,6 +34,11 @@ class Admin::MerchantsController < ApplicationController
   def update
     @merchant.update(merchant_params)
 
+    if params[:destroy_logo] == "1"
+      @merchant.logo = nil
+      @merchant.save!
+    end
+
     redirect_to admin_event_activity_merchant_path(@event,@activity,@merchant)
   end
 
@@ -46,7 +51,7 @@ class Admin::MerchantsController < ApplicationController
   private
 
   def merchant_params
-    params.require(:merchant).permit(:description, :name, :content, :price)
+    params.require(:merchant).permit(:description, :name, :content, :price, :logo)
   end
 
   def find_event

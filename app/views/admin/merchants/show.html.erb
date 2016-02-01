@@ -26,6 +26,11 @@
     <h2>
       購買資訊
     </h2>
+    <% if @merchant.logo.exists? %>
+      <%= image_tag(@merchant.logo.url(:medium))%>
+    <%else%>
+      <%= link_to"新增圖片", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
+    <%end%>
 
     <h2>單價: $ <%= @merchant.price%></h2>
   </div>
