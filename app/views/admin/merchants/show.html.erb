@@ -24,15 +24,22 @@
   </div>
   <div class="col-md-4">
     <h2>
-      購買資訊
+      商品購買資訊
     </h2>
     <% if @merchant.logo.exists? %>
       <%= image_tag(@merchant.logo.url(:medium))%>
     <%else%>
       <%= link_to"新增圖片", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
     <%end%>
-
+    <br> 
+    <h4>規格:</h4>
+    <%@merchant.specs.each do |spec|%>
+      <h4><%= spec.name%></h4>
+      <%= select_tag "#{spec.name} 選項", options_for_select(spec.selections.map{ |u| [u.name, u.name] }) %>
+    <%end%>
+    
     <h2>單價: $ <%= @merchant.price%></h2>
+    <hr>
   </div>
 </div>
 

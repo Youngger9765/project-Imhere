@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :events do
       resources :activities do
         resources :activity_milestones
-        resources :merchants
+        resources :merchants 
       end
     end
   end
