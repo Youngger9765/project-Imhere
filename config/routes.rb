@@ -28,9 +28,11 @@ Rails.application.routes.draw do
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
 
-    #events_info
-    resources :events
-    
+    #event_info/activity_info
+    resources :events do
+      resources :activities
+    end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
