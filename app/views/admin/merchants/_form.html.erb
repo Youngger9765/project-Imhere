@@ -14,6 +14,16 @@
 </div>
 
 <div class="form-group">
+    <%=f.label :logo, "LOGO"%>
+    <%=f.file_field :logo%>
+    
+    <% if @merchant.logo.exists? %>
+      <%= image_tag(@merchant.logo.url(:medium))%>
+      <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
+    <%end%>
+</div>
+
+<div class="form-group">
   <%= f.label :content, "商品內容" %>
   <%= f.text_area :content, :class =>"froala-editor" %>
 </div>
