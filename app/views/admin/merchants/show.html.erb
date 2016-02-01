@@ -34,8 +34,10 @@
     <br> 
     <h4>規格:</h4>
     <%@merchant.specs.each do |spec|%>
-      <h4><%= spec.name%></h4>
-      <%= select_tag "#{spec.name} 選項", options_for_select(spec.selections.map{ |u| [u.name, u.name] }) %>
+      <h4>
+        <%= spec.name%>
+        <%= select_tag "#{spec.name} 選項", options_for_select(spec.selections.map{ |u| [u.name, u.name] }) %>
+      </h4>
     <%end%>
     
     <h2>單價: $ <%= @merchant.price%></h2>
