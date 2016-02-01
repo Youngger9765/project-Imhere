@@ -17,14 +17,19 @@ Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
     
+    #auth
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
     post "/register" => "auth#register"
     
+    #user_info
     get "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
+
+    #events_info
+    resources :events
     
   end
 
