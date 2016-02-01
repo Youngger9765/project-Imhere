@@ -28,11 +28,6 @@
     <%= f.label :content, "商品內容" %>
     <%= f.text_area :content, :class =>"froala-editor" %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :price ,"單價"%>
-    <%= f.number_field :price, :class => "form-control" %>
-  </div>
   
   <%= f.submit "更新",:class => "btn btn-primary" %>
 </div>
@@ -48,6 +43,11 @@
       <%= image_tag(@merchant.logo.url(:medium))%>
       <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
     <%end%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price ,"單價"%>
+    <%= f.number_field :price, :class => "form-control" %>
   </div>
 
   <%= f.simple_fields_for(:specs) do |spec| %>
