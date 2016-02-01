@@ -9,7 +9,7 @@ json.activity_data do
   json.location @activity.location
 end
 
-json.activity_milestone @milestone
+json.activity_milestones @milestones
 
 json.activity_content do
   json.content @activity.content
@@ -22,6 +22,12 @@ json.activity_info do
   json.start_time @activity.start_time
   json.end_time @activity.end_time
   json.location @activity.location
+end
+
+json.activity_merchants @merchants.each do |merchant|
+  json.id merchant.id
+  json.name merchant.name
+  json.description merchant.description
 end
   
 
