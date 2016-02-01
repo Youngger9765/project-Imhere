@@ -11,6 +11,8 @@ class Activity < ActiveRecord::Base
 
   has_many :activity_milestones
 
+  has_many :merchants, :as => :merchantable
+
   def public?
     self.status == "1"   
   end 

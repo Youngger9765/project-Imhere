@@ -1,0 +1,32 @@
+<div class="form-group">
+  <%= f.label :description, "商品介紹＠活動頁" %>
+  <%= f.text_area :description, :class =>"froala-editor" %>
+</div>
+
+<hr>
+<hr>
+
+<h2>以下為商品獨立頁面</h2>
+
+<div class="form-group">
+  <%= f.label :name ,"商品名稱"%>
+  <%= f.text_field :name, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :content, "商品內容" %>
+  <%= f.text_area :content, :class =>"froala-editor" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :price ,"單價"%>
+  <%= f.number_field :price, :class => "form-control" %>
+</div>
+
+<%= f.submit "更新",:class => "btn btn-primary" %>
+
+<script>
+  $(function() {
+    $('.froala-editor').froalaEditor();
+  });
+</script>

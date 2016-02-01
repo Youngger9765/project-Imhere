@@ -16,6 +16,7 @@ class Admin::ActivitiesController < ApplicationController
 
   def show
     @milestones = @activity.activity_milestones.order("people ASC")
+    @merchants = @activity.merchants
   end
 
 
