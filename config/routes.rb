@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 
     #event_info/activity_info
     resources :events do
-      resources :activities
+      resources :activities do 
+        resources :merchants
+      end
     end
 
   end
