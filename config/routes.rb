@@ -17,11 +17,14 @@ Rails.application.routes.draw do
   end
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
-    
+
     #auth
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
     post "/register" => "auth#register"
+
+    post  "/reSendConfirmation" => "auth#reSendConfirmation"
+    post  "/sendResetPassword" => "auth#sendResetPassword"
     
     #user_info
     get "/getUserInfo" => "users#getUserInfo"
