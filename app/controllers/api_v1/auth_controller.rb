@@ -1,8 +1,8 @@
 class ApiV1::AuthController < ApiController
 
     # required user login for logout action
-  before_action :authenticate_user!, :except => [:login, :register]
-  before_action :authenticate_user_from_token!, :except => [:login, :register]
+  before_action :authenticate_user!, :except => [:login, :register,:reSendConfirmation,:sendResetPassword]
+  before_action :authenticate_user_from_token!, :except => [:login, :register, :reSendConfirmation,:sendResetPassword]
 
   def register
     user = User.find_by_email( params[:email].downcase )
@@ -111,5 +111,27 @@ class ApiV1::AuthController < ApiController
     current_user.save!
 
     render :json => { :message => "You are logout"}
+  end
+
+  def reSendConfirmation
+    user = User.find_by(:email => params[:email])
+    
+    if user
+      user.resend_confirmation_instructions
+      render :json => { :message => "確認信已發出至指定信箱"}
+    else
+      render :json => { :error => "該信箱未註冊或非法，請先註冊一個帳號"}, :status => 400
+    end
+  end
+
+  def sendResetPassword
+    user = User.find_by(:email => params[:email])
+    
+    if user
+      user.send_reset_password_instructions
+      render :json => { :message => "更改密碼確認信已發出至指定信箱"}
+    else
+      render :json => { :error => "該信箱未註冊或非法，請先註冊一個帳號"}, :status => 400
+    end
   end
 end

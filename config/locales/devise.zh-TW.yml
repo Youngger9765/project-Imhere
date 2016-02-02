@@ -18,9 +18,9 @@ zh-TW:
       unconfirmed: "在繼續之前，您必須認證您的Email信箱."
     mailer:
       confirmation_instructions:
-        subject: "密碼確認信 | 第35年度CMJ紐約音樂節"
+        subject: "密碼確認信 | Im here"
       reset_password_instructions:
-        subject: "密碼修改信 | 第35年度CMJ紐約音樂節"
+        subject: "密碼修改信 | Im here"
       unlock_instructions:
         subject: "解除鎖定說明"
     omniauth_callbacks:
