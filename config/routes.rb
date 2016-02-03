@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root :to => "demo#index"
 
   namespace :admin do
+    resources :users
     resources :events do
       resources :activities do
         resources :activity_milestones

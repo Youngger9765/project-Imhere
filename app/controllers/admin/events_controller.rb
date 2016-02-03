@@ -3,7 +3,7 @@ class Admin::EventsController < ApplicationController
   layout "admin"
   before_action :find_event, :only =>[:show, :edit, :update, :destroy]
   before_action :authenticate_user! 
-  #before_action :user_admin?
+  before_action :user_admin?
 
   def index
     @events = Event.all
@@ -85,7 +85,5 @@ class Admin::EventsController < ApplicationController
     else
       redirect_to unauthorized_path
     end
-    
   end
-
 end

@@ -1,0 +1,46 @@
+<h1>Users</h1>
+
+<table class="table">
+  <tr>
+    <td>id</td>
+    <td>name</td>
+    <td>email</td>
+    <td>權限</td>
+  </tr>
+  <% @users.each do |user|%>
+    <tr>
+      <td><%=user.id%></td> 
+      <td><%=user.name%></td> 
+      <td><%=user.email%></td>  
+      <td>
+        <%if !user.role.nil?%>
+          <%= form_for user, url: admin_user_path(user), :method => :PATCH , :class => "form" do |f|%>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <%=f.label :role_id %>
+                  <%=f.select :role_id, Role.all.map{ |r| [r.name, r.id]}, :class => "form-control"%>
+                  <%=f.submit "Update", :class => "btn btn-primary"%>
+                </div>
+              </div>
+            </div>
+          <%end%>
+
+        <%else%>
+          <%= "尚未安排"%> <br>
+          <%= form_for user, url: admin_user_path(user), :method => :PATCH , :class => "form" do |f|%>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <%=f.label :role_id%>
+                  <%=f.select :role_id, Role.all.map{ |r| [r.name, r.id]}, :class => "form-control"%>
+                  <%=f.submit "Update", :class => "btn btn-primary"%>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        <%end%>
+      </td>    
+    </tr>
+  <%end%>
+</table>
