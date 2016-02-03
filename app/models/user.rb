@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 
   before_create :generate_authentication_token
 
+  has_attached_file :head_shot, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :head_shot, content_type: /\Aimage\/.*\Z/
+
   def generate_authentication_token
     self.authentication_token = Devise.friendly_token
   end

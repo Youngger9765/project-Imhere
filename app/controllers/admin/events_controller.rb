@@ -45,6 +45,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def update
+    raise
     @event.update(event_params)
     if params[:destroy_logo] == "1"
       @event.logo = nil
