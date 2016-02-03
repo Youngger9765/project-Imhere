@@ -6,6 +6,7 @@ class Admin::ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
+    authorize @activities
 
     if params[:activity_id]
       @activity = Activity.find( params[:activity_id] )
@@ -15,12 +16,14 @@ class Admin::ActivitiesController < ApplicationController
   end
 
   def show
+    authorize @activity
     @milestones = @activity.activity_milestones.order("people ASC")
     @merchants = @activity.merchants
   end
 
 
   def create
+    authorize @activity
     @activity = @event.activities.new(activity_params)
 
     if @activity.save
@@ -33,13 +36,16 @@ class Admin::ActivitiesController < ApplicationController
   end
 
   def new
+    authorize @activity
     @activity = Activity.new
   end
 
   def edit
+    authorize @activity
   end
 
   def update
+    authorize @activity
     @activity.update(activity_params)
     
     if params[:destroy_logo] == "1"
@@ -56,6 +62,7 @@ class Admin::ActivitiesController < ApplicationController
   end
 
   def destroy
+    authorize @activity
     @activity.destroy
 
     redirect_to admin_event_activities_path(@event)

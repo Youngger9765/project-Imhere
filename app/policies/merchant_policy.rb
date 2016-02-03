@@ -1,9 +1,9 @@
-class EventPolicy < ApplicationPolicy  
-  attr_reader :user, :event
+class MerchantPolicy < ApplicationPolicy  
+  attr_reader :user, :merchant
 
-  def initialize(user, event)
+  def initialize(user, merchant)
     @user = user
-    @event = event
+    @merchant = merchant
   end
 
   def index?

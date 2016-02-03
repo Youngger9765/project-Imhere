@@ -7,13 +7,16 @@ class Admin::MerchantsController < ApplicationController
 
   def index
     @merchants = @activity.merchants
+    authorize @merchants
   end
 
   def new
     @merchant = Merchant.new
+    authorize @merchant
   end
 
   def create
+    authorize @merchant
     @merchant = @activity.merchants.new(merchant_params)
 
     if @merchant.save
@@ -26,12 +29,15 @@ class Admin::MerchantsController < ApplicationController
   end 
 
   def show
+    authorize @merchant
   end
 
   def edit
+    authorize @merchant
   end
 
   def update
+    authorize @merchant
     @merchant.update(merchant_params)
 
     if params[:destroy_logo] == "1"
@@ -43,6 +49,7 @@ class Admin::MerchantsController < ApplicationController
   end
 
   def destroy
+    authorize @merchant
     @merchant.destroy!
 
     redirect_to admin_event_activity_path(@event,@activity)
