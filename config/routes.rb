@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  get "unauthorized" => 'authorize#not_authorized' 
+
   resources :users
 
   get "demo" => "demo#index"

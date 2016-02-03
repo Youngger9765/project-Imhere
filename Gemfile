@@ -49,6 +49,7 @@ end
 #auth
 gem 'omniauth-facebook'
 gem 'devise'
+gem "pundit"
 
 #api
 gem 'rest-client'

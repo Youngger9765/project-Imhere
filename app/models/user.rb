@@ -14,6 +14,13 @@ class User < ActiveRecord::Base
   has_attached_file :head_shot, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :head_shot, content_type: /\Aimage\/.*\Z/
 
+  belongs_to :role
+  before_create :set_default_role
+
+  def admin?
+    self.role.name == 'admin'
+  end
+
   def generate_authentication_token
     self.authentication_token = Devise.friendly_token
   end
@@ -63,5 +70,9 @@ class User < ActiveRecord::Base
     user.skip_confirmation! 
     user.save!
     return user
+  end
+
+  def set_default_role
+    self.role ||= Role.find_by_name('registered')
   end
 end

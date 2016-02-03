@@ -2,9 +2,11 @@ class Admin::EventsController < ApplicationController
 
   layout "admin"
   before_action :find_event, :only =>[:show, :edit, :update, :destroy]
+  before_action :authenticate_user! 
 
   def index
     @events = Event.all
+    #authorize @events
 
     if params[:event_id]
       @event = event.find( params[:event_id] )
@@ -18,6 +20,7 @@ class Admin::EventsController < ApplicationController
   end 
 
   def show
+    authorize @event
     @public_activities = @event.activities.where(:status => 1)
     @hide_activities = @event.activities.where(:status => 0)
 

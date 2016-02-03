@@ -159,6 +159,8 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.4)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -279,6 +281,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip (~> 4.3)
   pg
+  pundit
   rails (= 4.2.5)
   rails-i18n
   rest-client
