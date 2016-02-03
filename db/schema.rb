@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203022245) do
+ActiveRecord::Schema.define(version: 20160203041524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,12 @@ ActiveRecord::Schema.define(version: 20160203022245) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "selections", force: :cascade do |t|
     t.integer  "spec_id"
     t.string   "name"
@@ -124,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160203022245) do
     t.integer  "head_shot_file_size"
     t.datetime "head_shot_updated_at"
     t.datetime "birthday"
+    t.integer  "role_id"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
@@ -131,5 +138,7 @@ ActiveRecord::Schema.define(version: 20160203022245) do
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
+  add_foreign_key "users", "roles"
 end
