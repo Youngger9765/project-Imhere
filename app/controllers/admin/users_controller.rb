@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   layout "admin"
-  #before_action :user_admin?
+  before_action :user_admin?
   before_action :find_user, :only => [:update]
 
   def index
