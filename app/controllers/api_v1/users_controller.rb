@@ -6,6 +6,13 @@ class ApiV1::UsersController < ApiController
   def getUserInfo
     if authenticate_user_from_token!
       @user = current_user
+
+    else
+      render :json => {
+        :error => {
+          :msg => "auth_token is wrong!",         
+        }
+      }, :status => 401
     end
   end
 
