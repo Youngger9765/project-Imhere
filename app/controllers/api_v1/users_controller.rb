@@ -1,7 +1,7 @@
 class ApiV1::UsersController < ApiController
 
-  before_action :authenticate_user!
   before_action :authenticate_user_from_token!
+  before_action :authenticate_user!
 
   def getUserInfo
     if authenticate_user_from_token!
@@ -10,7 +10,7 @@ class ApiV1::UsersController < ApiController
     else
       render :json => {
         :error => {
-          :msg => "auth_token is wrong!",         
+          :msg => "auth_token is wrong!",
         }
       }, :status => 401
     end
@@ -23,11 +23,11 @@ class ApiV1::UsersController < ApiController
     else
       render :json => {
         :error => {
-          :msg => "auth_token is wrong!",         
+          :msg => "auth_token is wrong!",
         }
       }, :status => 401
-    end 
-  end 
+    end
+  end
 
   def eraseFbLogin
     if authenticate_user_from_token!
@@ -39,40 +39,40 @@ class ApiV1::UsersController < ApiController
 
       render :json => {
         :member => {
-          :msg => "fb login is erase!",         
+          :msg => "fb login is erase!",
         }
       }
 
     else
       render :json => {
         :error => {
-          :msg => "auth_token is wrong!",         
+          :msg => "auth_token is wrong!",
         }
-      }, :status => 401  
+      }, :status => 401
     end
   end
 
   def editUserPassword
     if authenticate_user_from_token!
       @user = current_user
-      
+
       if params[:new_password] == params[:new_password_confirm]
         @user.password = params[:new_password]
         @user.save!
         render :json => {
           :member => {
-            :msg => "Edit Password success!",  
-            :email => @user.email       
+            :msg => "Edit Password success!",
+            :email => @user.email
           }
         }
       end
-      
+
     else
       render :json => {
         :error => {
-          :msg => "auth_token is wrong!",         
+          :msg => "auth_token is wrong!",
         }
-      }, :status => 401  
+      }, :status => 401
     end
   end
 
