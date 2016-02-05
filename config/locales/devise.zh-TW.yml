@@ -40,6 +40,8 @@ zh-TW:
       signed_up_but_unconfirmed: "確認信已經發送到您的信箱，請點擊連結來認證您的帳號."
       update_needs_confirmation: "您已成功更新您的帳號，但我們需要重新認證您的Email信箱."
       updated: "資料更新成功"
+      messages:
+        invalid_email: "填寫信箱為非合法的信箱，無法註冊"
     sessions:
       signed_in: "登入成功"
       signed_out: "登出成功"
@@ -61,7 +63,7 @@ zh-TW:
     #Below attributes for error messages
   activerecord:
     attributes:
-      user: 
+      user:
         email: "Email"
         name: "名稱"
         password: "密碼"
