@@ -1,36 +1,37 @@
 class ApiV1::AuthController < ApiController
 
-    # required user login for logout action
-  before_action :authenticate_user!, :except => [:login, :register,:reSendConfirmation,:sendResetPassword]
+  # required user login for logout action
   before_action :authenticate_user_from_token!, :except => [:login, :register, :reSendConfirmation,:sendResetPassword]
+  before_action :authenticate_user!, :except => [:login, :register,:reSendConfirmation,:sendResetPassword]
+
 
   def register
     user = User.find_by_email( params[:email].downcase )
-    
+
     if params[:email].blank?
       render :json => {
         :error => {
-          :msg => "email is nil",         
+          :msg => "email is nil",
         }
       }, :status => 401
 
     elsif params[:password].blank? || params[:password].size < 8
       render :json => {
         :error => {
-          :msg => "password is nil or less than 8",         
+          :msg => "password is nil or less than 8",
         }
       }, :status => 401
 
-    elsif params[:name].blank? 
+    elsif params[:name].blank?
       render :json => {
         :error => {
-          :msg => "name is nil",         
+          :msg => "name is nil",
         }
       }, :status => 401
     elsif user
       render :json => {
         :error => {
-          :msg => "Your email is already registered",         
+          :msg => "Your email is already registered",
         }
       }, :status => 401
 
@@ -43,7 +44,7 @@ class ApiV1::AuthController < ApiController
       user.password = password
       user.name = name
       user.authentication_token = user.generate_authentication_token
-  
+
       if user.save
         render :json => {
           :member => {
@@ -60,7 +61,7 @@ class ApiV1::AuthController < ApiController
           }
         }, :status => 401
       end
-    end  
+    end
   end
 
   def login
@@ -72,7 +73,7 @@ class ApiV1::AuthController < ApiController
     elsif params[:access_token]
 
       fb_data = User.get_fb_data( params[:access_token] )
-      
+
       if fb_data
         auth_hash = OmniAuth::AuthHash.new({
           uid: fb_data["id"],
@@ -85,7 +86,7 @@ class ApiV1::AuthController < ApiController
             expires_at: Time.now + 60.days
           }
         })
-        
+
         user = User.from_omniauth(auth_hash)
       end
 
@@ -93,6 +94,7 @@ class ApiV1::AuthController < ApiController
     end
 
     if success
+      sign_in(user, store: false) if user
       render :json => { :message => "login Ok",
                         :auth_token => user.authentication_token,
                         :user_id => user.id,
@@ -107,15 +109,22 @@ class ApiV1::AuthController < ApiController
   end
 
   def logout
-    current_user.generate_authentication_token
-    current_user.save!
+    if params[:auth_token].present?
+      user = User.find_by_authentication_token( params[:auth_token] )
+      user.generate_authentication_token
+      user.save!
+
+      sign_out(user) if user
+    end
+
+
 
     render :json => { :message => "You are logout"}
   end
 
   def reSendConfirmation
     user = User.find_by(:email => params[:email])
-    
+
     if user
       user.resend_confirmation_instructions
       render :json => { :message => "確認信已發出至指定信箱"}
@@ -126,7 +135,7 @@ class ApiV1::AuthController < ApiController
 
   def sendResetPassword
     user = User.find_by(:email => params[:email])
-    
+
     if user
       user.send_reset_password_instructions
       render :json => { :message => "更改密碼確認信已發出至指定信箱"}
