@@ -95,11 +95,21 @@ class ApiV1::AuthController < ApiController
 
     if success
       sign_in(user, store: false) if user
-      render :json => { :message => "login Ok",
-                        :auth_token => user.authentication_token,
-                        :user_id => user.id,
-                        :email => user.email
-                      }
+      if !user.fb_uid.nil?
+        render :json => { :message => "login Ok",
+                          :auth_token => user.authentication_token,
+                          :user_id => user.id,
+                          :email => user.email,
+                          :fb => "FB已綁定"
+                        }
+      else
+        render :json => { :message => "login Ok",
+                          :auth_token => user.authentication_token,
+                          :user_id => user.id,
+                          :email => user.email,
+                          :fb => "FB未綁定"
+                        }
+      end
     else
       render :json => { :message => "Email or Password is wrong",
                         :fb_data => fb_data
