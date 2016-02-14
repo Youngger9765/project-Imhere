@@ -36,8 +36,8 @@ class Admin::ActivitiesController < ApplicationController
   end
 
   def new
-    authorize @activity
     @activity = Activity.new
+    authorize @activity
   end
 
   def edit
