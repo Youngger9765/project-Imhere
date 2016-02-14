@@ -67,6 +67,7 @@ gem "cocoon"
 
 #picture
 gem "paperclip", "~> 4.3"
+gem 'carrierwave'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
