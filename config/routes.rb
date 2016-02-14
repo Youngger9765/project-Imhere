@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   get "demo" => "demo#index"
   root :to => "demo#index"
 
+  post 'attachment/upload' => 'attachments#upload'
+
   namespace :admin do
     resources :users
+    
+
     resources :events do
       resources :activities do
         resources :activity_milestones

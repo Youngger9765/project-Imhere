@@ -64,6 +64,11 @@ GEM
     capistrano-rails (1.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -271,6 +276,7 @@ DEPENDENCIES
   byebug
   capistrano-passenger
   capistrano-rails
+  carrierwave
   cocoon
   coffee-rails (~> 4.1.0)
   devise

@@ -86,6 +86,9 @@
 
 <script>
   $(function() {
-    $('.froala-editor').froalaEditor();
+    $('.froala-editor').froalaEditor({
+      imageUploadURL: '/attachment/upload.json',
+      imageUploadMethod: 'POST'
+    });
   });
 </script>
