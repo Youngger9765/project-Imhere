@@ -5,12 +5,22 @@
 
 <h3>活動上架狀態</h3> 
 <div>
-  <input type="radio" id="radio1" name="activity[status]" class="switch" value="0" checked="checked"  />
+  <input type="radio" id="radio1" name="activity[status]" class="switch" value="0" 
+    <%if @activity.status == 0 %>
+      checked="checked" 
+    <%else%>
+    <%end%>
+  />
   <label for="radio1">隱藏</label>
 </div>
 <br>
 <div>
-  <input type="radio" id="radio2" name="activity[status]" class="switch" value="1" />
+  <input type="radio" id="radio2" name="activity[status]" class="switch" value="1" 
+    <%if @activity.status == 1 %>
+      checked="checked" 
+    <%else%>
+    <%end%>
+  />
   <label for="radio2">公開上架</label>
 </div>
 <br> 
