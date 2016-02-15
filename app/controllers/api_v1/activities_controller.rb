@@ -9,6 +9,7 @@ class ApiV1::ActivitiesController < ApplicationController
     @activity = @event.activities.find(params[:id])
     @milestones = @activity.activity_milestones.order("people ASC")
     @merchants = @activity.merchants
+    @lotteries = @activity.lotteries
   end
 
 end

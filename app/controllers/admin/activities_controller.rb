@@ -18,6 +18,7 @@ class Admin::ActivitiesController < ApplicationController
   def show
     authorize @activity
     @milestones = @activity.activity_milestones.order("people ASC")
+    @lotteries = @activity.lotteries
     @merchants = @activity.merchants
   end
 
