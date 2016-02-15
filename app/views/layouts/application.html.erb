@@ -7,22 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+ <div class="container">
+ <h2>I'm here</h2>  
+ <br>
   <% if current_user %>
-    <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-    <%= link_to('修改密碼', edit_registration_path(:user)) %>
-    <%=image_tag(current_user.head_shot.url(:thumb))%>
+    <%= link_to'登出', destroy_user_session_path, :method => :delete, :class =>"btn btn-default" %> |
+    <%= link_to'修改密碼', edit_registration_path(:user), :class =>"btn btn-primary" %> |
+    <%= link_to "Admin", admin_events_path, :class =>"btn btn-warning"%>
+    hello! <%= current_user.name%> 
   <% else %>
-    <%= link_to('註冊', new_registration_path(:user)) %> |
-    <%= link_to('登入', new_session_path(:user)) %> |
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+     <%= link_to'註冊', new_registration_path(:user), :class =>"btn btn-default" %> 
+    |
+     <%= link_to'登入', new_session_path(:user), :class =>"btn btn-primary" %> 
+    |
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), :class =>"btn btn-info" %>
   <% end %>
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  
 
   <%= yield %>
+  </div>
+  
+  
 
-  <%= link_to "Admin", admin_events_path%>
+  
 
 </body>
 </html>
