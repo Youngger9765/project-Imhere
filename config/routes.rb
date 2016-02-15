@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :events do
       resources :activities do
         resources :activity_milestones
+        resources :lotteries
         resources :merchants 
       end
     end

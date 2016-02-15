@@ -29,6 +29,15 @@ json.activity_merchants @merchants.each do |merchant|
   json.name merchant.name
   json.description merchant.description
 end
+
+json.activity_lotteries @lotteries.each do |lottery|
+  json.id lottery.id
+  json.logo_url lottery.logo.url
+  json.name lottery.name
+  json.content lottery.content
+  json.start_time lottery.start_time
+  json.end_time lottery.end_time
+end
   
 
 

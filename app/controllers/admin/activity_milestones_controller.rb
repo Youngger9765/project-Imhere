@@ -20,7 +20,7 @@ class Admin::ActivityMilestonesController < ApplicationController
       redirect_to admin_event_activity_path(@event,@activity)
     else
       flash[:alert] = "Milestone Create fail!"
-      render :back
+      redirect_to :back
     end
   end 
 

@@ -33,7 +33,7 @@
 
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <h1 class = "text-center">
         活動里程碑 
         <%= link_to "+建立里程碑", new_admin_event_activity_activity_milestone_path(@event,@activity), :class => "btn btn-success" %>
@@ -116,11 +116,34 @@
         <%end%>
       </div>
     </div>
-
-    <div class="col-md-4">
-        <h1 class = "text-center">支持方案</h1>
-        <hr>
-        <h1 class = "text-center">抽獎</h1>
+    <div class="col-md-3">
+      <h1 class = "text-center">
+        支持方案 
+        <%= link_to "+建立抽獎", new_admin_event_activity_lottery_path(@event,@activity), :class => "btn btn-success" %>
+      </h1>
+      <div class="row">
+        <% @lotteries.each do |lottery|%>
+          <div class="milestone-card">
+            <%= link_to "刪除", admin_event_activity_lottery_path(@event,@activity, lottery), :method => :delete, :class => "pull-right btn btn-danger btn", :data => {:confirm => "are_you_sure" }%>
+            <%= link_to "編輯", edit_admin_event_activity_lottery_path(@event,@activity, lottery), :class => "pull-right btn btn-success" %>
+            <div>
+              <% if lottery.logo.exists? %>
+                <div class="lottery-logo">
+                  <%= image_tag(lottery.logo.url(:thumb))%>
+                </div>
+              <%else%>
+                <%= link_to "+建立圖片", edit_admin_event_activity_lottery_path(@event,@activity, lottery), :class => "btn btn-info" %>
+              <%end%>
+              <h4><%= lottery.name%></h4>
+              <%= raw lottery.content%>
+              <h4>
+                開始時間: <%=lottery.start_time.strftime('%F %R')%> <br>
+                結束時間: <%=lottery.end_time.strftime('%F %R')%>
+              </h4>
+            </div>
+          </div>
+        <%end%>
+      </div>
     </div> 
 </div>
 

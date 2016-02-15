@@ -10,6 +10,7 @@ class Activity < ActiveRecord::Base
   validates_attachment_content_type :information_picture, content_type: /\Aimage\/.*\Z/
 
   has_many :activity_milestones
+  has_many :lotteries
 
   has_many :merchants, :as => :merchantable
 
