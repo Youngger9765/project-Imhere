@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  get "unauthorized" => 'authorize#not_authorized' 
+  get "unauthorized" => 'authorize#not_authorized'
 
   resources :users
 
@@ -12,25 +12,30 @@ Rails.application.routes.draw do
   post 'attachment/upload' => 'attachments#upload'
 
   namespace :admin do
+
+    post "/order_create" => "webhook_events#test"
+
     resources :users
-    
+
     resources :lotteries do
-      member do 
+      member do
         get :users_list
       end
-    end      
+    end
 
     resources :events do
       resources :activities do
         resources :activity_milestones
-        resources :merchants 
+        resources :merchants
 
         resources :lotteries do
           resources :users
-        end        
+        end
       end
     end
   end
+
+
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
 
@@ -41,7 +46,7 @@ Rails.application.routes.draw do
 
     post  "/reSendConfirmation" => "auth#reSendConfirmation"
     post  "/sendResetPassword" => "auth#sendResetPassword"
-    
+
     #user_info
     get "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
@@ -50,7 +55,7 @@ Rails.application.routes.draw do
 
     #event_info/activity_info
     resources :events do
-      resources :activities do 
+      resources :activities do
         resources :merchants
       end
     end
