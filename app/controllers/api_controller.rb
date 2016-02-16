@@ -11,7 +11,7 @@ class ApiController < ActionController::Base
     else
       render :json => {
         :error => {
-          :msg => "auth_token is wrong!",         
+          :msg => "auth_token can't be blank!",         
         }
       }, :status => 401
     end
