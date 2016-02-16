@@ -1,11 +1,12 @@
 class Admin::WebhookEventsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
-  #before_filter :verify_webhook, :except => 'verify_webhook'
+  before_filter :verify_webhook, :except => 'verify_webhook'
 
   def test
-    puts "Webhook verified:========"
-    puts "Webhook verified:========"
+    logger.debug "enter test"
+    data = ActiveSupport::JSON.decode(request.body.read)
+    logger.debug "Webhook verified:#{data}"
     render :json => {:msg => "OK!"}, :status => 200
   end
 
@@ -23,9 +24,9 @@ class Admin::WebhookEventsController < ApplicationController
   private
 
   def verify_webhook
-    puts "=========================="
-    puts "=========================="
-    puts "=========================="
+    logger.debug  "==========verify_webhook================"
+    logger.debug  "============verify_webhook=============="
+    logger.debug  "===============verify_webhook==========="
     data = request.body.read.to_s
     hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
     digest  = OpenSSL::Digest::Digest.new('sha256')
