@@ -37,6 +37,7 @@ json.activity_lotteries @lotteries.each do |lottery|
   json.content lottery.content
   json.start_time lottery.start_time
   json.end_time lottery.end_time
+  json.lottery_users lottery.users_count
 end
   
 

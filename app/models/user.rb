@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   belongs_to :role
   before_create :set_default_role
 
+  has_many :user_lottery_ships
+  has_many :lotteries, :through => :user_lottery_ships
+
   def admin?
     if self.role
       self.role.name == 'admin'
