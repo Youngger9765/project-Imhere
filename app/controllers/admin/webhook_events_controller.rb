@@ -1,10 +1,12 @@
 class Admin::WebhookEventsController < ApplicationController
 
-  before_filter :verify_webhook, :except => 'verify_webhook'
+  skip_before_filter :verify_authenticity_token
+  #before_filter :verify_webhook, :except => 'verify_webhook'
 
   def test
-    data = ActiveSupport::JSON.decode(request.body.read)
-    puts "Webhook verified: #{data}"
+    puts "Webhook verified:========"
+    puts "Webhook verified:========"
+    render :json => {:msg => "OK!"}, :status => 200
   end
 
   def order_create
