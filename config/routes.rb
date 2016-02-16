@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    post "/test" => "webhook_events#test"
+    get "/test" => "webhook_events#test"
 
     resources :users
 
