@@ -1,0 +1,25 @@
+<h3>
+<%=link_to "抽獎列表", admin_lotteries_path%>
+>
+<%= @lottery.activity.name%>-<%= @lottery.name %> 
+</h3>
+
+<h4>抽獎名單</h4>
+<table class="table">
+  <tr>
+    <td>抽獎人姓名</td>
+    <td>抽獎人ID </td>
+    <td>抽獎人電話</td>
+    <td>抽獎人住址</td>
+    <td>抽獎人生日</td>
+  </tr>
+  <%@users.each do |user|%>
+    <tr>
+      <td><%= user.name%></td>
+      <td><%= user.id%></td>
+      <td><%= user.phone_number%></td>
+      <td><%= user.address%></td>
+      <td><%= user.birthday%></td>
+    </tr>
+  <%end%>
+</table>

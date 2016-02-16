@@ -135,6 +135,7 @@
                 <%= link_to "+建立圖片", edit_admin_event_activity_lottery_path(@event,@activity, lottery), :class => "btn btn-info" %>
               <%end%>
               <h4><%= lottery.name%></h4>
+              <h4><i class="fa fa-star"></i><%= lottery.users_count%>人參加</h4>
               <%= raw lottery.content%>
               <h4>
                 開始時間: <%=lottery.start_time.strftime('%F %R')%> <br>

@@ -14,12 +14,20 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     
+    resources :lotteries do
+      member do 
+        get :users_list
+      end
+    end      
 
     resources :events do
       resources :activities do
         resources :activity_milestones
-        resources :lotteries
         resources :merchants 
+
+        resources :lotteries do
+          resources :users
+        end        
       end
     end
   end

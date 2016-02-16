@@ -3,7 +3,11 @@ class Admin::LotteriesController < ApplicationController
   layout "admin"
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :find_lottery, :only => [:edit, :update, :destroy]
+  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list]
+
+  def index
+    @lotteries = Lottery.all
+  end
 
   def new
     @lottery = Lottery.new
@@ -40,6 +44,10 @@ class Admin::LotteriesController < ApplicationController
     redirect_to admin_event_activity_path(@event,@activity)
   end
 
+  def users_list
+    @users = @lottery.users.all
+  end
+
   private
 
   def lottery_params
@@ -48,15 +56,15 @@ class Admin::LotteriesController < ApplicationController
   end
 
   def find_event
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by_id(params[:event_id])
   end
 
   def find_activity
-    @activity = Activity.find(params[:activity_id])
+    @activity = Activity.find_by_id(params[:activity_id])
   end
 
   def find_lottery
-    @lottery = Lottery.find(params[:id])
+    @lottery = Lottery.find_by_id(params[:id])
   end
 
 end
