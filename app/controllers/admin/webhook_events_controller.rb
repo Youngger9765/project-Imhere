@@ -1,7 +1,7 @@
 class Admin::WebhookEventsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
-  before_filter :verify_webhook, :except => 'verify_webhook'
+  before_filter :verify_webhook, :except => [:verify_webhook, :dev_test]
 
   def test
     logger.debug "enter test"
@@ -9,6 +9,17 @@ class Admin::WebhookEventsController < ApplicationController
     logger.debug "Webhook verified:#{data}"
 
     head :ok
+  end
+
+  def dev_test
+    logger.debug "enter dev_test========="
+    data = params[:data]
+    logger.debug "Webhook verified:#{data}"
+
+    render :json => {
+              :msg => "#{data}",
+            }, :status => 200
+
   end
 
   def order_create
