@@ -61,6 +61,9 @@ gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'rails-i18n'
 
+#google map
+gem 'geocoder'
+
 #shopify
 gem 'shopify_app'
 
