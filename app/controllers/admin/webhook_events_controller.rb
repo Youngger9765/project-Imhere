@@ -7,7 +7,8 @@ class Admin::WebhookEventsController < ApplicationController
     logger.debug "enter test"
     data = ActiveSupport::JSON.decode(request.body.read)
     logger.debug "Webhook verified:#{data}"
-    render :json => {:msg => "OK!"}, :status => 200
+
+    head :ok
   end
 
   def order_create
@@ -24,10 +25,8 @@ class Admin::WebhookEventsController < ApplicationController
   private
 
   def verify_webhook
-    logger.debug  "==========verify_webhook================"
-    logger.debug  "============verify_webhook=============="
-    shopify_webhook_config = YAML.load(File.read("#{Rails.root}/config/shopify_webhook_secret.yml"))[Rails.env]
     logger.debug  "===============verify_webhook==========="
+    shopify_webhook_config = YAML.load(File.read("#{Rails.root}/config/shopify_webhook_secret.yml"))[Rails.env]
     data = request.body.read.to_s
     hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
     digest  = OpenSSL::Digest::Digest.new('sha256')
@@ -39,6 +38,11 @@ class Admin::WebhookEventsController < ApplicationController
     unless calculated_hmac == hmac_header
       head :unauthorized
     end
+    
+    if calculated_hmac == hmac_header
+      Rails.logger.warn "You are verified now done============="
+    end
+
     request.body.rewind
   end
 
