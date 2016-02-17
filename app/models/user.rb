@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   has_many :user_lottery_ships
   has_many :lotteries, :through => :user_lottery_ships
 
+  geocoded_by :address
+  after_validation :geocode
+
   def admin?
     if self.role
       self.role.name == 'admin'
