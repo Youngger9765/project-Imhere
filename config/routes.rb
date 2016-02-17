@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
 
     post "/test" => "webhook_events#test"
+    post "/dev_test" => "webhook_events#dev_test"
 
     resources :users
 
@@ -48,7 +49,7 @@ Rails.application.routes.draw do
     post  "/sendResetPassword" => "auth#sendResetPassword"
 
     #user_info
-    get "/getUserInfo" => "users#getUserInfo"
+    post "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
