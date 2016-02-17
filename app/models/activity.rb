@@ -14,9 +14,12 @@ class Activity < ActiveRecord::Base
 
   has_many :merchants, :as => :merchantable
 
+  geocoded_by :location
+  after_validation :geocode
+
   def public?
-    self.status == "1"   
-  end 
+    self.status == "1"
+  end
 
   def status_word
     if self.status == 0

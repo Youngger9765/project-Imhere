@@ -22,6 +22,8 @@ json.activity_info do
   json.start_time @activity.start_time
   json.end_time @activity.end_time
   json.location @activity.location
+  json.latitude @activity.latitude
+  json.longitude @activity.longitude
 end
 
 json.activity_merchants @merchants.each do |merchant|
@@ -39,8 +41,3 @@ json.activity_lotteries @lotteries.each do |lottery|
   json.end_time lottery.end_time
   json.lottery_users lottery.users_count
 end
-  
-
-
-  
-  
