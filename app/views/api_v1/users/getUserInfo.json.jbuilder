@@ -5,4 +5,5 @@ json.user do
   json.phone_number @user.phone_number
   json.address @user.address
   json.head_shot @user.head_shot.url
+  json.birthday @user.birthday
 end
