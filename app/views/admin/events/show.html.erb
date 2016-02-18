@@ -21,11 +21,6 @@
 </div>
 
 <hr>
-  <h1 class = "text-center">支持自己喜歡的藝人</h1>
-<hr>
-
-
-<hr>
   <h1 class = "text-center">
   支持策展活動 
   <%= link_to "策展活動列表", admin_event_activities_path(@event), :class => "btn btn-info" %> 
@@ -41,15 +36,19 @@
         <br>
         <%= image_tag(a.logo.url(:thumb))%>
         <br>
-        活動資訊：
-        <%if a.information.size < 100%>
-          <div class="div">
-            <%= strip_tags(a.information)%>
-          </div>  
+        活動敘述：
+        <%if a.description%>
+          <%if a.description.size < 100%>
+            <div class="div">
+              <%= strip_tags(a.description)%>
+            </div>  
+          <%else%>
+            <div class="div">
+              <%= strip_tags(a.description[0,100])%>
+            </div>
+          <%end%>
         <%else%>
-          <div class="div">
-            <%= strip_tags(a.information[0,100])%>
-          </div>
+          <h3>尚未有活動敘述!</h3>
         <%end%>
       <%end%>
     </div>
@@ -67,23 +66,20 @@
         <%= image_tag(a.logo.url(:thumb))%>
         <br>
         活動資訊：
-        <%if a.information.size < 100%>
-          <div class="div">
-            <%= strip_tags(a.information)%>
-          </div>  
+        <%if a.description%>
+          <%if a.description.size < 100%>
+            <div class="div">
+              <%= strip_tags(a.description)%>
+            </div>  
+          <%else%>
+            <div class="div">
+              <%= strip_tags(a.description[0,100])%>
+            </div>
+          <%end%>
         <%else%>
-          <div class="div">
-            <%= strip_tags(a.information[0,100])%>
-          </div>
+          <h3>尚未有活動敘述！</h3>
         <%end%>
       <%end%>
     </div>
   <%end%>
-</div>
-
-<div class="clearfix"></div>
-<hr>
-<div class="col-md-6 col-md-offset-3 text-center">
-  <h3>策展敘事</h3>
-  <%=raw @event.content%>
 </div>

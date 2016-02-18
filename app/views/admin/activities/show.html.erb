@@ -19,18 +19,6 @@
     
   <%end%>
 </div>
-<h2> 參與者：<%= @activity.participator %> </h2>
-<h2> 時間：
-  <%if @activity.start_time%>
-    <%= @activity.start_time.strftime('%F %R') %> 
-  <%end%>
-  
-  <%if @activity.end_time%>
-    - <%= @activity.end_time.strftime('%F %R') %> 
-  <%end%>
-</h2>
-<h2> 地點：<%= @activity.location %> </h2>
-
 
 <div class="row">
     <div class="col-md-9">
