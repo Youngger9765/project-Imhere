@@ -3,10 +3,6 @@ json.activity_data do
   json.name @activity.name
   json.status @activity.status
   json.logo_url @activity.logo.url
-  json.participator @activity.participator
-  json.start_time @activity.start_time
-  json.end_time @activity.end_time
-  json.location @activity.location
 end
 
 json.activity_milestones @milestones
