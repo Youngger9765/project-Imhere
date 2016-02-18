@@ -74,7 +74,8 @@ class Admin::ActivitiesController < ApplicationController
   def activity_params
     params.require(:activity).permit(:name, :content, :start_time, :end_time, 
                                      :logo, :participator, :location, :fund,
-                                     :status, :information_picture, :information
+                                     :status, :information_picture, :information,
+                                     :description
                                      )
   end
 
