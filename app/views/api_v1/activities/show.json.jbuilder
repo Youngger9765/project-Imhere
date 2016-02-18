@@ -14,7 +14,6 @@ end
 json.activity_info do
   json.information @activity.information
   json.information_pic @activity.information_picture.url
-  json.participator @activity.participator
   json.start_time @activity.start_time
   json.end_time @activity.end_time
   json.location @activity.location
