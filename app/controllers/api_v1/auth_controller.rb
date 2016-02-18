@@ -136,8 +136,13 @@ class ApiV1::AuthController < ApiController
     user = User.find_by(:email => params[:email])
 
     if user
-      user.resend_confirmation_instructions
-      render :json => { :message => "確認信已發出至指定信箱"}
+      if user.confirmed_at
+        render :json => { :message => "Email 已認證成功，請嘗試重新登入"}
+      else
+        user.send_confirmation_instructions
+        render :json => { :message => "確認信已發出至指定信箱"}
+      end
+
     else
       render :json => { :error => "該信箱未註冊或非法，請先註冊一個帳號"}, :status => 400
     end
