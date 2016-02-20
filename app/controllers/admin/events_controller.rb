@@ -53,8 +53,14 @@ class Admin::EventsController < ApplicationController
   def update
     authorize @event
     @event.update(event_params)
+
     if params[:destroy_logo] == "1"
       @event.logo = nil
+      @event.save!
+    end
+
+    if params[:destroy_banner] == "1"
+      @event.banner = nil
       @event.save!
     end
 
@@ -72,7 +78,7 @@ class Admin::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :banner, :content, :start_time, 
-                                  :end_time,:logo
+                                  :end_time,:logo, :banner
                                   )
   end
 

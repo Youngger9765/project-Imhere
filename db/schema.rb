@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218095711) do
+ActiveRecord::Schema.define(version: 20160220150055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,17 +66,20 @@ ActiveRecord::Schema.define(version: 20160218095711) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.text     "banner"
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "content"
     t.integer  "shared_people"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   create_table "lotteries", force: :cascade do |t|
