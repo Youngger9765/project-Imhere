@@ -2,6 +2,7 @@ json.activity_data do
   json.id @activity.id
   json.name @activity.name
   json.status @activity.status
+  json.banner_url @activity.banner.url
   json.logo_url @activity.logo.url
 end
 
