@@ -53,6 +53,11 @@ class Admin::ActivitiesController < ApplicationController
       @activity.logo_in_event = nil
       @activity.save!
     end
+
+    if params[:destroy_banner] == "1"
+      @activity.banner = nil
+      @activity.save!
+    end
     
     if params[:destroy_logo] == "1"
       @activity.logo = nil
@@ -80,7 +85,7 @@ class Admin::ActivitiesController < ApplicationController
     params.require(:activity).permit(:name, :content, :start_time, :end_time, 
                                      :logo, :participator, :location, :fund,
                                      :status, :information_picture, :information,
-                                     :description, :logo_in_event
+                                     :description, :logo_in_event, :banner
                                      )
   end
 

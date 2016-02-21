@@ -26,9 +26,21 @@
   height: 100%;
 }
 
-#activity-logo img{
+#activity-banner img{
   width: 100%;
   height: 300px;
+}
+
+#activity-logo{
+  position: static;
+  padding: 3px;
+  display: inline-flex;
+  border: red;
+  border-width: 5px;
+  border-style: double;
+  top: -300px;
+  float: left;
+  z-index: 3;
 }
 
 #information_picture img{
