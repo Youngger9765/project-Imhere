@@ -8,7 +8,7 @@ end
 json.activities @activities.each do |a|
   json.id a.id
   json.status a.status
-  json.logo a.logo.url
+  json.logo a.logo_in_event.url
   json.name a.name
   json.description a.description
 end
