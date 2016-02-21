@@ -5,15 +5,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-//logo
-#event-logo img{
+//banner & logo
+#event-banner img{
   width: 100%;
   height: 300px;
 }
 
-#activity-logo img{
+#event-logo{
+  position: static;
+  display: inline-flex;
+  border: aqua;
+  border-style: double;
+  top: -300px;
+  float: left;
+  z-index: 3;
+}
+
+#event-logo img{
+  width: 100%;
+  height: 100%;
+}
+
+#activity-banner img{
   width: 100%;
   height: 300px;
+}
+
+#activity-logo{
+  position: static;
+  padding: 3px;
+  display: inline-flex;
+  border: red;
+  border-width: 5px;
+  border-style: double;
+  top: -300px;
+  float: left;
+  z-index: 3;
 }
 
 #information_picture img{

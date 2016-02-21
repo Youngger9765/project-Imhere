@@ -1,7 +1,7 @@
 json.event do
   json.id @event.id 
   json.name @event.name
-  json.banner @event.banner
+  json.banner_url @event.banner.url
   json.logo_url @event.logo.url
 end
 

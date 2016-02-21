@@ -8,17 +8,29 @@
   策展名稱：<%= @event.name%> <%= link_to "編輯", edit_admin_event_path(@event), :class => "btn btn-success" %>
 </h2>
 <hr>
-<div class="div" id="event-logo">
-  <% if @event.logo.exists? %>
-    <%= image_tag(@event.logo.url(:original))%>
+<div id="event-image">
+  <div id="event-banner">
+    <% if @event.banner.exists? %>
+      <%= image_tag(@event.banner.url(:original))%>
 
-  <%else%>
-    <h1 class = "text-center">
-      <%= link_to "新增圖片", edit_admin_event_path(@event), :class => "btn btn-success btn-lg " %>
-    </h1>
-    
-  <%end%>
-</div>
+    <%else%>
+      <h1 class = "text-center">
+        <%= link_to "請新增banner圖片", edit_admin_event_path(@event), :class => "btn btn-success btn-lg " %>
+      </h1>
+      
+    <%end%>
+  </div>
+
+  <div id="event-logo">
+    <% if @event.logo.exists? %>
+      <%= image_tag(@event.logo.url(:original))%>
+
+    <%else%>
+        <%= link_to "請新增 logo", edit_admin_event_path(@event), :class => "btn btn-success btn-lg " %>
+    <%end%>
+  </div>
+</div>  
+
 
 <hr>
   <h1 class = "text-center">
@@ -34,7 +46,7 @@
       <%= link_to admin_event_activity_path(@event,a) do%>
         活動名稱：<%= a.name%>
         <br>
-        <%= image_tag(a.logo.url(:thumb))%>
+        <%= image_tag(a.logo_in_event.url(:thumb))%>
         <br>
         活動敘述：
         <%if a.description%>
@@ -63,7 +75,7 @@
       <%= link_to admin_event_activity_path(@event,a) do%>
         活動名稱：<%= a.name%>
         <br>
-        <%= image_tag(a.logo.url(:thumb))%>
+        <%= image_tag(a.logo_in_event.url(:thumb))%>
         <br>
         活動資訊：
         <%if a.description%>
