@@ -46,7 +46,7 @@
       <%= link_to admin_event_activity_path(@event,a) do%>
         活動名稱：<%= a.name%>
         <br>
-        <%= image_tag(a.logo.url(:thumb))%>
+        <%= image_tag(a.logo_in_event.url(:thumb))%>
         <br>
         活動敘述：
         <%if a.description%>
@@ -75,7 +75,7 @@
       <%= link_to admin_event_activity_path(@event,a) do%>
         活動名稱：<%= a.name%>
         <br>
-        <%= image_tag(a.logo.url(:thumb))%>
+        <%= image_tag(a.logo_in_event.url(:thumb))%>
         <br>
         活動資訊：
         <%if a.description%>

@@ -48,6 +48,11 @@ class Admin::ActivitiesController < ApplicationController
   def update
     authorize @activity
     @activity.update(activity_params)
+
+    if params[:destroy_logo_in_event] == "1"
+      @activity.logo_in_event = nil
+      @activity.save!
+    end
     
     if params[:destroy_logo] == "1"
       @activity.logo = nil
@@ -75,7 +80,7 @@ class Admin::ActivitiesController < ApplicationController
     params.require(:activity).permit(:name, :content, :start_time, :end_time, 
                                      :logo, :participator, :location, :fund,
                                      :status, :information_picture, :information,
-                                     :description
+                                     :description, :logo_in_event
                                      )
   end
 
