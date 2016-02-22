@@ -12,6 +12,6 @@ json.user do
   else
     json.head_shot @user.head_shot.url
   end
-  json.head_shot
+
   json.birthday @user.birthday
 end
