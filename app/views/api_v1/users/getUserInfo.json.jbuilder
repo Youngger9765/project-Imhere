@@ -6,6 +6,12 @@ json.user do
   json.address @user.address
   json.latitude @user.latitude
   json.longitude @user.longitude
-  json.head_shot @user_head_shot_url
+
+  if @user.head_shot.url == "/images/original/missing.png"
+    json.head_shot nil
+  else
+    json.head_shot @user.head_shot.url
+  end
+  json.head_shot
   json.birthday @user.birthday
 end

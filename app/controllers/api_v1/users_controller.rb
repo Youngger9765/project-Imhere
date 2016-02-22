@@ -7,12 +7,6 @@ class ApiV1::UsersController < ApiController
     if authenticate_user_from_token!
       @user = current_user
 
-      if @user.head_shot.url == "/images/original/missing.png"
-        @user_head_shot_url = nil
-      else
-        @user_head_shot_url = @user.head_shot.url 
-      end
-
     else
       render :json => {
         :error => {
@@ -26,6 +20,7 @@ class ApiV1::UsersController < ApiController
     if authenticate_user_from_token!
       @user = current_user
       @user.update(user_params)
+
     else
       render :json => {
         :error => {

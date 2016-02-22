@@ -4,7 +4,13 @@ json.merchant_data do
   json.merchantable_id @merchant.merchantable_id
   json.name @merchant.name
   json.content @merchant.content
-  json.logo_url @merchant.logo.url
+
+  if @merchant.logo.url == "/images/original/missing.png"
+    json.logo_url nil
+  else
+    json.logo_url @merchant.logo.url
+  end
+
   json.price @merchant.price
   
   json.spec_selection @merchant.specs do |spec|

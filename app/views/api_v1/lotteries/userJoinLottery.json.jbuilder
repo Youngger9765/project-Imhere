@@ -8,5 +8,11 @@ json.lottery do
   json.phone_number @user.phone_number
   json.address @user.address
   json.birthday @user.birthday
-  json.head_shot @user.head_shot.url
+
+  if @user.head_shot.url == "/images/original/missing.png"
+    json.head_shot nil
+  else
+    json.head_shot @user.head_shot.url
+  end
+
 end

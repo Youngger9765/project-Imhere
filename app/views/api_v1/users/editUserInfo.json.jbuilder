@@ -8,5 +8,10 @@ json.user do
   json.latitude @user.latitude
   json.longitude @user.longitude
   json.birthday @user.birthday
-  json.head_shot @user.head_shot.url
+  
+  if @user.head_shot.url == "/images/original/missing.png"
+    json.head_shot nil
+  else
+    json.head_shot @user.head_shot.url
+  end
 end
