@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     post  "/sendResetPassword" => "auth#sendResetPassword"
 
     #user_info
-    post "/getUserInfo" => "users#getUserInfo"
+    get "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
