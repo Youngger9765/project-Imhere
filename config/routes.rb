@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
     post "/test" => "webhook_events#test"
     post "/dev_test" => "webhook_events#dev_test"
+    post "/order_create" => "webhook_events#order_create"
 
     resources :users
+    resources :orders
 
     resources :lotteries do
       member do

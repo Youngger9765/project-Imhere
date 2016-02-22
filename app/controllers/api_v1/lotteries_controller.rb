@@ -1,6 +1,6 @@
 class ApiV1::LotteriesController < ApiController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user_from_token!
 
   def userJoinLottery
     if authenticate_user_from_token!

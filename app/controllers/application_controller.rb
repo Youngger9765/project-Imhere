@@ -23,4 +23,10 @@ class ApplicationController < ActionController::Base
     def user_not_authorized(exception)
       redirect_to unauthorized_path  # 導向筆者剛剛新增的網頁
     end
+    def user_admin?
+      if current_user.admin?
+      else
+        redirect_to unauthorized_path
+      end
+    end
 end
