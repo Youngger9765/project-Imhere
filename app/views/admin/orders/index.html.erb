@@ -1,2 +1,27 @@
 <h1>訂單列表</h1>
 
+<table class="table">
+  <tr>
+    <td>User ID</td>
+    <td>Order_number</td>
+    <td>Product_id</td>
+    <td>product_variant_title</td>
+    <td>product_quantity</td>
+    <td>product_price</td>
+    <td>subtotal_price</td>
+    <td>currency</td>
+  </tr>
+  <% @orders.each do|order|%>
+    <tr>
+      <td><%= order.user_id%></td>
+      <td><%= order.order_number%></td>
+      <td><%= order.product_id%></td>
+      <td><%= order.product_variant_title%></td>
+      <td><%= order.product_quantity%></td>
+      <td><%= order.product_price%></td>
+      <td><%= order.subtotal_price%></td>
+      <td><%= order.currency%></td>
+    </tr>
+  <%end%>
+
+</table>

@@ -5,6 +5,6 @@ class Admin::OrdersController < ApplicationController
   before_action :user_admin?
 
   def index
-    
+    @orders = Order.all
   end
 end

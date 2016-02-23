@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :order_number
       t.string  :user_auth
       t.integer :user_id
-      t.integer :product_id
+      t.integer :product_id, :limit => 8
       t.string  :product_variant_title
       t.integer :product_quantity
       t.string  :product_price

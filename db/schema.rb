@@ -124,14 +124,14 @@ ActiveRecord::Schema.define(version: 20160221090201) do
     t.integer  "order_number"
     t.string   "user_auth"
     t.integer  "user_id"
-    t.integer  "product_id"
+    t.integer  "product_id",            limit: 8
     t.string   "product_variant_title"
     t.integer  "product_quantity"
     t.string   "product_price"
     t.string   "subtotal_price"
     t.string   "currency"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
