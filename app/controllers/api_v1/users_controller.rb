@@ -9,9 +9,7 @@ class ApiV1::UsersController < ApiController
 
     else
       render :json => {
-        :error => {
-          :msg => "auth_token is wrong!",
-        }
+        :error => "auth_token is wrong!"
       }, :status => 401
     end
   end
@@ -23,9 +21,7 @@ class ApiV1::UsersController < ApiController
 
     else
       render :json => {
-        :error => {
-          :msg => "auth_token is wrong!",
-        }
+        :error => "auth_token is wrong!"
       }, :status => 401
     end
   end
@@ -46,9 +42,7 @@ class ApiV1::UsersController < ApiController
 
     else
       render :json => {
-        :error => {
-          :msg => "auth_token is wrong!",
-        }
+        :error => "auth_token is wrong!"
       }, :status => 401
     end
   end
@@ -70,9 +64,7 @@ class ApiV1::UsersController < ApiController
 
     else
       render :json => {
-        :error => {
-          :msg => "auth_token is wrong!",
-        }
+        :error => "auth_token is wrong!"
       }, :status => 401
     end
   end
