@@ -10,29 +10,21 @@ class ApiV1::AuthController < ApiController
 
     if params[:email].blank?
       render :json => {
-        :error => {
-          :msg => "email is nil",
-        }
+        :error => "email is nil"
       }, :status => 401
 
     elsif params[:password].blank? || params[:password].size < 8
       render :json => {
-        :error => {
-          :msg => "password is nil or less than 8",
-        }
+        :error => "password is nil or less than 8"
       }, :status => 401
 
     elsif params[:name].blank?
       render :json => {
-        :error => {
-          :msg => "name is nil",
-        }
+        :error => "name is nil"
       }, :status => 401
     elsif user
       render :json => {
-        :error => {
-          :msg => "Your email is already registered",
-        }
+        :error => "帳號已註冊"
       }, :status => 401
 
     else
@@ -56,9 +48,7 @@ class ApiV1::AuthController < ApiController
         }, :status => 200
       else
         render :json => {
-          :error => {
-            "message" => "fail"
-          }
+          :error =>  "註冊失敗"
         }, :status => 401
       end
     end
@@ -111,7 +101,7 @@ class ApiV1::AuthController < ApiController
                         }
       end
     else
-      render :json => { :message => "Email or Password is wrong",
+      render :json => { :error => "Email or Password is wrong",
                         :fb_data => fb_data
                         }, :status => 401
     end

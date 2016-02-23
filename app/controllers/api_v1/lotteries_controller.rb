@@ -1,6 +1,6 @@
 class ApiV1::LotteriesController < ApiController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user_from_token!
 
   def userJoinLottery
     if authenticate_user_from_token!
@@ -9,30 +9,22 @@ class ApiV1::LotteriesController < ApiController
 
       if params[:lottery_id].blank?
         render :json => {
-          :error => {
-            :msg => "lottery_id can't be blank！",
-          }
+          :error => "lottery_id can't be blank！"
         }, :status => 401
 
       elsif !find_lottery!
         render :json => {
-          :error => {
-            :msg => "lottery_id is fail",
-          }
+          :error => "lottery_id is fail"
         }, :status => 401
 
       elsif @user.lotteries.all.find_by_id(params[:lottery_id])
         render :json => {
-          :error => {
-            :msg => "已參加過此抽獎！",
-          }
+          :error => "已參加過此抽獎！"
         }, :status => 401
 
       elsif params[:name].blank? || params[:address].blank? || params[:phone_number].blank? || params[:birthday].blank?
         render :json => {
-          :error => {
-            :msg => "個人資訊不可有空白！",
-          }
+          :error => "個人資訊不可有空白！"
         }, :status => 401
 
       elsif !params[:name].blank? && !params[:address].blank? && !params[:phone_number].blank? && !params[:birthday].blank?
@@ -49,9 +41,7 @@ class ApiV1::LotteriesController < ApiController
 
     else
       render :json => {
-        :error => {
-          :msg => "auth_token is wrong!!",
-        }
+        :error => "auth_token is wrong!!"
       }, :status => 401
     end
 
