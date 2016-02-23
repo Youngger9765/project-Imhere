@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221042539) do
+
+ActiveRecord::Schema.define(version: 20160221090201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +120,25 @@ ActiveRecord::Schema.define(version: 20160221042539) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "order_number"
+    t.string   "user_auth"
+    t.integer  "user_id"
+    t.integer  "product_id",            limit: 8
+    t.string   "product_variant_title"
+    t.integer  "product_quantity"
+    t.string   "product_price"
+    t.string   "subtotal_price"
+    t.string   "currency"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
+  add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
+  add_index "orders", ["user_auth"], name: "index_orders_on_user_auth", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

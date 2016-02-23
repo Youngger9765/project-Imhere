@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
          :omniauthable, :omniauth_providers => [:facebook]
-  validates :name, presence: true       
   
+  validates :name, presence: true         
   validates_with EmailDomainValidator
 
   before_create :generate_authentication_token
@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_many :user_lottery_ships
   has_many :lotteries, :through => :user_lottery_ships
+
+  has_many :orders
 
   geocoded_by :address
   after_validation :geocode
