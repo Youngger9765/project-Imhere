@@ -7,6 +7,14 @@ class ApiV1::UsersController < ApiController
     if authenticate_user_from_token!
       @user = current_user
 
+      if @user.fb_token
+        @fb_lock = "fb 已綁定"
+      
+      else
+        @fb_lock = nil
+      end
+      
+
     else
       render :json => {
         :error => "auth_token is wrong!"
