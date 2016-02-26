@@ -14,4 +14,5 @@ json.user do
   end
 
   json.birthday @user.birthday
+  json.fb_lock @fb_lock
 end
