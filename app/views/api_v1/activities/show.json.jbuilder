@@ -20,9 +20,10 @@ json.activity_achievement @achievement
 
 json.activity_milestones @milestones
 
-json.activity_content do
-  json.content @activity.content
-end
+json.activity_milestone_logo_content @milestone_logo_content
+
+json.activity_content @activity.content
+
 
 json.activity_info do
   json.information @activity.information
