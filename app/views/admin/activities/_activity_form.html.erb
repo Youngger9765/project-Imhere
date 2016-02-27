@@ -82,6 +82,13 @@
     <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
   <% end %>
 </div>
+<br>
+
+<div class="form-group">
+  <h2><%= f.label :milestone_logo_content %></h2> 
+  <%= f.text_area :milestone_logo_content, :class =>"froala-editor" %>
+</div>
+
 
 <hr>
 

@@ -85,7 +85,8 @@ class Admin::ActivitiesController < ApplicationController
     params.require(:activity).permit(:name, :content, :start_time, :end_time, 
                                      :logo, :participator, :location, :fund,
                                      :status, :information_picture, :information,
-                                     :description, :logo_in_event, :banner
+                                     :description, :logo_in_event, :banner,
+                                     :milestone_logo_content
                                      )
   end
 
