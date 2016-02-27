@@ -10,6 +10,7 @@ class ApiV1::ActivitiesController < ApplicationController
     @milestones = @activity.activity_milestones.order("people ASC")
     @merchants = @activity.merchants
     @lotteries = @activity.lotteries
+    @milestone_logo_content = @activity.milestone_logo_content
 
     @customers_target = @activity.customers_target
     @merchant_people_count = 10  # 之後靠order 
