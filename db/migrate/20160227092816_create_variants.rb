@@ -2,10 +2,10 @@ class CreateVariants < ActiveRecord::Migration
   def change
     create_table :variants do |t|
       t.integer :merchant_id
-      t.integer :shopify_variant_id
+      t.integer :shopify_variant_id, :limit => 8
       t.string  :title
       t.integer :price
-      t.decimal :weight, :precision => 2, :scale => 2
+      t.float :weight
       t.string  :weight_unit
 
       t.timestamps null: false

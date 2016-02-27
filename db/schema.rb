@@ -224,13 +224,13 @@ ActiveRecord::Schema.define(version: 20160227092816) do
 
   create_table "variants", force: :cascade do |t|
     t.integer  "merchant_id"
-    t.integer  "shopify_variant_id"
+    t.integer  "shopify_variant_id", limit: 8
     t.string   "title"
     t.integer  "price"
-    t.decimal  "weight",             precision: 2, scale: 2
+    t.float    "weight"
     t.string   "weight_unit"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "variants", ["merchant_id"], name: "index_variants_on_merchant_id", using: :btree

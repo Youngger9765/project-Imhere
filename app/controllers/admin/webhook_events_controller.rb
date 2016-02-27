@@ -44,6 +44,7 @@ class Admin::WebhookEventsController < ApplicationController
   end
 
   def product_create
+    #create merchant
     merchant = Merchant.find_by(:shopify_product_id => params[:id])
     
     if merchant
@@ -62,6 +63,24 @@ class Admin::WebhookEventsController < ApplicationController
     end
 
     merchant.save!
+
+    #create variant
+    params[:variants].each do |variant|
+      @variant = merchant.variants.find_by(:shopify_variant_id => variant[:id])
+
+      if @variant 
+        @variant = merchant.variants.find_by(:shopify_variant_id => variant[:id])
+      else
+        @variant = merchant.variants.new
+      end
+
+      @variant.shopify_variant_id = variant[:id]
+      @variant.title = variant[:title]
+      @variant.price = variant[:price]
+      @variant.weight = variant[:weight]
+      @variant.weight_unit = variant[:weight_unit]
+      @variant.save!
+    end
 
     head :ok
 
