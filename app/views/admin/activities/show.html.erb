@@ -40,6 +40,12 @@
         <%= link_to "+建立里程碑", new_admin_event_activity_activity_milestone_path(@event,@activity), :class => "btn btn-success" %>
       </h1>
       <div class="row">
+        <h4>目標人數： <%= @customers_target %></h4>
+        <h4>達成率：<%= @achievement%> % 
+        ( 購買人數：<%= @merchant_people_count %>, 
+          抽獎人數：<%= @lottery_people_count %> )
+        </h4>
+
         <% count = 0%>
         <% @milestones.each do |milestone|%>
           <% count+= 1%>

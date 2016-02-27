@@ -85,8 +85,13 @@
 <br>
 
 <div class="form-group">
-  <h2><%= f.label :milestone_logo_content %></h2> 
+  <h2><%= f.label :milestone_logo_content, "里程碑logo" %></h2> 
   <%= f.text_area :milestone_logo_content, :class =>"froala-editor" %>
+</div>
+
+<div class="form-group">
+  <h2><%= f.label :customers_target ,"目標人數"%></h2>
+  <%= f.number_field :customers_target, :class => "form-control" %>
 </div>
 
 

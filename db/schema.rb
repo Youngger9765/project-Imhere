@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227041459) do
+ActiveRecord::Schema.define(version: 20160227045315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160227041459) do
     t.integer  "milestone_logo_file_size"
     t.datetime "milestone_logo_updated_at"
     t.text     "milestone_logo_content"
+    t.integer  "customers_target"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
