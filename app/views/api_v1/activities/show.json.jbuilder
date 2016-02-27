@@ -16,6 +16,8 @@ json.activity_data do
   end
 end
 
+json.activity_achievement @achievement
+
 json.activity_milestones @milestones
 
 json.activity_content do

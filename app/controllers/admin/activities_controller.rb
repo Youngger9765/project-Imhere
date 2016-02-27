@@ -20,6 +20,12 @@ class Admin::ActivitiesController < ApplicationController
     @milestones = @activity.activity_milestones.order("people ASC")
     @lotteries = @activity.lotteries
     @merchants = @activity.merchants
+
+    @customers_target = @activity.customers_target
+    @merchant_people_count = 10  # 之後靠order 
+    @lottery_people_count = @activity.lotteries.sum(:users_count)
+    @achievement = (@lottery_people_count.to_f + @merchant_people_count.to_f)*100 / @customers_target.to_f
+    @achievement = @achievement.to_i
   end
 
 
@@ -86,7 +92,7 @@ class Admin::ActivitiesController < ApplicationController
                                      :logo, :participator, :location, :fund,
                                      :status, :information_picture, :information,
                                      :description, :logo_in_event, :banner,
-                                     :milestone_logo_content
+                                     :milestone_logo_content, :customers_target
                                      )
   end
 
