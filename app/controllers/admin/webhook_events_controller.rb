@@ -43,7 +43,7 @@ class Admin::WebhookEventsController < ApplicationController
     head :ok
   end
 
-  def product_create
+  def product_create_update
     #create merchant
     merchant = Merchant.find_by(:shopify_product_id => params[:id])
     
@@ -65,6 +65,7 @@ class Admin::WebhookEventsController < ApplicationController
     merchant.save!
 
     #create variant
+    merchant.variants.delete_all
     params[:variants].each do |variant|
       @variant = merchant.variants.find_by(:shopify_variant_id => variant[:id])
 
@@ -83,8 +84,17 @@ class Admin::WebhookEventsController < ApplicationController
     end
 
     head :ok
-
   end
+
+  def product_delete
+    merchant = Merchant.find_by(:shopify_product_id => params[:id])
+
+    if merchant
+      merchant.destroy
+    end
+    
+    head :ok   
+  end 
 
 
   private
