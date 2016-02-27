@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227045315) do
+ActiveRecord::Schema.define(version: 20160227092816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,13 +118,18 @@ ActiveRecord::Schema.define(version: 20160227045315) do
     t.string   "name"
     t.text     "content"
     t.integer  "price"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "shopify_product_id", limit: 8
+    t.string   "vendor"
   end
+
+  add_index "merchants", ["shopify_product_id"], name: "index_merchants_on_shopify_product_id", using: :btree
+  add_index "merchants", ["vendor"], name: "index_merchants_on_vendor", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "order_number"
@@ -216,6 +221,20 @@ ActiveRecord::Schema.define(version: 20160227045315) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+
+  create_table "variants", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.integer  "shopify_variant_id", limit: 8
+    t.string   "title"
+    t.integer  "price"
+    t.float    "weight"
+    t.string   "weight_unit"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "variants", ["merchant_id"], name: "index_variants_on_merchant_id", using: :btree
+  add_index "variants", ["shopify_variant_id"], name: "index_variants_on_shopify_variant_id", using: :btree
 
   create_table "webhook_events", force: :cascade do |t|
     t.text     "content"

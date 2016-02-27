@@ -23,9 +23,6 @@ class Admin::WebhookEventsController < ApplicationController
   end
 
   def order_create
-    data = ActiveSupport::JSON.decode(request.body.read)
-    webhook_event = WebhookEvent.create(:content => data)
-
     order = Order.find_by(:order_number => params[:order_number])
     
     if order
@@ -45,6 +42,59 @@ class Admin::WebhookEventsController < ApplicationController
 
     head :ok
   end
+
+  def product_create_update
+    #create merchant
+    merchant = Merchant.find_by(:shopify_product_id => params[:id])
+    
+    if merchant
+      merchant = Merchant.find_by(:shopify_product_id => params[:id])
+    else  
+      merchant = Merchant.new
+    end
+
+    merchant.shopify_product_id = params[:id]
+    merchant.vendor = params[:vendor]
+    merchant.name = params[:title]
+    merchant.price = params[:variants][0][:price]
+    
+    if !params[:body_html].blank?
+      merchant.content = params[:body_html]
+    end
+
+    merchant.save!
+
+    #create variant
+    merchant.variants.delete_all
+    params[:variants].each do |variant|
+      @variant = merchant.variants.find_by(:shopify_variant_id => variant[:id])
+
+      if @variant 
+        @variant = merchant.variants.find_by(:shopify_variant_id => variant[:id])
+      else
+        @variant = merchant.variants.new
+      end
+
+      @variant.shopify_variant_id = variant[:id]
+      @variant.title = variant[:title]
+      @variant.price = variant[:price]
+      @variant.weight = variant[:weight]
+      @variant.weight_unit = variant[:weight_unit]
+      @variant.save!
+    end
+
+    head :ok
+  end
+
+  def product_delete
+    merchant = Merchant.find_by(:shopify_product_id => params[:id])
+
+    if merchant
+      merchant.destroy
+    end
+    
+    head :ok   
+  end 
 
 
   private
