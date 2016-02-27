@@ -60,6 +60,7 @@ class Admin::WebhookEventsController < ApplicationController
     if !params[:body_html].blank?
       merchant.content = params[:body_html]
     end
+
     merchant.save!
 
     head :ok

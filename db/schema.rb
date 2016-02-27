@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227083500) do
+ActiveRecord::Schema.define(version: 20160227092816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,20 @@ ActiveRecord::Schema.define(version: 20160227083500) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+
+  create_table "variants", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.integer  "shopify_variant_id"
+    t.string   "title"
+    t.integer  "price"
+    t.decimal  "weight",             precision: 2, scale: 2
+    t.string   "weight_unit"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "variants", ["merchant_id"], name: "index_variants_on_merchant_id", using: :btree
+  add_index "variants", ["shopify_variant_id"], name: "index_variants_on_shopify_variant_id", using: :btree
 
   create_table "webhook_events", force: :cascade do |t|
     t.text     "content"
