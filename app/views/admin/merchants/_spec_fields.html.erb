@@ -1,7 +1,7 @@
 <div class="nested-fields well">
 
   規格名稱：<br>
-  <%=f.input :name, label:false, placeholder:'規格名稱' %>
+  <%=f.label :name %>
   <br>
   選項：<br>
   <%= f.simple_fields_for(:selections) do |selection| %>
@@ -9,9 +9,9 @@
   <% end %>
 
   <div class="links">
-    <%= link_to_add_association '新增selection', f, :selections, class:'btn btn-success btn-xs' %>
+    <%#= link_to_add_association '新增selection', f, :selections, class:'btn btn-success btn-xs' %>
   </div>
   
  
-  <%= link_to_remove_association "刪除", f, class:'btn btn-danger btn-xs pull-right' %>
+  <%#= link_to_remove_association "刪除", f, class:'btn btn-danger btn-xs pull-right' %>
 </div>
