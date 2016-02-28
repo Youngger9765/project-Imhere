@@ -71,6 +71,9 @@ Rails.application.routes.draw do
     #lottery
     post "/userJoinLottery" => "lotteries#userJoinLottery"
 
+    #order
+    post "/getShopifyInfo" =>"merchants#getShopifyInfo"
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
