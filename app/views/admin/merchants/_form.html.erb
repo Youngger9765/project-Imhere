@@ -1,6 +1,6 @@
 <div class="col-md-8">
   <div class="form-group">
-    <%= f.label :description, "商品介紹＠活動頁" %>
+    <h3><%= f.label :description, "活動頁的商品介紹" %></h3> 
     <%= f.text_area :description, :class =>"froala-editor" %>
   </div>
 
@@ -9,13 +9,20 @@
 
   <h2>以下為商品獨立頁面</h2>
 
-  <div class="form-group">
-    <%= f.label :name ,"商品名稱"%>
-    <%= f.text_field :name, :class => "form-control" %>
+  <h3>商品名稱: <%= @merchant.name %></h3>
+
+  <div class="form-group h3">
+    <%= f.label :merchantable_type, "所屬類型" %>
+    <%= f.select :merchantable_type, [["活動","Activity"]], :class =>"form-control" %>
+  </div>
+
+  <div class="form-group h3">
+    <%= f.label :merchantable_id, "所屬活動" %>
+    <%= f.select :merchantable_id, Activity.all.map{|a| [a.name, a.id]}, :class =>"form-control" %>
   </div>
 
   <div class="form-group">
-      <%=f.label :logo, "LOGO"%>
+      <%=f.label :logo, "商品LOGO"%>
       <%=f.file_field :logo%>
       
       <% if @merchant.logo.exists? %>
@@ -45,17 +52,14 @@
     <%end%>
   </div>
 
-  <div class="form-group">
-    <%= f.label :price ,"單價"%>
-    <%= f.number_field :price, :class => "form-control" %>
-  </div>
+  <h3>單價: <%= @merchant.price %></h3>
 
   <%= f.simple_fields_for(:specs) do |spec| %>
     <%= render 'spec_fields', f: spec if @merchant.specs.any? %>
   <% end %>
 
   <div class="links">
-    <%= link_to_add_association '新增spec', f, :specs, class:'btn btn-success' %>
+    <%#= link_to_add_association '新增spec', f, :specs, class:'btn btn-success' %>
   </div>
   <br>
   <%= f.submit "更新",:class => "btn btn-primary" %>
