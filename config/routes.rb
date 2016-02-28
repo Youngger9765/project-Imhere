@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     post "/editUserInfo" => "users#editUserInfo"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
+    get "/getOrder" => "users#getOrder"
 
     #event_info/activity_info
     resources :events do
