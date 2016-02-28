@@ -25,10 +25,11 @@ class Admin::WebhookEventsController < ApplicationController
   def order_create
     order = Order.find_by(:order_number => params[:order_number])
     
-    if order
+    if order  #update
       order = Order.find_by(:order_number => params[:order_number])
     else  
-      order = Order.new
+      merchant = Merchant.find_by(:shopify_product_id => params[:line_items][0][:product_id])
+      order = merchant.orders.new
     end
     
     order.order_number = params[:order_number]
