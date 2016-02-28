@@ -1,4 +1,4 @@
-class ApiV1::EventsController < ApplicationController
+class ApiV1::EventsController < ApiController
 
   def index
     @events = Event.all
