@@ -48,6 +48,7 @@
         <% if merchant.merchantable_type == "Activity" %>
           <%= link_to "Edit", edit_admin_event_activity_merchant_path(merchant.merchantable.event,merchant.merchantable,merchant), :class => "btn btn-success" %>
         <%else%>
+          <%= link_to "Edit",admin_merchant_path(merchant), :class => "btn btn-success" %>
         <%end%>
       </td>
       <td>
