@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227092816) do
+ActiveRecord::Schema.define(version: 20160228161205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,14 +118,15 @@ ActiveRecord::Schema.define(version: 20160227092816) do
     t.string   "name"
     t.text     "content"
     t.integer  "price"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "shopify_product_id", limit: 8
     t.string   "vendor"
+    t.integer  "orders_count",                 default: 0
   end
 
   add_index "merchants", ["shopify_product_id"], name: "index_merchants_on_shopify_product_id", using: :btree
@@ -143,8 +144,10 @@ ActiveRecord::Schema.define(version: 20160227092816) do
     t.string   "currency"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "merchant_id"
   end
 
+  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id", using: :btree
   add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
   add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
   add_index "orders", ["user_auth"], name: "index_orders_on_user_auth", using: :btree

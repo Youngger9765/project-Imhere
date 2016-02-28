@@ -22,7 +22,7 @@ class Admin::ActivitiesController < ApplicationController
     @merchants = @activity.merchants
 
     @customers_target = @activity.customers_target
-    @merchant_people_count = 10  # 之後靠order 
+    @merchant_people_count = @activity.merchants.sum(:orders_count)
     @lottery_people_count = @activity.lotteries.sum(:users_count)
     
     if @customers_target && @customers_target > 0
