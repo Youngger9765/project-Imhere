@@ -83,6 +83,22 @@ class Admin::WebhookEventsController < ApplicationController
       @variant.save!
     end
 
+    #create spec & selection
+    merchant.specs.destroy_all
+    if !params[:options].blank?
+      params[:options].each do |option|
+        spec = merchant.specs.new
+        spec.name = option[:name]
+        spec.save!
+
+        option[:values].each do |value|
+          selection = spec.selections.new
+          selection.name = value
+          selection.save!
+        end
+      end
+    end
+
     head :ok
   end
 
