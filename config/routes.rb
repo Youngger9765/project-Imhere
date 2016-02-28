@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     post "/userJoinLottery" => "lotteries#userJoinLottery"
 
     #order
-    post "/getShopifyInfo" =>"merchants#getShopifyInfo"
+    get "/getShopifyInfo" =>"merchants#getShopifyInfo"
 
   end
 
