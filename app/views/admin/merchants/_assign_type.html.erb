@@ -1,0 +1,15 @@
+<h1>請先指定商品活動</h1>
+
+<div class="col-md-12">
+  <div class="form-group h3">
+    <%= f.label :merchantable_type, "所屬類型" %>
+    <%= f.select :merchantable_type, [["活動","Activity"]], :class =>"form-control" %>
+  </div>
+
+  <div class="form-group h3">
+    <%= f.label :merchantable_id, "所屬活動" %>
+    <%= f.select :merchantable_id, Activity.all.map{|a| [a.name, a.id]}, :class =>"form-control" %>
+  </div>
+
+  <%= f.submit "更新",:class => "btn btn-primary" %>
+</div>

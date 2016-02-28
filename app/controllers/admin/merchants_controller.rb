@@ -6,7 +6,13 @@ class Admin::MerchantsController < ApplicationController
   before_action :find_merchant, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @merchants = @activity.merchants
+    if params[:activity_id]
+      @index_params = "activity"
+      @merchants = @activity.merchants
+    else
+      @merchants = Merchant.all.order("merchantable_type DESC")
+    end
+
     authorize @merchants
   end
 
@@ -38,6 +44,11 @@ class Admin::MerchantsController < ApplicationController
 
   def update
     authorize @merchant
+    
+    if @merchant.merchantable_type == nil && params[:merchant][:merchantable_type] == "Activity"
+      @update_status = "assign_activity"
+    end
+
     @merchant.update(merchant_params)
 
     if params[:destroy_logo] == "1"
@@ -45,7 +56,13 @@ class Admin::MerchantsController < ApplicationController
       @merchant.save!
     end
 
-    redirect_to admin_event_activity_merchant_path(@event,@activity,@merchant)
+    if @update_status == "assign_activity"
+      @event = @merchant.merchantable.event
+      @activity = @merchant.merchantable
+      redirect_to edit_admin_event_activity_merchant_path(@event,@activity,@merchant)
+    else
+      redirect_to admin_event_activity_merchant_path(@event,@activity,@merchant)
+    end
   end
 
   def destroy
@@ -59,19 +76,24 @@ class Admin::MerchantsController < ApplicationController
 
   def merchant_params
     params.require(:merchant).permit( :description, :name, :content, 
-                                      :price, :logo,
+                                      :price, :logo, :merchantable_type,
+                                      :merchantable_id,
                                       specs_attributes: [:id, :name, :selection, :_destroy, 
-                                          selections_attributes:[:id, :name, :_destroy ]
+                                      selections_attributes:[:id, :name, :_destroy ]
                                       ]
                                     )
   end
 
   def find_event
-    @event = Event.find(params[:event_id])
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+    end
   end
 
   def find_activity
-    @activity = Activity.find(params[:activity_id])
+    if params[:activity_id]
+      @activity = Activity.find(params[:activity_id])
+    end
   end
 
   def find_merchant
