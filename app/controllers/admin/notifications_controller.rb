@@ -14,6 +14,9 @@ class Admin::NotificationsController < ApplicationController
     elsif params[:filter] == "latest"
       @notifications = Notification.where('start_time >= ?', Time.now).order("start_time ASC")
 
+    elsif params[:filter] == "today"
+      @notifications = Notification.where('start_time < ? AND start_time > ?', Time.now.end_of_day,Time.now.beginning_of_day).order("start_time ASC")
+
     else
       @notifications = Notification.all.order("start_time ASC")
     end
