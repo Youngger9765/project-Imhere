@@ -1,0 +1,32 @@
+<h1>推播列表 <%=link_to "＋建立新推播", new_admin_notification_path, :class => "btn btn-success" %></h1>
+
+<%= link_to "全部", admin_notifications_path, :class => "btn btn-default" %>
+
+<%= link_to "最新未過期", admin_notifications_path( :filter =>"latest"), :class => "btn btn-info" %>
+
+<%= link_to "已過期", admin_notifications_path( :filter =>"overtime"), :class => "btn btn-danger" %>
+<br>
+<br>
+
+<table class="table">
+  <tr>
+    <td>推播logo</td>
+    <td>推播名稱</td>
+    <td>推播內容</td>
+    <td>推播連結</td>
+    <td>推播時間</td>
+    <td>編輯</td>
+    <td>刪除</td> 
+  </tr>
+  <% @notifications.each do |notification| %>
+    <tr>
+      <td><%= image_tag(notification.logo.url(:thumb)) %></td>
+      <td><%= link_to notification.title, admin_notification_path(notification) %></td>
+      <td><%= notification.content %></td>
+      <td><%= link_to "連結",notification.url, :target => "_blank" %></td>
+      <td><%= notification.start_time.strftime('%F %R') %></td>
+      <td><%= link_to "Edit", edit_admin_notification_path(notification), :class => "btn btn-success" %></td>
+      <td><%= link_to "Delete", admin_notification_path(notification), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure?" } %></td>
+    </tr>
+  <%end%>
+</table>

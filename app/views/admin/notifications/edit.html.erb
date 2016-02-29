@@ -1,0 +1,7 @@
+<h3>編輯新推播</h3>
+
+<%= form_for @notification, :url => admin_notification_path(@notification) do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f} %>
+
+<% end %>
