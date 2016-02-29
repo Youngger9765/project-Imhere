@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
     resources :users
     resources :orders
+    resources :merchants
+    resources :notifications
 
     resources :lotteries do
       member do
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :merchants
+    
   end
 
 
@@ -74,6 +76,9 @@ Rails.application.routes.draw do
 
     #order
     get "/getShopifyInfo" =>"merchants#getShopifyInfo"
+
+    #notification
+    get "/getTodayNotification" =>"notifications#getTodayNotification"
 
   end
 

@@ -1,0 +1,51 @@
+<h3>
+<%= link_to "推播列表", admin_notifications_path %> 
+> 
+<%= @notification.title %> 
+<%= link_to "編輯", edit_admin_notification_path(@notification), :class => "btn btn-success" %>
+<%= link_to "刪除", admin_notification_path(@notification), :method => :delete, :data => {:confirm => "are_you_sure?" }, :class => "btn btn-danger btn-sm" %>
+</h3> 
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
+    推播名稱：
+  </div>
+  <div class="col-md-6">
+    <%= @notification.title %>
+  </div>
+</div>
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
+    推播內容：
+  </div>
+  <div class="col-md-6">
+    <%= @notification.content %>
+  </div>
+</div>
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
+    推播時間：
+  </div>
+  <div class="col-md-6">
+    <%= @notification.start_time.strftime('%F %R') %>
+  </div>
+</div>
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
+    推播logo：
+  </div>
+  <div class="col-md-6">
+    <% if @notification.logo.exists? %>
+      <%= image_tag(@notification.logo.url(:medium))%>
+    <%else%>
+      <%= link_to "請新增推播圖片", edit_admin_notification_path(@notification), :class => "btn btn-success btn-lg " %>
+    <%end%>
+  </div>
+</div>
+
+
+
+
