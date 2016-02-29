@@ -1,5 +1,7 @@
 <h1>推播列表 <%=link_to "＋建立新推播", new_admin_notification_path, :class => "btn btn-success" %></h1>
 
+<%= @time_now %> <br>
+
 <%= link_to "全部", admin_notifications_path, :class => "btn btn-default" %>
 
 <%= link_to "最新未過期", admin_notifications_path( :filter =>"latest"), :class => "btn btn-info" %>

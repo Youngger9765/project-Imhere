@@ -6,6 +6,7 @@ class Admin::NotificationsController < ApplicationController
   before_action :find_notification, :only => [:show, :edit, :update, :destroy]
 
   def index
+    @time_now = Time.now
 
     if params[:filter] == "overtime"
       @notifications = Notification.where('start_time < ?', Time.now).order("start_time ASC")

@@ -77,6 +77,9 @@ Rails.application.routes.draw do
     #order
     get "/getShopifyInfo" =>"merchants#getShopifyInfo"
 
+    #notification
+    get "/getTodayNotification" =>"notifications#getTodayNotification"
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
