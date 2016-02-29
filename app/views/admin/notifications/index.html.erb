@@ -4,9 +4,11 @@
 
 <%= link_to "全部", admin_notifications_path, :class => "btn btn-default" %>
 
-<%= link_to "最新未過期", admin_notifications_path( :filter =>"latest"), :class => "btn btn-info" %>
+<%= link_to "今天", admin_notifications_path( :filter =>"today"), :class => "btn btn-primary" %>
 
-<%= link_to "已過期", admin_notifications_path( :filter =>"overtime"), :class => "btn btn-danger" %>
+<%= link_to "即將推播", admin_notifications_path( :filter =>"latest"), :class => "btn btn-info" %>
+
+<%= link_to "已經推播", admin_notifications_path( :filter =>"overtime"), :class => "btn btn-danger" %>
 <br>
 <br>
 
