@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229084420) do
+ActiveRecord::Schema.define(version: 20160302020326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160229084420) do
     t.datetime "milestone_logo_updated_at"
     t.text     "milestone_logo_content"
     t.integer  "customers_target"
+    t.text     "merchant_description"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
@@ -114,7 +115,6 @@ ActiveRecord::Schema.define(version: 20160229084420) do
   create_table "merchants", force: :cascade do |t|
     t.string   "merchantable_type"
     t.integer  "merchantable_id"
-    t.text     "description"
     t.string   "name"
     t.text     "content"
     t.integer  "price"
@@ -167,6 +167,24 @@ ActiveRecord::Schema.define(version: 20160229084420) do
   add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
   add_index "orders", ["user_auth"], name: "index_orders_on_user_auth", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "prizes", force: :cascade do |t|
+    t.integer  "lottery_id"
+    t.string   "name"
+    t.text     "content"
+    t.float    "price"
+    t.integer  "quatity"
+    t.string   "brand"
+    t.string   "vendor"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+  end
+
+  add_index "prizes", ["lottery_id"], name: "index_prizes_on_lottery_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

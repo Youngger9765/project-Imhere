@@ -128,20 +128,9 @@
       </h1>
 
       <div class="row">
-        <% @merchants.each do |merchant|%>
-          
-          <%= link_to admin_event_activity_merchant_path(@event,@activity, merchant) do%>
-            <div class="merchant-description">
-              <h3><%= merchant.name%></h3> 
-
-              <% if merchant.description.blank?%>
-                <h3>尚未建立敘述</h3>  
-              <%else%>
-                <%= raw merchant.description%>
-              <%end%>
-            </div>
-          <%end%>
-        <%end%>
+        <div class="merchant-description">
+          <%= raw @activity.merchant_description%>
+        </div>
       </div>
     </div>
     <div class="col-md-3">

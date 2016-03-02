@@ -1,16 +1,5 @@
 <div class="col-md-8">
   <h3>商品名稱: <%= @merchant.name %></h3>
-  <div class="form-group">
-    <h3><%= f.label :description, "活動頁的商品介紹" %></h3> 
-    <%= f.text_area :description, :class =>"froala-editor" %>
-  </div>
-
-  <hr>
-  <hr>
-
-  <h2>以下為商品獨立頁面</h2>
-
-  <h3>商品名稱: <%= @merchant.name %></h3>
 
   <div class="form-group h3">
     <%= f.label :merchantable_type, "所屬類型" %>
@@ -18,7 +7,7 @@
   </div>
 
   <div class="form-group h3">
-    <%= f.label :merchantable_id, "所屬活動" %>
+    <%= f.label :merchantable_id, "所屬類型名稱" %>
     <%= f.select :merchantable_id, Activity.all.map{|a| [a.name, a.id]}, :class =>"form-control" %>
   </div>
 
