@@ -10,5 +10,8 @@ class CreatePrizes < ActiveRecord::Migration
       t.string    :vendor
       t.timestamps null: false
     end
+
+    add_attachment :prizes, :logo
+    add_index :prizes, :lottery_id
   end
 end

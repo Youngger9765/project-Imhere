@@ -176,9 +176,15 @@ ActiveRecord::Schema.define(version: 20160229151121) do
     t.integer  "quatity"
     t.string   "brand"
     t.string   "vendor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
+
+  add_index "prizes", ["lottery_id"], name: "index_prizes_on_lottery_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
