@@ -75,7 +75,7 @@ class Admin::MerchantsController < ApplicationController
   private
 
   def merchant_params
-    params.require(:merchant).permit( :description, :name, :content, 
+    params.require(:merchant).permit( :name, :content, 
                                       :price, :logo, :merchantable_type,
                                       :merchantable_id,
                                       specs_attributes: [:id, :name, :selection, :_destroy, 
