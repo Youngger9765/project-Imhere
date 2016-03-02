@@ -97,7 +97,8 @@ class Admin::ActivitiesController < ApplicationController
                                      :logo, :participator, :location, :fund,
                                      :status, :information_picture, :information,
                                      :description, :logo_in_event, :banner,
-                                     :milestone_logo_content, :customers_target
+                                     :milestone_logo_content, :customers_target,
+                                     :merchant_description
                                      )
   end
 
