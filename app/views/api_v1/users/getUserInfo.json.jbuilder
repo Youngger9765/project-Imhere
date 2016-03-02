@@ -6,6 +6,7 @@ json.user do
   json.address @user.address
   json.latitude @user.latitude
   json.longitude @user.longitude
+  json.birthday @user.birthday
 
   if @user.head_shot.url == "/images/original/missing.png"
     json.head_shot nil
@@ -13,6 +14,8 @@ json.user do
     json.head_shot @user.head_shot.url
   end
 
-  json.birthday @user.birthday
   json.fb_lock @fb_lock
+  json.fb_name @user.fb_name
+  json.fb_email @user.fb_email
+  json.fb_head_shot @user.fb_head_shot
 end
