@@ -1,5 +1,5 @@
 json.user do
-  json.msg "user update success"
+  json.msg "user 編輯成功"
   json.id @user.id
   json.name @user.name
   json.email @user.email
@@ -14,4 +14,9 @@ json.user do
   else
     json.head_shot @user.head_shot.url
   end
+
+  json.fb_lock @fb_lock
+  json.fb_name @user.fb_name
+  json.fb_email @user.fb_email
+  json.fb_head_shot @user.fb_head_shot
 end

@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def self.get_fb_data(access_token)
     res = RestClient.get "https://graph.facebook.com/v2.4/me",  
-    { :params => { :access_token => access_token, :fields =>["id", "name", "email"] } }
+    { :params => { :access_token => access_token, :fields =>["id", "name", "email", "picture"] } }
 
     if res.code == 200
       JSON.parse( res.to_str )
@@ -53,6 +53,9 @@ class User < ActiveRecord::Base
       # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
     if user
+      user.fb_name = auth[:info][:name]
+      user.fb_email = auth[:info][:email]
+      user.fb_head_shot = auth[:info][:image]
       user.fb_token = auth.credentials.token
       user.fb_raw_data = auth
       user.skip_confirmation! 
@@ -63,6 +66,9 @@ class User < ActiveRecord::Base
     # Case 2: Find existing user by email
     existing_user = User.find_by_email( auth.info.email )
     if existing_user
+      existing_user.fb_name = auth[:info][:name]
+      existing_user.fb_email = auth[:info][:email]
+      existing_user.fb_head_shot = auth[:info][:image]
       existing_user.fb_uid = auth.uid
       existing_user.fb_token = auth.credentials.token
       existing_user.fb_raw_data = auth

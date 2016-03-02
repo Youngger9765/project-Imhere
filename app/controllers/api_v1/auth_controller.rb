@@ -79,7 +79,8 @@ class ApiV1::AuthController < ApiController
           uid: fb_data["id"],
           info: {
             email: fb_data["email"],
-            name: fb_data["name"]
+            name: fb_data["name"],
+            image: fb_data["picture"]["data"]["url"],
           },
           credentials: {
             token: params[:access_token],
@@ -101,7 +102,10 @@ class ApiV1::AuthController < ApiController
                           :auth_token => user.authentication_token,
                           :user_id => user.id,
                           :email => user.email,
-                          :fb => "FB已綁定"
+                          :fb => "FB已綁定",
+                          :fb_name => user.fb_name,
+                          :fb_email => user.fb_email,
+                          :fb_image => user.fb_head_shot
                         }
       else
         render :json => { :message => "login Ok",

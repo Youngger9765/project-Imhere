@@ -40,6 +40,9 @@ class ApiV1::UsersController < ApiController
       @user.fb_uid = nil
       @user.fb_token = nil
       @user.fb_raw_data = nil
+      @user.fb_name = nil
+      @user.fb_email = nil
+      @user.fb_head_shot = nil
       @user.save!
 
       render :json => {
