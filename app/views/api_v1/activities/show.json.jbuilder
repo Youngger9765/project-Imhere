@@ -41,11 +41,7 @@ json.activity_info do
   json.longitude @activity.longitude
 end
 
-json.activity_merchants @merchants.each do |merchant|
-  json.id merchant.id
-  json.name merchant.name
-  json.description merchant.description
-end
+json.activity_merchant_description @activity.merchant_description
 
 json.activity_lotteries @lotteries.each do |lottery|
   json.id lottery.id
