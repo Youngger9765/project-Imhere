@@ -56,10 +56,20 @@ class ApiV1::AuthController < ApiController
 
   def login
     success = false
+    error_msg = nil
 
     if params[:email] && params[:password]
       user = User.find_by_email( params[:email] )
-      success = user && user.valid_password?( params[:password] )
+
+      if !user
+        error_msg = "無此帳號，請先註冊！"
+
+      elsif !user.valid_password?(params[:password])
+        error_msg = "密碼錯誤"
+      end
+
+      success = user && user.valid_password?(params[:password])
+    
     elsif params[:access_token]
 
       fb_data = User.get_fb_data( params[:access_token] )
@@ -78,6 +88,7 @@ class ApiV1::AuthController < ApiController
         })
 
         user = User.from_omniauth(auth_hash)
+
       end
 
       success = fb_data && user.persisted?
@@ -100,10 +111,11 @@ class ApiV1::AuthController < ApiController
                           :fb => "FB未綁定"
                         }
       end
+
     else
-      render :json => { :error => "Email or Password is wrong",
+      render :json => { :error => error_msg,
                         :fb_data => fb_data
-                        }, :status => 401
+                      }, :status => 401      
     end
 
   end
