@@ -10,17 +10,17 @@ class ApiV1::AuthController < ApiController
 
     if params[:email].blank?
       render :json => {
-        :error => "email is nil"
+        :error => "Email空白"
       }, :status => 401
 
     elsif params[:password].blank? || params[:password].size < 8
       render :json => {
-        :error => "password is nil or less than 8"
+        :error => "密碼空白或少於8個字元"
       }, :status => 401
 
     elsif params[:name].blank?
       render :json => {
-        :error => "name is nil"
+        :error => "名稱空白"
       }, :status => 401
     elsif user
       render :json => {
@@ -40,8 +40,7 @@ class ApiV1::AuthController < ApiController
       if user.save
         render :json => {
           :member => {
-            "msg" => "You have to confirm your email address before continuing.",
-            "message" => "Ok",
+            "msg" => "註冊成功，並寄送確認信到註冊信箱",
             "auth_token" => user.authentication_token,
             "user_id" => user.id
           }
@@ -62,10 +61,10 @@ class ApiV1::AuthController < ApiController
       user = User.find_by_email( params[:email] )
 
       if !user
-        error_msg = "無此帳號，請先註冊！"
+        error_msg = "無此Email"
 
       elsif !user.valid_password?(params[:password])
-        error_msg = "密碼錯誤"
+        error_msg = "密碼有誤"
       end
 
       success = user && user.valid_password?(params[:password])
@@ -98,7 +97,7 @@ class ApiV1::AuthController < ApiController
     if success
       sign_in(user, store: false) if user
       if !user.fb_uid.nil?
-        render :json => { :message => "login Ok",
+        render :json => { :message => "登入成功",
                           :auth_token => user.authentication_token,
                           :user_id => user.id,
                           :email => user.email,
@@ -108,7 +107,7 @@ class ApiV1::AuthController < ApiController
                           :fb_image => user.fb_head_shot
                         }
       else
-        render :json => { :message => "login Ok",
+        render :json => { :message => "登入成功",
                           :auth_token => user.authentication_token,
                           :user_id => user.id,
                           :email => user.email,
@@ -135,7 +134,7 @@ class ApiV1::AuthController < ApiController
 
 
 
-    render :json => { :message => "You are logout"}
+    render :json => { :message => "你已登出"}
   end
 
   def reSendConfirmation
@@ -150,7 +149,7 @@ class ApiV1::AuthController < ApiController
       end
 
     else
-      render :json => { :error => "該信箱未註冊或非法，請先註冊一個帳號"}, :status => 400
+      render :json => { :error => "無此Email"}, :status => 400
     end
   end
 
@@ -161,7 +160,7 @@ class ApiV1::AuthController < ApiController
       user.send_reset_password_instructions
       render :json => { :message => "更改密碼確認信已發出至指定信箱"}
     else
-      render :json => { :error => "該信箱未註冊或非法，請先註冊一個帳號"}, :status => 400
+      render :json => { :error => "無此Email"}, :status => 400
     end
   end
 end
