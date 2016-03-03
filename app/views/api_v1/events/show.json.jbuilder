@@ -28,4 +28,5 @@ json.activities @activities.each do |a|
 
   json.name a.name
   json.description a.description
+  json.achivement a.get_achievement
 end
