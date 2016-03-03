@@ -34,4 +34,17 @@ class Activity < ActiveRecord::Base
       "公開上架"
     end
   end
+
+  def get_achievement
+    customers_target = self.customers_target
+    merchant_people_count = self.merchants.sum(:orders_count)
+    lottery_people_count = self.lotteries.sum(:users_count)
+    
+    if customers_target && customers_target > 0
+      achievement = (lottery_people_count.to_f + merchant_people_count.to_f)*100 / customers_target.to_f
+      achievement = achievement.to_i
+    else
+      achievement = "目標尚未設定或設定錯誤"
+    end
+  end
 end
