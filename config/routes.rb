@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     #user_info
     post "/getUserInfo" => "users#getUserInfo"
     post "/editUserInfo" => "users#editUserInfo"
+    post "/lockFbLogin" => "users#lockFbLogin"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
     get "/getOrder" => "users#getOrder"
