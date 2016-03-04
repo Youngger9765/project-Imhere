@@ -45,7 +45,7 @@ class ApiV1::UsersController < ApiController
 
         if fb_token_user
           render :json => {
-            :error => "FB已經註冊會員或與其他帳號綁定"
+            :error => "此Facebook帳號已被綁定，請換另一組"
           }, :status => 401
 
         else
@@ -86,7 +86,7 @@ class ApiV1::UsersController < ApiController
 
           else
             render :json => {
-              :error => "access_token 無法從FB取得資訊"
+              :error => "access_token 錯誤"
             }, :status => 401
 
           end
