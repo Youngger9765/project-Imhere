@@ -1,3 +1,5 @@
+require "open-uri"
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -79,12 +81,22 @@ class User < ActiveRecord::Base
 
     # Case 3: Create new password
     user = User.new
-    user.fb_uid = auth.uid
-    user.fb_token = auth.credentials.token
     user.name = auth.info.name
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
+
+    if auth.info.image.present?
+      image_url = user.process_uri(auth.info.image)
+      user.head_shot = URI.parse(image_url)
+    end
+    
+    # fb info
+    user.fb_uid = auth.uid
+    user.fb_token = auth.credentials.token
     user.fb_raw_data = auth
+    user.fb_name = auth[:info][:name]
+    user.fb_email = auth[:info][:email]
+    user.fb_head_shot = auth[:info][:image]
     user.skip_confirmation! 
     user.save!
     return user
@@ -93,4 +105,13 @@ class User < ActiveRecord::Base
   def set_default_role
     self.role ||= Role.find_by_name('registered')
   end
+
+  def process_uri(uri)
+    require 'open-uri'
+    require 'open_uri_redirections'
+    open(uri, :allow_redirections => :safe) do |r|
+      r.base_uri.to_s
+    end
+  end
+
 end
