@@ -68,6 +68,12 @@ class User < ActiveRecord::Base
     # Case 2: Find existing user by email
     existing_user = User.find_by_email( auth.info.email )
     if existing_user
+
+      if existing_user.head_shot_file_name.nil? && auth.info.image.present?
+        image_url = existing_user.process_uri(auth.info.image)
+        existing_user.head_shot = URI.parse(image_url)
+      end
+
       existing_user.fb_name = auth[:info][:name]
       existing_user.fb_email = auth[:info][:email]
       existing_user.fb_head_shot = auth[:info][:image]
