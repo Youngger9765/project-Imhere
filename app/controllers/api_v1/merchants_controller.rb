@@ -33,6 +33,19 @@ class ApiV1::MerchantsController < ApiController
     end
   end
 
+  def getVariantInfo
+    if authenticate_user_from_token!
+      variant_id = params[:variant_id]
+      @variant = Variant.find_by_shopify_variant_id(params[:variant_id])
+      
+    else
+      render :json => {
+        :error => "auth_token is wrong!!"
+      }, :status => 422
+
+    end
+  end
+
   private
 
   def find_merchant!

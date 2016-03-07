@@ -78,6 +78,7 @@ Rails.application.routes.draw do
 
     #order
     get "/getShopifyInfo" =>"merchants#getShopifyInfo"
+    get "/getVariantInfo" =>"merchants#getVariantInfo"
 
     #notification
     get "/getTodayNotification" =>"notifications#getTodayNotification"
