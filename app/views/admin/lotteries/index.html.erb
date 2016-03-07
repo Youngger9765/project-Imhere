@@ -8,6 +8,7 @@
     <td>抽獎活動</td>
     <td>抽獎人數</td>
     <td>抽獎名單</td>
+    <td>獎品列表</td>
     <td>編輯</td>
     <td>刪除</td>
   </tr>
@@ -17,6 +18,7 @@
       <td><%= link_to lottery.activity.name, admin_event_activity_path(lottery.activity.event, lottery.activity)%></td>
       <td><%= lottery.users_count%></td>
       <td><%= link_to "抽獎名單", users_list_admin_lottery_path(lottery)%></td>
+      <td><%= link_to "獎品列表", admin_event_activity_lottery_prizes_path(lottery.activity.event, lottery.activity,lottery)%></td>
       <td><%= link_to "編輯", edit_admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :class => " btn btn-success btn-sm" %></td>
       <td><%= link_to "刪除", admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :method => :delete, :class => " btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%></td>
       

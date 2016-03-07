@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
         resources :lotteries do
           resources :users
+          resources :prizes
         end
       end
     end
