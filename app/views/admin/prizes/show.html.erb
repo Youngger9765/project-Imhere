@@ -1,0 +1,33 @@
+<h3>
+  <%= link_to @event.name, admin_event_path(@event)%> 
+  >
+  <%= link_to @activity.name, admin_event_activity_path(@event,@activity)%>
+  >
+  <%= link_to @lottery.name, admin_event_activity_lotteries_path(@event,@activity)%>
+  > 
+  <%= @prize.name%>
+</h3>
+
+  <h1>抽獎獎品</h1>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>
+        <%=@prize.name%>
+        <%= link_to"編輯", edit_admin_event_activity_lottery_prize_path(@event,@activity,@lottery, @prize), :class =>"btn btn-success btn-lg" %>
+        <%= link_to "刪除", admin_event_activity_lottery_prize_path(@event,@activity,@lottery, @prize), :method => :delete, :class => "btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%>
+      </h2>
+      
+      <% if @prize.logo.exists? %>
+        <%= image_tag(@prize.logo.url(:medium))%>
+      <%else%>
+        <%= link_to"新增圖片", edit_admin_event_activity_lottery_prize_path(@event,@activity,@lottery,@prize), :class =>"btn btn-success btn-lg" %>
+      <%end%>
+      <br> 
+      <h2>內容：</h2>
+      <%= raw @prize.content%>
+      <h2>價格: $ <%= @prize.price%></h2>
+      <h2>廠商: $ <%= @prize.vendor%></h2>
+      <h2>品牌: $ <%= @prize.brand%></h2>
+    </div>
+  </div>
