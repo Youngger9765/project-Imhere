@@ -57,4 +57,20 @@ json.activity_lotteries @lotteries.each do |lottery|
   json.start_time lottery.start_time
   json.end_time lottery.end_time
   json.lottery_users lottery.users_count
+
+  json.lottery_prizes lottery.prizes.each do |prize|
+    json.id prize.id
+    json.name prize.name
+    json.content prize.content
+    json.vendor prize.vendor
+    json.brand prize.brand
+    json.price prize.price
+    json.quatity prize.quatity
+
+    if prize.logo.url == "/images/original/missing.png"
+      json.logo_url nil
+    else
+      json.logo_url prize.logo.url
+    end
+  end
 end
