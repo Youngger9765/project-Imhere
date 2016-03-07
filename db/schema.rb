@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229151121) do
+
+ActiveRecord::Schema.define(version: 20160302142549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160229151121) do
     t.datetime "milestone_logo_updated_at"
     t.text     "milestone_logo_content"
     t.integer  "customers_target"
+    t.text     "merchant_description"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
@@ -114,7 +116,6 @@ ActiveRecord::Schema.define(version: 20160229151121) do
   create_table "merchants", force: :cascade do |t|
     t.string   "merchantable_type"
     t.integer  "merchantable_id"
-    t.text     "description"
     t.string   "name"
     t.text     "content"
     t.integer  "price"
@@ -249,6 +250,9 @@ ActiveRecord::Schema.define(version: 20160229151121) do
     t.integer  "role_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "fb_email"
+    t.string   "fb_name"
+    t.string   "fb_head_shot"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

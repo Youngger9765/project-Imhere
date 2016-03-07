@@ -1,0 +1,29 @@
+<%= link_to @event.name, admin_event_path(@event)%> 
+>
+<%= link_to @activity.name, admin_event_activity_path(@event, @activity)%>
+>
+<%= link_to @lottery.name, admin_event_activity_lottery_path(@event, @activity,@lottery)%>
+>
+建立獎品
+
+<h3>
+獎品列表 <%=link_to "+建立新獎品", new_admin_event_activity_lottery_prize_path, :class => "btn btn-success"%>
+</h3>
+
+<table class="table">
+  <tr>
+    <td>獎品名稱</td>
+    <td>抽獎title</td>
+    <td>價值</td>
+    <td>品牌</td>
+    <td>經銷商</td>
+    <td>數量</td> 
+    <td>編輯</td>
+    <td>刪除</td>
+  </tr>
+  <% @prizes.each do |prize|%>
+    <tr>
+      <td><%= prize.name%></td>
+    </tr>
+  <%end%>  
+</table>

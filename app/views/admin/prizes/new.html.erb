@@ -1,0 +1,17 @@
+<h3>
+<%= link_to @event.name, admin_event_path(@event)%> 
+>
+<%= link_to @activity.name, admin_event_activity_path(@event, @activity)%>
+>
+<%= link_to @lottery.name, admin_event_activity_lottery_path(@event, @activity,@lottery)%>
+>
+建立獎品
+</h3>
+
+<h1>建立獎品</h1>
+
+<%= form_for @prize, :url => admin_event_activity_lottery_prizes_path(@event, @activity,@lottery) do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f} %>
+
+<% end %>

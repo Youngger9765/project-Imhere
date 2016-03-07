@@ -9,4 +9,6 @@ class Lottery < ActiveRecord::Base
 
   has_many :user_lottery_ships
   has_many :users, :through => :user_lottery_ships
+
+  has_many :prizes
 end
