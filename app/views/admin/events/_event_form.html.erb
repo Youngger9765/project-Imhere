@@ -7,7 +7,7 @@
 
 
 <div class="form-group">
-  <%=f.label :banner, "策展banner"%>
+  <%=f.label :banner, "策展banner(底圖)"%>
   <br>
   <% if @event.banner.exists? %>
     <%= image_tag(@event.banner.url(:medium))%>
@@ -26,7 +26,7 @@
 
 
 <div class="form-group">
-    <%=f.label :logo, "策展logo"%>
+    <%=f.label :logo, "策展logo（小圖）"%>
     <br>
     <% if @event.logo.exists? %>
       <%= image_tag(@event.logo.url(:medium))%>
