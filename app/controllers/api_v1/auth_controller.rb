@@ -57,11 +57,14 @@ class ApiV1::AuthController < ApiController
     success = false
     error_msg = nil
 
-    if params[:email] && params[:password]
+    if params[:email] || params[:password]
       user = User.find_by_email( params[:email] )
 
       if !user
         error_msg = "無此Email"
+
+      elsif !user.confirmed_at
+        error_msg = "此帳號尚未啟用，請確認您的信箱，並點擊啟用連結"
 
       elsif !user.valid_password?(params[:password])
         error_msg = "密碼有誤"
