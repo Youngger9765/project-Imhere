@@ -10,7 +10,7 @@ class ApiController < ActionController::Base
     else
       render :json => {
         :error => {
-          :msg => "auth_token can't be blank!",         
+          :msg => "auth_token 錯誤！",         
         }
       }, :status => 401
     end
