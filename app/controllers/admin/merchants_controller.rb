@@ -22,8 +22,8 @@ class Admin::MerchantsController < ApplicationController
   end
 
   def create
-    authorize @merchant
     @merchant = @activity.merchants.new(merchant_params)
+    authorize @merchant
 
     if @merchant.save
       flash[:notice] = "merchant Create Success!"

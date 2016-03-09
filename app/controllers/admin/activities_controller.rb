@@ -35,8 +35,9 @@ class Admin::ActivitiesController < ApplicationController
 
 
   def create
-    authorize @activity
+    
     @activity = @event.activities.new(activity_params)
+    authorize @activity
 
     if @activity.save
       flash[:notice] = "Create Success!"
