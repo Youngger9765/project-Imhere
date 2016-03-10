@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160302142549) do
+ActiveRecord::Schema.define(version: 20160310004606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160302142549) do
     t.integer  "shopify_product_id", limit: 8
     t.string   "vendor"
     t.integer  "orders_count",                 default: 0
+    t.string   "handle"
   end
 
   add_index "merchants", ["shopify_product_id"], name: "index_merchants_on_shopify_product_id", using: :btree
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(version: 20160302142549) do
     t.string   "weight_unit"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "handle"
   end
 
   add_index "variants", ["merchant_id"], name: "index_variants_on_merchant_id", using: :btree
