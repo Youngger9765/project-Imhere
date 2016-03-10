@@ -4,6 +4,7 @@
   <tr>
     <td>照片</td>
     <td>id</td>
+    <td>fb_uid</td>
     <td>name</td>
     <td>email</td>
     <td>權限</td>
@@ -12,6 +13,7 @@
     <tr>
       <td><%= image_tag(user.head_shot.url(:thumb))%></td> 
       <td><%=user.id%></td> 
+      <td><%=user.fb_uid%></td>
       <td><%=user.name%></td> 
       <td><%=user.email%></td>  
       <td>
