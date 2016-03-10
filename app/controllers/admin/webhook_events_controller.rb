@@ -57,6 +57,7 @@ class Admin::WebhookEventsController < ApplicationController
     end
 
     merchant.shopify_product_id = params[:id]
+    merchant.handle = params[:handle]
     merchant.vendor = params[:vendor]
     merchant.name = params[:title]
     merchant.price = params[:variants][0][:price]
@@ -80,6 +81,7 @@ class Admin::WebhookEventsController < ApplicationController
 
       @variant.shopify_variant_id = variant[:id]
       @variant.title = variant[:title]
+      @variant.handle = params[:handle]
       @variant.price = variant[:price]
       @variant.weight = variant[:weight]
       @variant.weight_unit = variant[:weight_unit]
