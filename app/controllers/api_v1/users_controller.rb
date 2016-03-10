@@ -37,19 +37,17 @@ class ApiV1::UsersController < ApiController
   def lockFbLogin
 
     if authenticate_user_from_token!
-      user = current_user
+      user = current_user      
 
       if params[:access_token]
-        fb_token = params[:access_token]
-        fb_token_user = User.find_by(:fb_token => fb_token)
+        fb_data = User.get_fb_data( params[:access_token])
 
-        if fb_token_user
+        if User.find_by(:fb_uid => fb_data["id"])
           render :json => {
             :error => "此Facebook帳號已被綁定，請換另一組"
           }, :status => 401
 
         else
-          fb_data = User.get_fb_data( params[:access_token] )
 
           if fb_data
             auth_hash = OmniAuth::AuthHash.new({
