@@ -14,6 +14,28 @@
     <%= f.text_field :name, :class => "form-control" %>
   </div>
 
+  <h3>活動上架狀態</h3> 
+  <div>
+    <input type="radio" id="radio1" name="lottery[status]" class="switch" value="0" 
+      <%if @lottery.status == 0 %>
+        checked="checked" 
+      <%else%>
+      <%end%>
+    />
+    <label for="radio1">隱藏</label>
+  </div>
+  <br>
+  <div>
+    <input type="radio" id="radio2" name="lottery[status]" class="switch" value="1" 
+      <%if @lottery.status == 1 %>
+        checked="checked" 
+      <%else%>
+      <%end%>
+    />
+    <label for="radio2">公開上架</label>
+  </div>
+  <br>
+
   <div class="form-group">
     <%= f.label :content ,"抽獎內容"%>
     <%= f.text_area :content, :class =>"froala-editor" %>
