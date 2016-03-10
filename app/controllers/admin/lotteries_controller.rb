@@ -52,7 +52,7 @@ class Admin::LotteriesController < ApplicationController
 
   def lottery_params
     params.require(:lottery).permit(:name, :content, :start_time, 
-                                    :end_time, :logo)
+                                    :end_time, :logo, :status)
   end
 
   def find_event

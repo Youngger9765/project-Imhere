@@ -143,7 +143,7 @@
           <div class="milestone-card">
             <%= link_to "刪除", admin_event_activity_lottery_path(@event,@activity, lottery), :method => :delete, :class => "pull-right btn btn-danger btn", :data => {:confirm => "are_you_sure" }%>
             <%= link_to "編輯", edit_admin_event_activity_lottery_path(@event,@activity, lottery), :class => "pull-right btn btn-success" %>
-            <div>
+            <div class="lottery_info_card-<%=lottery.status%>">
               <% if lottery.logo.exists? %>
                 <div class="lottery-logo">
                   <%= image_tag(lottery.logo.url(:thumb))%>
@@ -151,7 +151,14 @@
               <%else%>
                 <%= link_to "+建立圖片", edit_admin_event_activity_lottery_path(@event,@activity, lottery), :class => "btn btn-info" %>
               <%end%>
-              <h4><%= lottery.name%></h4>
+              <h4>
+                <%= lottery.name%>
+                <%if lottery.status == 1%>
+                  (上架)
+                <%elsif lottery.status == 0%>
+                  (未上架)
+                <%end%>
+              </h4>
               <h4><i class="fa fa-star"></i><%= lottery.users_count%>人參加</h4>
               <%= raw lottery.content%>
               <h4>
