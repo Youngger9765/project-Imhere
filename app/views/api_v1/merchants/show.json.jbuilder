@@ -4,6 +4,7 @@ json.merchant_data do
   json.merchantable_id @merchant.merchantable_id
   json.name @merchant.name
   json.content @merchant.content
+  json.handle @merchant.handle
 
   if @merchant.logo.url == "/images/original/missing.png"
     json.logo_url nil
