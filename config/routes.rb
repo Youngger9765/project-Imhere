@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :lotteries do
       member do
         get :users_list
+        get :winners_list
       end
     end
 

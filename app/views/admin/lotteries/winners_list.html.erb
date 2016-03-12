@@ -1,0 +1,25 @@
+<h3>
+<%=link_to "抽獎列表", admin_lotteries_path%>
+>
+<%= @lottery.activity.name%>-<%= @lottery.name %> 
+</h3>
+
+<h4>抽獎名單</h4>
+<table class="table">
+  <tr>
+    <td>抽獎人登記姓名</td>
+    <td>抽獎人ID </td>
+    <td>抽獎人登記電話</td>
+    <td>抽獎人登記住址</td>
+    <td>抽獎人登記生日</td>
+  </tr>
+  <%@winners.each do |winner|%>
+    <tr>
+      <td><%= UserLotteryShip.find_by(:user_id => winner.id).user_name%></td>
+      <td><%= winner.id%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => winner.id).user_phone_number%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => winner.id).user_address%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => winner.id).user_birthday%></td>
+    </tr>
+  <%end%>
+</table>

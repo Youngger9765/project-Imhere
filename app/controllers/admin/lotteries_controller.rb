@@ -5,7 +5,7 @@ class Admin::LotteriesController < ApplicationController
   before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list]
+  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list, :winners_list]
 
   def index
     @lotteries = Lottery.all
@@ -48,6 +48,10 @@ class Admin::LotteriesController < ApplicationController
 
   def users_list
     @users = @lottery.users.all
+  end
+
+  def winners_list
+    @winners = @lottery.users.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
   end
 
   private
