@@ -1,6 +1,8 @@
 class Admin::PrizesController < ApplicationController
 
   layout "admin"
+  before_action :authenticate_user! 
+  before_action :user_admin?
   before_action :find_event, :only =>[:index,:show,:new, :create, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:show,:index,:new, :create, :edit, :update, :destroy]
   before_action :find_lottery, :only => [:show,:edit, :index,:new, :create, :update, :destroy]
