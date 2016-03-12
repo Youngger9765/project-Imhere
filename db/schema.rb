@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310145450) do
+ActiveRecord::Schema.define(version: 20160312080315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160310145450) do
     t.datetime "logo_updated_at"
     t.integer  "users_count",       default: 0
     t.integer  "status",            default: 0
+    t.integer  "win_people",        default: 0
   end
 
   create_table "merchants", force: :cascade do |t|

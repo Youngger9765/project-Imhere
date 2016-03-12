@@ -51,6 +51,11 @@
     <%= f.datetime_select :end_time%>
   </div>
 
+  <div class="form-group">
+    <%= f.label :win_people ,"設定中獎人數"%>
+    <%= f.number_field :win_people%>
+  </div>
+
   <%= f.submit "更新",:class => "btn btn-primary" %>
 
 </div>
