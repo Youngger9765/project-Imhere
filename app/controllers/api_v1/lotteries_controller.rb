@@ -35,8 +35,12 @@ class ApiV1::LotteriesController < ApiController
         @user.save!
 
         @lottery = Lottery.find(params[:lottery_id])
-        UserLotteryShip.create(:user => @user, :lottery => @lottery)
-      
+        ship = UserLotteryShip.create(:user => @user, :lottery => @lottery)
+        ship.user_name = params[:name]
+        ship.user_address = params[:address]
+        ship.user_phone_number = params[:phone_number]
+        ship.user_birthday = params[:birthday]
+        ship.save!
       end
 
     else
