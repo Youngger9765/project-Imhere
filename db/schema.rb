@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160312090102) do
     t.integer  "users_count",       default: 0
     t.integer  "status",            default: 0
     t.integer  "win_people",        default: 0
+    t.integer  "got_winner",        default: 0
   end
 
   create_table "merchants", force: :cascade do |t|
