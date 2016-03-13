@@ -42,4 +42,9 @@ class Lottery < ActiveRecord::Base
     self.update(:got_winner => 0)
     self.user_lottery_ships.update_all(:winner => 0)
   end
+
+  def self.aaa
+    logger.debug "hello=================================="
+    logger.debug "hello=================================="
+  end
 end
