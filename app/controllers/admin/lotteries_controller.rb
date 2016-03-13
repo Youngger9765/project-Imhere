@@ -8,7 +8,23 @@ class Admin::LotteriesController < ApplicationController
   before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list, :winners_list]
 
   def index
-    @lotteries = Lottery.all
+    if params[:filter] == 'has_winner'
+      @lotteries = Lottery.where(:got_winner => 1)
+
+    elsif params[:filter] == 'overtime_no_winner'
+      @lotteries = Lottery.where(:got_winner => 0).where('end_time < ?',Time.now)
+
+    elsif params[:filter] == 'standby'
+      @lotteries = Lottery.where(:got_winner => 0).where('end_time > ?',Time.now)
+
+    elsif params[:filter] == 'setting_uncomplete'
+      @lotteries = Lottery.where(:win_people => nil)
+
+    else
+      @lotteries = Lottery.all
+      
+    end
+    
   end
 
   def new

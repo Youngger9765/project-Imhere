@@ -2,6 +2,15 @@
 抽獎列表 
 </h3>
 
+<%= link_to"全部", admin_lotteries_path,:class=>"btn btn-default"%>
+<%= link_to"未過期", admin_lotteries_path(:filter => 'standby'),:class=>"btn btn-info"%>
+<%= link_to"過期未抽出",admin_lotteries_path(:filter => 'overtime_no_winner'),:class=>"btn btn-danger"%>
+<%= link_to"已抽獎",admin_lotteries_path(:filter => 'has_winner'),:class=>"btn btn-default"%>
+<%= link_to"有問題的抽獎",admin_lotteries_path(:filter => 'setting_uncomplete'),:class=>"btn btn-warning"%>
+
+<br>
+<br>
+
 <table class="table">
   <tr>
     <td>抽獎名稱</td>
