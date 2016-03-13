@@ -5,9 +5,12 @@
     <td>User ID</td>
     <td>Order_number</td>
     <td>商品shopify_id</td>
+    <td>商品名稱</td>
     <td>商品規格</td>
     <td>商品數量</td>
-    <td>單價</td>
+    <td>單價</td> 
+    <td>運送方式</td>
+    <td>運費</td>
     <td>總額</td>
     <td>貨幣單位</td>
   </tr>
@@ -16,9 +19,12 @@
       <td><%= order.user_id%></td>
       <td><%= order.order_number%></td>
       <td><%= order.product_id%></td>
+      <td><%= order.product_name%></td>
       <td><%= order.product_variant_title%></td>
       <td><%= order.product_quantity%></td>
       <td><%= order.product_price%></td>
+      <td><%= order.shipping_method%></td>
+      <td><%= order.shipping_price%></td>
       <td><%= order.subtotal_price%></td>
       <td><%= order.currency%></td>
     </tr>

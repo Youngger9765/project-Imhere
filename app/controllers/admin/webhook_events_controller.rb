@@ -33,13 +33,17 @@ class Admin::WebhookEventsController < ApplicationController
     end
     
     order.order_number = params[:order_number]
+    order.shipping_method = params[:shipping_lines][0][:title]
+    order.shipping_price = params[:shipping_lines][0][:price]
+
     order.product_id = params[:line_items][0][:product_id]
     order.product_name = params[:line_items][0][:title]
     order.product_variant_id = params[:line_items][0][:variant_id]
     order.product_variant_title = params[:line_items][0][:variant_title]
     order.product_quantity = params[:line_items][0][:quantity]
     order.product_price = params[:line_items][0][:price]
-    order.subtotal_price = params[:subtotal_price]
+    
+    order.subtotal_price = params[:total_price]
     order.currency = params[:currency]
     order.save!
 
