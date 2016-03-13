@@ -1,12 +1,30 @@
 class Admin::LotteriesController < ApplicationController
 
   layout "admin"
+  before_action :authenticate_user! 
+  before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list]
+  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list, :winners_list]
 
   def index
-    @lotteries = Lottery.all
+    if params[:filter] == 'has_winner'
+      @lotteries = Lottery.where(:got_winner => 1)
+
+    elsif params[:filter] == 'overtime_no_winner'
+      @lotteries = Lottery.where(:got_winner => 0).where('end_time < ?',Time.now)
+
+    elsif params[:filter] == 'standby'
+      @lotteries = Lottery.where(:got_winner => 0).where('end_time > ?',Time.now)
+
+    elsif params[:filter] == 'setting_uncomplete'
+      @lotteries = Lottery.where(:win_people => nil)
+
+    else
+      @lotteries = Lottery.all
+      
+    end
+    
   end
 
   def new
@@ -45,7 +63,22 @@ class Admin::LotteriesController < ApplicationController
   end
 
   def users_list
+    if params[:filter] == 'get_winner'
+      @lottery.get_winner
+    end
+
     @users = @lottery.users.all
+  end
+
+  def winners_list
+    if params[:filter] == 'refresh'
+      @lottery.refresh_winner
+
+    elsif params[:filter] == 'clean'
+      @lottery.clean_winner
+    end
+
+    @winners = @lottery.users.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
   end
 
   private

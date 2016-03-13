@@ -2,6 +2,15 @@
 抽獎列表 
 </h3>
 
+<%= link_to"全部", admin_lotteries_path,:class=>"btn btn-default"%>
+<%= link_to"未過期", admin_lotteries_path(:filter => 'standby'),:class=>"btn btn-info"%>
+<%= link_to"過期未抽出",admin_lotteries_path(:filter => 'overtime_no_winner'),:class=>"btn btn-danger"%>
+<%= link_to"已抽獎",admin_lotteries_path(:filter => 'has_winner'),:class=>"btn btn-default"%>
+<%= link_to"有問題的抽獎",admin_lotteries_path(:filter => 'setting_uncomplete'),:class=>"btn btn-warning"%>
+
+<br>
+<br>
+
 <table class="table">
   <tr>
     <td>抽獎名稱</td>
@@ -10,6 +19,7 @@
     <td>參加人數</td>
     <td>抽出人數</td>
     <td>抽獎名單</td>
+    <td>中獎名單</td>
     <td>獎品列表</td>
     <td>編輯</td>
     <td>刪除</td>
@@ -29,6 +39,13 @@
       <td><%= lottery.users_count%></td>
       <td><%= lottery.win_people%></td>
       <td><%= link_to "抽獎名單", users_list_admin_lottery_path(lottery)%></td>
+      <td>
+        <%if lottery.got_winner == 1%>
+          <%= link_to "中獎名單", winners_list_admin_lottery_path(lottery)%>
+        <%else%>
+          
+        <%end%>
+      </td>
       <td><%= link_to "獎品列表", admin_event_activity_lottery_prizes_path(lottery.activity.event, lottery.activity,lottery)%></td>
       <td><%= link_to "編輯", edit_admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :class => " btn btn-success btn-sm" %></td>
       <td><%= link_to "刪除", admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :method => :delete, :class => " btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%></td>

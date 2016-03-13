@@ -5,21 +5,23 @@
 </h3>
 
 <h4>抽獎名單</h4>
+
+<%= link_to "手動抽獎", users_list_admin_lottery_path(@lottery, :filter => 'get_winner'),:class => "btn btn-success pull-right", :data => {:confirm => "手動抽獎？" }%>
 <table class="table">
   <tr>
-    <td>抽獎人姓名</td>
+    <td>抽獎人登記姓名</td>
     <td>抽獎人ID </td>
-    <td>抽獎人電話</td>
-    <td>抽獎人住址</td>
-    <td>抽獎人生日</td>
+    <td>抽獎人登記電話</td>
+    <td>抽獎人登記住址</td>
+    <td>抽獎人登記生日</td>
   </tr>
   <%@users.each do |user|%>
     <tr>
-      <td><%= user.name%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => user.id).user_name%></td>
       <td><%= user.id%></td>
-      <td><%= user.phone_number%></td>
-      <td><%= user.address%></td>
-      <td><%= user.birthday%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => user.id).user_phone_number%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => user.id).user_address%></td>
+      <td><%= UserLotteryShip.find_by(:user_id => user.id).user_birthday%></td>
     </tr>
   <%end%>
 </table>

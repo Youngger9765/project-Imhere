@@ -62,6 +62,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'rails-i18n'
 gem 'open_uri_redirections'
 
+#cron
+gem 'whenever', :require => false
+
 #google map
 gem 'geocoder'
 
