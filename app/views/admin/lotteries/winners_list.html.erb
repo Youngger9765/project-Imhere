@@ -4,14 +4,18 @@
 <%= @lottery.activity.name%>-<%= @lottery.name %> 
 </h3>
 
-<h4>抽獎名單</h4>
+<h4>中獎名單</h4>
+
+<%= link_to "重新抽獎", winners_list_admin_lottery_path(@lottery, :filter => 'refresh'),:class => "btn btn-danger pull-right", :data => {:confirm => "確定重抽？" }%>
+<%= link_to "清空", winners_list_admin_lottery_path(@lottery, :filter => 'clean'),:class => "btn btn-primary pull-right", :data => {:confirm => "確定清空中獎人？" }%>
+
 <table class="table">
   <tr>
-    <td>抽獎人登記姓名</td>
-    <td>抽獎人ID </td>
-    <td>抽獎人登記電話</td>
-    <td>抽獎人登記住址</td>
-    <td>抽獎人登記生日</td>
+    <td>中獎人登記姓名</td>
+    <td>中獎人ID </td>
+    <td>中獎人登記電話</td>
+    <td>中獎人登記住址</td>
+    <td>中獎人登記生日</td>
   </tr>
   <%@winners.each do |winner|%>
     <tr>

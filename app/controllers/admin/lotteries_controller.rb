@@ -63,10 +63,21 @@ class Admin::LotteriesController < ApplicationController
   end
 
   def users_list
+    if params[:filter] == 'get_winner'
+      @lottery.get_winner
+    end
+
     @users = @lottery.users.all
   end
 
   def winners_list
+    if params[:filter] == 'refresh'
+      @lottery.refresh_winner
+
+    elsif params[:filter] == 'clean'
+      @lottery.clean_winner
+    end
+
     @winners = @lottery.users.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
   end
 

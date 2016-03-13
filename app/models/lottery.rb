@@ -38,9 +38,14 @@ class Lottery < ActiveRecord::Base
     self.update(:got_winner => 1)
   end
 
-  def refresh_winner
+  def clean_winner
     self.update(:got_winner => 0)
     self.user_lottery_ships.update_all(:winner => 0)
+  end
+
+  def refresh_winner
+    self.clean_winner
+    self.get_winner
   end
 
   def self.aaa
