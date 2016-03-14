@@ -6,7 +6,14 @@
 
 <h4>抽獎名單</h4>
 
-<%= link_to "手動抽獎", users_list_admin_lottery_path(@lottery, :filter => 'get_winner'),:class => "btn btn-success pull-right", :data => {:confirm => "手動抽獎？" }%>
+<% if @lottery.got_winner == 1 %>
+  <%= link_to "中獎名單", winners_list_admin_lottery_path(@lottery),:class => "btn btn-info pull-right"%>
+<% elsif @lottery.got_winner == 0 %>
+  <%= link_to "手動抽獎", users_list_admin_lottery_path(@lottery, :filter => 'get_winner'),:class => "btn btn-success pull-right", :data => {:confirm => "手動抽獎？" }%>
+<%end%>
+
+
+
 <table class="table">
   <tr>
     <td>抽獎人登記姓名</td>
