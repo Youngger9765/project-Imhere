@@ -43,7 +43,7 @@ end
 
 json.activity_merchant_description @activity.merchant_description
 
-json.activity_lotteries @public_lotteries.each do |lottery|
+json.activity_lotteries @public_availible_lotteries.each do |lottery|
   json.id lottery.id
 
   if lottery.logo.url == "/images/original/missing.png"
