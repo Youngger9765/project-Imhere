@@ -9,7 +9,7 @@ class ApiV1::ActivitiesController < ApplicationController
     @activity = @event.activities.find(params[:id])
     @milestones = @activity.activity_milestones.order("people ASC")
     @merchants = @activity.merchants
-    @public_lotteries = @activity.lotteries.where(:status => 1)
+    @public_availible_lotteries = @activity.lotteries.where('status = ? AND end_time > ?', 1, Time.now)
     @milestone_logo_content = @activity.milestone_logo_content
     @achievement = @activity.get_achievement
   end
