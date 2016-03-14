@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     post "/editUserPassword" => "users#editUserPassword"
     post "/getOrder" => "users#getOrder"
     post "/getUserGifts" => "users#getUserGifts"
+    post "/getUserMissGifts" => "users#getUserMissGifts"
 
 
     #event_info/activity_info
