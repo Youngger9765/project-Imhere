@@ -42,8 +42,8 @@ class Admin::WebhookEventsController < ApplicationController
     order.product_variant_title = params[:line_items][0][:variant_title]
     order.product_quantity = params[:line_items][0][:quantity]
     order.product_price = params[:line_items][0][:price]
-    
-    order.subtotal_price = params[:total_price]
+    order.subtotal_price = params[:subtotal_price]
+    order.total_price = params[:total_price]
     order.currency = params[:currency]
     order.save!
 
