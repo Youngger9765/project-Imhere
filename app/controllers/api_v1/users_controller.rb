@@ -161,6 +161,19 @@ class ApiV1::UsersController < ApiController
     end
   end
 
+  def getUserGifts
+    if authenticate_user_from_token!
+      @user = current_user
+      @orders = @user.orders.all
+      @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
   private
 
   def user_params
