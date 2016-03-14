@@ -66,7 +66,10 @@ Rails.application.routes.draw do
     post "/lockFbLogin" => "users#lockFbLogin"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
-    get "/getOrder" => "users#getOrder"
+    post "/getOrder" => "users#getOrder"
+    post "/getUserGifts" => "users#getUserGifts"
+    post "/getUserMissGifts" => "users#getUserMissGifts"
+
 
     #event_info/activity_info
     resources :events do
