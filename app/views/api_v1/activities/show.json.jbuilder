@@ -46,6 +46,12 @@ json.activity_merchant_description @activity.merchant_description
 json.activity_lotteries @public_availible_lotteries.each do |lottery|
   json.id lottery.id
 
+  if current_user && lottery.users.find_by_id(current_user)
+    json.current_user_join 1
+  else
+    json.current_user_join 0
+  end
+
   if lottery.logo.url == "/images/original/missing.png"
     json.logo_url nil
   else
