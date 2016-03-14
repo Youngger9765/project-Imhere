@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "/order_create" => "webhook_events#order_create"
     post "/product_create_update" => "webhook_events#product_create_update"
     post "/product_delete" => "webhook_events#product_delete"
+    post "/order_delete" => "webhook_events#order_delete"
     
 
     resources :users

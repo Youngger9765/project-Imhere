@@ -32,10 +32,14 @@ class Admin::WebhookEventsController < ApplicationController
       order = merchant.orders.new
     end
     
+    order.shopify_order_id = params[:id]
     order.order_number = params[:order_number]
-    order.shipping_method = params[:shipping_lines][0][:title]
-    order.shipping_price = params[:shipping_lines][0][:price]
 
+    if params[:shipping_lines]
+      order.shipping_method = params[:shipping_lines][0][:title]
+      order.shipping_price = params[:shipping_lines][0][:price]
+    end
+    
     order.product_id = params[:line_items][0][:product_id]
     order.product_name = params[:line_items][0][:title]
     order.product_variant_id = params[:line_items][0][:variant_id]
@@ -48,6 +52,17 @@ class Admin::WebhookEventsController < ApplicationController
     order.save!
 
     head :ok
+  end
+
+  def order_delete
+    order = Order.find_by(:shopify_order_id => params[:id])
+    
+    if order
+      order.destroy
+    end
+    
+    head :ok 
+    
   end
 
   def product_create_update
