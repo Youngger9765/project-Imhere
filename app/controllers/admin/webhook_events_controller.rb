@@ -82,7 +82,7 @@ class Admin::WebhookEventsController < ApplicationController
     merchant.price = params[:variants][0][:price]
     
     if !params[:body_html].blank?
-      merchant.content = params[:body_html]
+      merchant.description = params[:body_html]
     end
 
     merchant.save!

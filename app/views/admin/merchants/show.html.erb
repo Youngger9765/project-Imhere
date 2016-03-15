@@ -24,9 +24,11 @@
       
     </div>
     <div class="col-md-4">
-      <h2>
+      <h1>
         商品購買資訊
-      </h2>
+      </h1>
+      <h3>商品敘述：<%= @merchant.description%></h3>
+      <h3>商品logo:</h3> 
       <% if @merchant.logo.exists? %>
         <%= image_tag(@merchant.logo.url(:medium))%>
       <%else%>

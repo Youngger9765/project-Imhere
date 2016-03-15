@@ -84,7 +84,7 @@ end
 json.activity_merchants @merchants.each do |merchant|
   json.id merchant.id
   json.name merchant.name
-  json.content merchant.content
+  json.content merchant.description
   json.vendor merchant.price
   json.brand merchant.vendor
   json.merchant_orders merchant.orders_count
