@@ -15,6 +15,7 @@ json.orders @orders.each do |order|
   json.subtotal_price order.subtotal_price
   json.created_at order.created_at
   json.shipping_method order.shipping_method
+  json.address order.address
   json.shipping_price order.shipping_price
   json.total_price order.total_price
   json.currency order.currency
