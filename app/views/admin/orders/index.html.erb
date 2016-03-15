@@ -13,6 +13,7 @@
     <td>運費</td>
     <td>總額</td>
     <td>貨幣單位</td>
+    <td>出貨</td>
   </tr>
   <% @orders.each do|order|%>
     <tr>
@@ -27,6 +28,7 @@
       <td><%= order.shipping_price%></td>
       <td><%= order.total_price%></td>
       <td><%= order.currency%></td>
+      <td><%= order.fulfillment_status%></td>
     </tr>
   <%end%>
 

@@ -34,6 +34,7 @@ class Admin::WebhookEventsController < ApplicationController
     
     order.shopify_order_id = params[:id]
     order.order_number = params[:order_number]
+    order.fulfillment_status = params[:fulfillment_status]
 
     if params[:shipping_lines]
       order.shipping_method = params[:shipping_lines][0][:title]
