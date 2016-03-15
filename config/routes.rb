@@ -87,6 +87,7 @@ Rails.application.routes.draw do
 
     #notification
     get "/getTodayNotification" =>"notifications#getTodayNotification"
+    get "/getAlreadyNotification" => "notifications#getAlreadyNotification"
 
   end
 
