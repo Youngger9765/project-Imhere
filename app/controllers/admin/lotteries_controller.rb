@@ -5,7 +5,7 @@ class Admin::LotteriesController < ApplicationController
   before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :find_lottery, :only => [:edit, :update, :destroy, :users_list, :winners_list]
+  before_action :find_lottery, :only => [:show, :edit, :update, :destroy, :users_list, :winners_list]
 
   def index
     if params[:filter] == 'has_winner'
@@ -86,7 +86,7 @@ class Admin::LotteriesController < ApplicationController
   def lottery_params
     params.require(:lottery).permit(:name, :content, :start_time, 
                                     :end_time, :logo, :status,
-                                    :win_people)
+                                    :win_people, :description)
   end
 
   def find_event
