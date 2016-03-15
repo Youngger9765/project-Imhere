@@ -1,3 +1,7 @@
+if @user
+  json.user_name @user.name
+end
+
 json.activity_data do
   json.id @activity.id
   json.name @activity.name
@@ -46,7 +50,7 @@ json.activity_merchant_description @activity.merchant_description
 json.activity_lotteries @public_availible_lotteries.each do |lottery|
   json.id lottery.id
 
-  if current_user && lottery.users.find_by_id(current_user)
+  if @user && lottery.users.find_by_id(@user.id)
     json.current_user_join 1
   else
     json.current_user_join 0
