@@ -5,7 +5,7 @@ class Admin::LotteriesController < ApplicationController
   before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :find_lottery, :only => [:show, :edit, :update, :destroy, :users_list, :winners_list]
+  before_action :find_lottery, :only => [:show, :edit, :update, :destroy, :users_list, :winners_list, :shipment]
 
   def index
     if params[:filter] == 'has_winner'
@@ -21,7 +21,7 @@ class Admin::LotteriesController < ApplicationController
       @lotteries = Lottery.where(:win_people => nil)
 
     else
-      @lotteries = Lottery.all
+      @lotteries = Lottery.all.order('end_time DESC')
       
     end
     
@@ -81,12 +81,25 @@ class Admin::LotteriesController < ApplicationController
     @winners = @lottery.users.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
   end
 
+  def shipment
+    if params[:shipment] == 'shipping'
+      @lottery.shipment = 1
+      @lottery.save
+
+    elsif params[:shipment] == 'cancel'
+      @lottery.shipment = 0
+      @lottery.save
+    end
+
+    redirect_to admin_lotteries_path
+  end
+
   private
 
   def lottery_params
     params.require(:lottery).permit(:name, :content, :start_time, 
                                     :end_time, :logo, :status,
-                                    :win_people, :description)
+                                    :win_people, :description, :shipment)
   end
 
   def find_event

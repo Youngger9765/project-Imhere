@@ -21,6 +21,8 @@
     <td>抽獎名單</td>
     <td>中獎名單</td>
     <td>獎品列表</td>
+    <td>結束時間</td>
+    <td>出貨</td>
     <td>編輯</td>
     <td>刪除</td>
   </tr>
@@ -47,6 +49,15 @@
         <%end%>
       </td>
       <td><%= link_to "獎品列表", admin_event_activity_lottery_prizes_path(lottery.activity.event, lottery.activity,lottery)%></td>
+      <td><%=lottery.end_time.strftime('%F %R')%></td>
+      <td>
+        <% if lottery.shipment == 0%>
+          <%= link_to "確認出貨", shipment_admin_lottery_path(lottery, :shipment =>"shipping"),:class => "btn btn-info"%>
+        <%elsif lottery.shipment == 1%>
+          已出貨 <br>
+          <%= link_to "(取消出貨)",shipment_admin_lottery_path(lottery, :shipment =>"cancel")%>
+        <%end%>
+      </td>
       <td><%= link_to "編輯", edit_admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :class => " btn btn-success btn-sm" %></td>
       <td><%= link_to "刪除", admin_event_activity_lottery_path(lottery.activity.event,lottery.activity, lottery), :method => :delete, :class => " btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%></td>
       

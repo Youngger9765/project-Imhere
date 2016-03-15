@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       member do
         get :users_list
         get :winners_list
+        get :shipment
       end
     end
 
