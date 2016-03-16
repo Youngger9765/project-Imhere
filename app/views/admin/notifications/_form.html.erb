@@ -9,8 +9,21 @@
 </div>
 
 <div class="form-group">
-  <h3><%= f.label :content ,"推播時間"%></h3> 
+  <h3><%= f.label :start_time ,"推播時間"%></h3> 
   <%= f.datetime_select :start_time, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <h3><%= f.label :countdown_end_time ,"倒數結束時間"%></h3>
+  <div id="count_time_form"
+    <%if @check_tag == true%>
+      style="display:none;"
+    <%end%>
+  >
+    <%= f.datetime_select :countdown_end_time, :class => "form-control" %>
+  </div>
+  <br>
+  <h4><%= check_box_tag "no_countdown", "1", @check_tag%> 不需倒數</h4> 
 </div>
 
 <div class="form-group">
@@ -36,3 +49,16 @@
 </div>
 
 <%= f.submit "更新",:class => "btn btn-primary" %>
+
+
+<script>
+  $("#no_countdown").click(function() {
+    if($("#no_countdown").prop("checked")) {
+      $("#count_time_form").css("display","none");
+    } else{
+      $("#count_time_form").css("display","block");
+    }
+    
+  });
+
+</script>

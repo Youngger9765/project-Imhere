@@ -27,12 +27,17 @@ class Admin::NotificationsController < ApplicationController
 
   def new
     @notification = Notification.new
+    @check_tag = false
   end
 
   def create
     @notification = Notification.new(notification_params)
 
     if @notification.save
+      if params[:no_countdown] == "1"
+        @notification.countdown_end_time = nil
+        @notification.save!
+      end
       flash[:notice] = "推播建立成功!"
       redirect_to admin_notification_path(@notification)
     else
@@ -42,6 +47,11 @@ class Admin::NotificationsController < ApplicationController
   end
 
   def edit
+    if @notification.countdown_end_time.nil?
+      @check_tag = true
+    else
+      @check_tag = false
+    end
 
   end
 
@@ -50,6 +60,11 @@ class Admin::NotificationsController < ApplicationController
 
     if params[:destroy_logo] == "1"
       @notification.logo = nil
+      @notification.save!
+    end
+
+    if params[:no_countdown] == "1"
+      @notification.countdown_end_time = nil
       @notification.save!
     end
 
@@ -64,7 +79,7 @@ class Admin::NotificationsController < ApplicationController
   private
 
   def notification_params
-    params.require(:notification).permit( :title, :start_time, :logo, :content, :url)
+    params.require(:notification).permit( :title, :start_time, :logo, :content, :url, :countdown_end_time)
   end
 
   def find_notification
