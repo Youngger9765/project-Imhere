@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "unauthorized" => 'authorize#not_authorized'
 
   resources :users
-  get "/users/password/edit" => "user#test"
+  get "/confirm_ok" => "users#confirm"
 
   get "demo" => "demo#index"
   root :to => "demo#index"
