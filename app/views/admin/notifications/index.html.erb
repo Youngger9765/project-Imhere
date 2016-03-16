@@ -19,6 +19,7 @@
     <td>推播內容</td>
     <td>推播連結</td>
     <td>推播時間</td>
+    <td>倒數結束時間</td>
     <td>編輯</td>
     <td>刪除</td> 
   </tr>
@@ -29,6 +30,13 @@
       <td><%= notification.content %></td>
       <td><%= link_to "連結",notification.url, :target => "_blank" %></td>
       <td><%= notification.start_time.strftime('%F %R') %></td>
+      <td>
+        <% if notification.countdown_end_time%>
+          <%= notification.countdown_end_time.strftime('%F %R') %>
+        <%else%>
+          直接推播
+        <%end%>
+      </td>
       <td><%= link_to "Edit", edit_admin_notification_path(notification), :class => "btn btn-success" %></td>
       <td><%= link_to "Delete", admin_notification_path(notification), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure?" } %></td>
     </tr>

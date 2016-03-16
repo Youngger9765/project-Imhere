@@ -35,6 +35,19 @@
 
 <div class="row h3">
   <div class="col-md-2 text-right">
+    倒數結束：
+  </div>
+  <div class="col-md-6">
+    <% if @notification.countdown_end_time%>
+      <%= @notification.countdown_end_time.strftime('%F %R') %>
+    <%else%>
+      直接推播
+    <%end%>
+  </div>
+</div>
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
     推播logo：
   </div>
   <div class="col-md-6">
