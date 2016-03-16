@@ -65,6 +65,7 @@ json.activity_lotteries @public_availible_lotteries.each do |lottery|
   json.name lottery.name
   json.description lottery.description
   json.content lottery.content
+  json.fan_page_url lottery.fan_page_url
   json.start_time lottery.start_time
   json.end_time lottery.end_time
   json.lottery_users lottery.users_count
