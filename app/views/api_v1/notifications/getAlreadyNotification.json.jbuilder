@@ -4,6 +4,7 @@ json.notifications @notifications do |notification|
   json.title notification.title
   json.content notification.content
   json.start_time notification.start_time
+  json.countdown_end_time notification.countdown_end_time
  
   json.url notification.url
 
