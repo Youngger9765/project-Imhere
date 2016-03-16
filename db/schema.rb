@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316133029) do
+ActiveRecord::Schema.define(version: 20160316135422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160316133029) do
     t.integer  "got_winner",         default: 0
     t.text     "description"
     t.string   "fulfillment_status"
+    t.string   "fan_page_url"
   end
 
   create_table "merchants", force: :cascade do |t|
