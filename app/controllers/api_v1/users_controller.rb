@@ -149,6 +149,26 @@ class ApiV1::UsersController < ApiController
     end
   end
 
+  def resetPasswordByToken
+    original_token       = params[:reset_password_token]
+    reset_password_token = Devise.token_generator.digest(self, :reset_password_token, original_token)
+
+    @user = User.find_by(:reset_password_token => reset_password_token)
+
+    if @user  
+      @user.password = params[:new_password]
+      @user.save
+      render :json => {
+        :message => "#{@user.email} 密碼重設完畢，請登入"
+      }, :status => 200
+
+    else
+      render :json => {
+        :error => "reset_password_token 錯誤! "
+      }, :status => 401
+    end
+  end
+
   def getOrder
     if authenticate_user_from_token!
       @user = current_user

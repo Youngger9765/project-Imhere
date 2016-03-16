@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   get "unauthorized" => 'authorize#not_authorized'
 
   resources :users
+  get "/users/password/edit" => "user#test"
 
   get "demo" => "demo#index"
   root :to => "demo#index"
 
   post 'attachment/upload' => 'attachments#upload'
+
 
   namespace :admin do
 
@@ -67,6 +69,7 @@ Rails.application.routes.draw do
     post "/lockFbLogin" => "users#lockFbLogin"
     post "/eraseFbLogin" => "users#eraseFbLogin"
     post "/editUserPassword" => "users#editUserPassword"
+    post "/resetPasswordByToken" =>"users#resetPasswordByToken"
     post "/getOrder" => "users#getOrder"
     post "/getUserGifts" => "users#getUserGifts"
     post "/getUserMissGifts" => "users#getUserMissGifts"
