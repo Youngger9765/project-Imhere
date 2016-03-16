@@ -19,6 +19,7 @@ json.orders @orders.each do |order|
   json.shipping_price order.shipping_price
   json.total_price order.total_price
   json.currency order.currency
+  json.fulfillment_status order.fulfillment_status
 
 end
 
@@ -38,5 +39,6 @@ json.lotteries @lotteries.each do |lottery|
   json.end_time lottery.end_time
   json.status lottery.status
   json.users_count lottery.users_count
+  json.fulfillment_status lottery.fulfillment_status
 
 end

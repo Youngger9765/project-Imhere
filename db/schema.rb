@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316120539) do
+ActiveRecord::Schema.define(version: 20160316133029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,18 +103,18 @@ ActiveRecord::Schema.define(version: 20160316120539) do
     t.text     "content"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.integer  "users_count",       default: 0
-    t.integer  "status",            default: 0
-    t.integer  "win_people",        default: 0
-    t.integer  "got_winner",        default: 0
+    t.integer  "users_count",        default: 0
+    t.integer  "status",             default: 0
+    t.integer  "win_people",         default: 0
+    t.integer  "got_winner",         default: 0
     t.text     "description"
-    t.integer  "shipment",          default: 0
+    t.string   "fulfillment_status"
   end
 
   create_table "merchants", force: :cascade do |t|

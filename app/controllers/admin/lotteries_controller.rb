@@ -83,11 +83,11 @@ class Admin::LotteriesController < ApplicationController
 
   def shipment
     if params[:shipment] == 'shipping'
-      @lottery.shipment = 1
+      @lottery.fulfillment_status = "fulfilled"
       @lottery.save
 
     elsif params[:shipment] == 'cancel'
-      @lottery.shipment = 0
+      @lottery.fulfillment_status = nil
       @lottery.save
     end
 
@@ -99,7 +99,7 @@ class Admin::LotteriesController < ApplicationController
   def lottery_params
     params.require(:lottery).permit(:name, :content, :start_time, 
                                     :end_time, :logo, :status,
-                                    :win_people, :description, :shipment)
+                                    :win_people, :description, :fulfillment_status)
   end
 
   def find_event
