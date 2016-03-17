@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     user = User.find_by(:confirmation_token => token)
 
     if user
+      user.confirmed_at = Time.now
+      user.save
       redirect_to "http://iam.goodideas-campus.com/star/index.php?eventsId=1#registerOk"
     else
       redirect_to "http://iam.goodideas-campus.com/star/index.php?eventsId=1#registerFail"
