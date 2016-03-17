@@ -92,6 +92,8 @@ Rails.application.routes.draw do
     #notification
     get "/getTodayNotification" =>"notifications#getTodayNotification"
     get "/getAlreadyNotification" => "notifications#getAlreadyNotification"
+    get "/countNotificationBadge" => "notifications#countNotificationBadge"
+    post "/clickNotification" => "notifications#clickNotification"
 
   end
 

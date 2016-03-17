@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317102254) do
+ActiveRecord::Schema.define(version: 20160317161114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,8 @@ ActiveRecord::Schema.define(version: 20160317102254) do
     t.string   "fb_email"
     t.string   "fb_name"
     t.string   "fb_head_shot"
+    t.datetime "click_notification_at"
+    t.integer  "notification_badge",     default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
