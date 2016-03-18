@@ -119,9 +119,5 @@ class User < ActiveRecord::Base
       r.base_uri.to_s
     end
   end
-  
-  def clean_notification_badge
-    self.update(:notification_badge => 0)
-  end
 
 end

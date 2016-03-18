@@ -32,6 +32,7 @@ class ApiV1::AuthController < ApiController
       email = params[:email].downcase
       password = params[:password]
       name = params[:name]
+      created_at = Time.now
       user.email = email
       user.password = password
       user.name = name

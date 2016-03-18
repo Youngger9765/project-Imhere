@@ -25,7 +25,6 @@ class ApiV1::NotificationsController < ApiController
 
   def clickNotification
     user = current_user
-    user.clean_notification_badge
     user.click_notification_at = Time.now
     user.save
 
