@@ -184,7 +184,7 @@ class ApiV1::UsersController < ApiController
   def getUserGifts
     if authenticate_user_from_token!
       @user = current_user
-      @orders = @user.orders.all
+      @orders = @user.orders.where(:cancelled_at => nil)
       @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
 
     else
