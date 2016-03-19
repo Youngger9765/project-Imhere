@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-5">
   <div class="form-group">
     <%=f.label :logo, "LOGO"%>
     <%=f.file_field :logo%>
@@ -57,12 +57,17 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :start_time ,"開始時間"%>
+    <%= f.label :push_time ,"預告抽獎時間"%>
+    <%= f.datetime_select :push_time%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time ,"開始抽獎時間"%>
     <%= f.datetime_select :start_time%>
   </div>
 
   <div class="form-group">
-    <%= f.label :end_time ,"結束時間"%>
+    <%= f.label :end_time ,"結束抽獎時間"%>
     <%= f.datetime_select :end_time%>
   </div>
 
