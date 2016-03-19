@@ -4,9 +4,11 @@ development:
   store: 
 
 test:
-  app_id:
-  secret:
+  api_key: 
+  password: 
+  store: 
 
 production:
-  app_id:
-  secret:
+  api_key: 
+  password: 
+  store:

@@ -4,9 +4,11 @@ development:
   store: imhere3nt.myshopify.com
 
 test:
-  app_id:
-  secret:
+  api_key: 
+  password: 
+  store: 
 
 production:
-  app_id:
-  secret:
+  api_key: 
+  password: 
+  store:
