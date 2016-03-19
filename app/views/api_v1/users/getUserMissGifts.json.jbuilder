@@ -1,4 +1,4 @@
-json.miss_merchants @miss_merchants.each do |merchant|
+json.miss_merchants @miss_availible_merchants.each do |merchant|
   json.id merchant.id
   
   if merchant.merchantable

@@ -202,6 +202,8 @@ class ApiV1::UsersController < ApiController
       all_merchant_ids = Merchant.all.pluck(:id)
       miss_merchant_ids = all_merchant_ids - user_order_merchant_ids
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
+      @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
+
       
       @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 0})
 
