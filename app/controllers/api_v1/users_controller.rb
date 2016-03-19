@@ -197,7 +197,12 @@ class ApiV1::UsersController < ApiController
   def getUserMissGifts
     if authenticate_user_from_token!
       @user = current_user
-      @orders = Order.where.not(:user_id => @user.id)                
+
+      user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
+      all_merchant_ids = Merchant.all.pluck(:id)
+      miss_merchant_ids = all_merchant_ids - user_order_merchant_ids
+      @miss_merchants = Merchant.where(:id => miss_merchant_ids)
+      
       @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 0})
 
     else

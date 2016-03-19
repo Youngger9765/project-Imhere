@@ -1,29 +1,27 @@
-json.orders @orders.each do |order|
-  json.shopify_order_number order.order_number
-  json.shopify_order_id order.shopify_order_id
-  json.merchant_name order.product_name
+json.miss_merchants @miss_merchants.each do |merchant|
+  json.id merchant.id
   
-
-  if order.merchant.logo.url == "/images/original/missing.png"
-    json.merchant_logo nil
+  if merchant.merchantable
+    json.activity_name merchant.merchantable.name
   else
-    json.merchant_logo order.merchant.logo.url
+    json.activity_name nil
   end
 
-  json.merchant_variant order.product_variant_title
-  json.merchant_price order.product_price
-  json.quantity order.product_quantity
-  json.subtotal_price order.subtotal_price
-  json.created_at order.created_at
-  json.shipping_method order.shipping_method
-  json.address order.address
-  json.shipping_price order.shipping_price
-  json.total_price order.total_price
-  json.currency order.currency
+  json.name merchant.name
+  json.description merchant.description
 
+  if merchant.logo.url == "/images/original/missing.png"
+    json.merchant_logo nil
+  else
+    json.merchant_logo merchant.logo.url
+  end
+  
+  json.content merchant.content
+  json.merchant_price merchant.price
+  json.users_count merchant.orders_count
 end
 
-json.lotteries @lotteries.each do |lottery|
+json.miss_lotteries @lotteries.each do |lottery|
   json.id lottery.id
   json.activity_name lottery.activity.name
   json.name lottery.name
