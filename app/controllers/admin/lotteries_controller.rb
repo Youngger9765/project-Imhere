@@ -101,7 +101,7 @@ class Admin::LotteriesController < ApplicationController
                                     :end_time, :logo, :status,
                                     :win_people, :description, 
                                     :fulfillment_status,:fan_page_url,
-                                    :fan_page_name, :push_time
+                                    :fan_page_name, :push_time, :url
                                     )
   end
 

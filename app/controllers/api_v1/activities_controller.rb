@@ -14,8 +14,7 @@ class ApiV1::ActivitiesController < ApplicationController
     @milestones = @activity.activity_milestones.order("people ASC")
     @merchants = @activity.merchants
     @public_lotteries = @activity.lotteries.where('status = ?', 1)
-    @public_availible_lotteries = @public_lotteries.where('push_time < ? AND start_time > ?', Time.now, Time.now)
-    @public_ongoing_lotteries = @public_lotteries.where('start_time < ? AND end_time > ?', Time.now, Time.now)
+    @public_availible_lotteries = @public_lotteries.where('push_time < ? AND end_time > ?', Time.now, Time.now)
     @milestone_logo_content = @activity.milestone_logo_content
     @achievement = @activity.get_achievement
   end

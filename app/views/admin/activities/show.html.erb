@@ -161,10 +161,13 @@
               </h4>
               <h4><i class="fa fa-star"></i><%= lottery.users_count%>人參加</h4>
               <%= lottery.description%>
+              <h4><%= link_to "獎品介紹", lottery.url%></h4>
               <h4>
-                開始時間: <%=lottery.start_time.strftime('%F %R')%> <br>
+                推出時間: <%=lottery.push_time.strftime('%F %R')%> <br>
+                抽獎時間: <%=lottery.start_time.strftime('%F %R')%> <br>
                 結束時間: <%=lottery.end_time.strftime('%F %R')%>
               </h4>
+
             </div>
           </div>
         <%end%>
