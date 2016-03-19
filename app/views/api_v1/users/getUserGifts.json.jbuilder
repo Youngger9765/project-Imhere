@@ -20,6 +20,7 @@ json.orders @orders.each do |order|
   json.total_price order.total_price
   json.currency order.currency
   json.fulfillment_status order.fulfillment_status
+  json.cancelled_at order.cancelled_at
 
 end
 

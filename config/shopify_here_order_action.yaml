@@ -1,0 +1,12 @@
+development:
+  api_key: bd6bc794f147e99e95a94b240aae49b5
+  password: 3da9b1fd481cf32e0675001f1b7fa02c
+  store: imhere3nt.myshopify.com
+
+test:
+  app_id:
+  secret:
+
+production:
+  app_id:
+  secret:

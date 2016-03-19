@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     #order
     get "/getShopifyInfo" =>"merchants#getShopifyInfo"
     get "/getVariantInfo" =>"merchants#getVariantInfo"
+    post "userCancelOrder" => "orders#userCancelOrder"
 
     #notification
     get "/getTodayNotification" =>"notifications#getTodayNotification"

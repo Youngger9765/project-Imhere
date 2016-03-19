@@ -1,5 +1,6 @@
 json.orders @orders.each do |order|
-  json.shopify_order_id order.order_number
+  json.shopify_order_number order.order_number
+  json.shopify_order_id order.shopify_order_id
   json.merchant_name order.product_name
   
 

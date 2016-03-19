@@ -36,6 +36,10 @@ class Admin::WebhookEventsController < ApplicationController
     order.order_number = params[:order_number]
     order.fulfillment_status = params[:fulfillment_status]
 
+    if params[:cancelled_at]
+      order.cancelled_at = params[:cancelled_at]
+    end
+
     if params[:shipping_lines]
       order.shipping_method = params[:shipping_lines][0][:title]
       order.shipping_price = params[:shipping_lines][0][:price]
