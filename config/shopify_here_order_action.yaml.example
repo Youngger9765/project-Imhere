@@ -1,0 +1,12 @@
+development:
+  api_key: 
+  password: 
+  store: 
+
+test:
+  app_id:
+  secret:
+
+production:
+  app_id:
+  secret:
