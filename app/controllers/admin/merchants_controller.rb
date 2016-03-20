@@ -32,7 +32,7 @@ class Admin::MerchantsController < ApplicationController
       redirect_to admin_event_activity_merchant_path(@event,@activity,@merchant)
     else
       flash[:alert] = "merchant Create fail!"
-      render :back
+      render :new
     end
   end 
 

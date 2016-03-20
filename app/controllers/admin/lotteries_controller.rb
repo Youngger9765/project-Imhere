@@ -35,11 +35,11 @@ class Admin::LotteriesController < ApplicationController
     @lottery = @activity.lotteries.new(lottery_params)
 
     if @lottery.save
-      flash[:notice] = "lottery Create Success!"
+      flash[:notice] = "抽獎建立成功!"
       redirect_to admin_event_activity_path(@event,@activity)
     else
-      flash[:alert] = "lottery Create fail!"
-      render :back
+      flash[:alert] = @lottery.errors.messages
+      render :new
     end
   end
 
@@ -47,19 +47,27 @@ class Admin::LotteriesController < ApplicationController
   end
 
   def update
-    @lottery.update(lottery_params)
-    if params[:destroy_logo] == "1"
-      @lottery.logo = nil
-      @lottery.save!
+    if @lottery.update(lottery_params)
+      if params[:destroy_logo] == "1"
+        @lottery.logo = nil
+        @lottery.save!
+      end
+
+      redirect_to admin_event_activity_path(@event,@activity)
+    else
+      flash[:alert] = @lottery.errors.messages
+      render :edit
     end
 
-    redirect_to admin_event_activity_path(@event,@activity)
+    
+
+    
   end
 
   def destroy
     @lottery.destroy!
 
-    redirect_to admin_event_activity_path(@event,@activity)
+    redirect_to admin_lotteries_path
   end
 
   def users_list

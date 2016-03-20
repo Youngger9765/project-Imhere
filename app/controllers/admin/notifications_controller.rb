@@ -42,7 +42,7 @@ class Admin::NotificationsController < ApplicationController
       redirect_to admin_notification_path(@notification)
     else
       flash[:alert] = "推播建立失敗!"
-      render :back
+      render :new
     end
   end
 

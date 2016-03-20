@@ -28,7 +28,7 @@ class Admin::PrizesController < ApplicationController
         redirect_to admin_event_activity_lottery_prize_path(@event,@activity,@lottery,@prize)
       else
         flash[:alert] = "lottery Create fail!"
-        render :back
+        render :new
       end
     end
   end

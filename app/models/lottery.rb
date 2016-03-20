@@ -1,6 +1,10 @@
 class Lottery < ActiveRecord::Base
 
-  validates_presence_of :name
+  validates_presence_of :name, :message => "名稱不得空白！"
+  validates_presence_of :fan_page_name, :message => "粉絲團名稱不得空白！"
+  validates_presence_of :fan_page_url, :message => "粉絲團連結不得空白！"
+  validates_format_of :fan_page_url, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "粉絲團url 格式錯誤"
+  validates_format_of :url, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "獎品介紹url 格式錯誤"
   
   belongs_to :activity
 

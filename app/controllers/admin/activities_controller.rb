@@ -46,7 +46,7 @@ class Admin::ActivitiesController < ApplicationController
       redirect_to admin_event_activity_path(@event,@activity)
     else
       flash[:alert] = "Create fail!"
-      render :back
+      render :new
     end
   end
 
