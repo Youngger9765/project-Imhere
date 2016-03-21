@@ -52,7 +52,7 @@ class Lottery < ActiveRecord::Base
     self.get_winner
   end
 
-  def self.aaa
+  def self.log_out
     logger.debug "hello=================================="
     logger.debug "hello=================================="
   end

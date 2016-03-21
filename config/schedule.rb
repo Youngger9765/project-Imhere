@@ -18,7 +18,14 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, ENV['PATH'] #要用bundle時必須要加
+
+set :output, 'log/cron.log' #設定log的路徑
+
+
 every 10.minutes do  
   runner "Lottery.get_winner_all", :environment => :development
-  runner "Lottery.aaa", :environment => :development
+  runner "Lottery.log_out", :environment => :development
+  runner "Lottery.get_winner_all", :environment => :production
+  runner "Lottery.log_out", :environment => :production
 end
