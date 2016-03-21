@@ -21,7 +21,7 @@ json.miss_merchants @miss_availible_merchants.each do |merchant|
   json.users_count merchant.orders_count
 end
 
-json.miss_lotteries @lotteries.each do |lottery|
+json.miss_lotteries @miss_overtime_lotteries.each do |lottery|
   json.id lottery.id
   json.activity_name lottery.activity.name
   json.name lottery.name

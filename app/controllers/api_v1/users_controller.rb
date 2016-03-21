@@ -198,14 +198,19 @@ class ApiV1::UsersController < ApiController
     if authenticate_user_from_token!
       @user = current_user
 
+      public_activies_ids = Activity.where(:status => 1).pluck(:id)
+      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids)
       user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
-      all_merchant_ids = Merchant.all.pluck(:id)
-      miss_merchant_ids = all_merchant_ids - user_order_merchant_ids
+      miss_merchant_ids = all_public_merchant_ids - user_order_merchant_ids
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
       @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
 
       
-      @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 0})
+      win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
+      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now)
+      miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
+      @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
+
 
     else
       render :json => {
