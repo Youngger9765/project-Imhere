@@ -8,6 +8,19 @@ server '139.162.1.35', user: 'deploy', roles: %w{app db web}, my_property: :my_v
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
 
+#Capistrano tasks
+namespace :deploy do
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+
+  after :finishing, 'deploy:update_cron'
+end
 
 # role-based syntax
 # ==================
