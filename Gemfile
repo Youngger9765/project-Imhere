@@ -63,7 +63,7 @@ gem 'rails-i18n'
 gem 'open_uri_redirections'
 
 #cron
-gem 'whenever', :require => false
+#gem 'whenever', :require => false
 
 #google map
 gem 'geocoder'
