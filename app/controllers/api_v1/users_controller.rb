@@ -199,7 +199,7 @@ class ApiV1::UsersController < ApiController
       @user = current_user
 
       public_activies_ids = Activity.where(:status => 1).pluck(:id)
-      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids)
+      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids).pluck(:id)
       user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
       miss_merchant_ids = all_public_merchant_ids - user_order_merchant_ids
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
@@ -207,7 +207,7 @@ class ApiV1::UsersController < ApiController
 
       
       win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
-      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now)
+      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
       miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
       @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
 
@@ -228,12 +228,12 @@ class ApiV1::UsersController < ApiController
       user_orders = @orders.where("created_at > ? ", user_click_time)
       
       @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
-      user_lotteries = @lotteries.where("created_at > ? ", user_click_time)
+      user_lotteries = @lotteries.where("end_time > ? ", user_click_time)
 
-      @uer_gifts_badge_count = user_orders.size + user_lotteries.size
+      @user_gifts_badge_count = user_orders.size + user_lotteries.size
 
       render :json => {
-              :uer_gifts_badge_count => @uer_gifts_badge_count
+              :user_gifts_badge_count => @user_gifts_badge_count
             }, :status => 200
 
 
@@ -267,7 +267,7 @@ class ApiV1::UsersController < ApiController
       user_click_time = @user.click_user_miss_gifts_at
 
       public_activies_ids = Activity.where(:status => 1).pluck(:id)
-      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids)
+      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids).pluck(:id)
       user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
       miss_merchant_ids = all_public_merchant_ids - user_order_merchant_ids
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
@@ -275,7 +275,7 @@ class ApiV1::UsersController < ApiController
 
       
       win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
-      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now)
+      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
       miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
       @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
 
@@ -283,10 +283,10 @@ class ApiV1::UsersController < ApiController
       user_miss_merchants = @miss_availible_merchants.where("created_at > ? ", user_click_time)
       user_miss_lotteries = @miss_overtime_lotteries.where("end_time > ? ", user_click_time)
 
-      @uer_miss_gifts_badge_count = user_miss_merchants.size + user_miss_lotteries.size
+      @user_miss_gifts_badge_count = user_miss_merchants.size + user_miss_lotteries.size
 
       render :json => {
-              :uer_miss_gifts_badge_count => @uer_miss_gifts_badge_count
+              :user_miss_gifts_badge_count => @user_miss_gifts_badge_count
             }, :status => 200
 
 

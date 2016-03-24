@@ -73,6 +73,10 @@ Rails.application.routes.draw do
     post "/getOrder" => "users#getOrder"
     post "/getUserGifts" => "users#getUserGifts"
     post "/getUserMissGifts" => "users#getUserMissGifts"
+    get "/countUserGiftsBadge" => "users#countUserGiftsBadge"
+    post "/clickUserGifts" => "users#clickUserGifts"
+    get "/countUserMissGiftsBadge" => "users#countUserMissGiftsBadge"
+    post "/clickUserMissGifts" => "users#clickUserMissGifts"
 
 
     #event_info/activity_info
