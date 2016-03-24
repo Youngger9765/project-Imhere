@@ -219,6 +219,101 @@ class ApiV1::UsersController < ApiController
     end
   end
 
+  def countUserGiftsBadge
+    if authenticate_user_from_token!
+      @user = current_user
+      user_click_time = @user.click_user_gifts_at
+
+      @orders = @user.orders.where(:cancelled_at => nil)
+      user_orders = @orders.where("created_at > ? ", user_click_time)
+      
+      @lotteries = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1})
+      user_lotteries = @lotteries.where("created_at > ? ", user_click_time)
+
+      @uer_gifts_badge_count = user_orders.size + user_lotteries.size
+
+      render :json => {
+              :uer_gifts_badge_count => @uer_gifts_badge_count
+            }, :status => 200
+
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def clickUserGifts
+    if authenticate_user_from_token!
+
+      user = current_user
+      user.click_user_gifts_at = Time.now
+      user.save
+
+      render :json => {
+              :success => "記錄點擊已領取"
+            }, :status => 200
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def countUserMissGiftsBadge
+    if authenticate_user_from_token!
+      @user = current_user
+      user_click_time = @user.click_user_miss_gifts_at
+
+      public_activies_ids = Activity.where(:status => 1).pluck(:id)
+      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids)
+      user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
+      miss_merchant_ids = all_public_merchant_ids - user_order_merchant_ids
+      @miss_merchants = Merchant.where(:id => miss_merchant_ids)
+      @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
+
+      
+      win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
+      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now)
+      miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
+      @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
+
+
+      user_miss_merchants = @miss_availible_merchants.where("created_at > ? ", user_click_time)
+      user_miss_lotteries = @miss_overtime_lotteries.where("end_time > ? ", user_click_time)
+
+      @uer_miss_gifts_badge_count = user_miss_merchants.size + user_miss_lotteries.size
+
+      render :json => {
+              :uer_miss_gifts_badge_count => @uer_miss_gifts_badge_count
+            }, :status => 200
+
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def clickUserMissGifts
+    if authenticate_user_from_token!
+
+      user = current_user
+      user.click_user_miss_gifts_at = Time.now
+      user.save
+
+      render :json => {
+              :success => "記錄點擊未領取"
+            }, :status => 200
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
   private
 
   def user_params
