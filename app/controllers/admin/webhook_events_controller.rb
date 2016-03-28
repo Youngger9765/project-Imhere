@@ -27,9 +27,16 @@ class Admin::WebhookEventsController < ApplicationController
     
     if order  #update
       order = Order.find_by(:order_number => params[:order_number])
-    else  
+    else    #new
       merchant = Merchant.find_by(:shopify_product_id => params[:line_items][0][:product_id])
       order = merchant.orders.new
+      if params[:referring_site].index("user_id=")
+        referring_site = params[:referring_site]
+        referring_site.slice!(0,referring_site.index("user_id="))
+        user_id_no = referring_site[8,referring_site.index("&")-8]
+        order.user_id = user_id_no
+        order.save
+      end
     end
     
     order.shopify_order_id = params[:id]
