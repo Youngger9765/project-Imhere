@@ -47,9 +47,15 @@ class ApiV1::AuthController < ApiController
           }
         }, :status => 200
       else
-        render :json => {
-          :error =>  "註冊失敗"
-        }, :status => 401
+        if !user.errors[:email].blank?
+          render :json => {
+            :error =>  user.errors[:email]
+          }, :status => 401
+        else
+          render :json => {
+            :error =>  "註冊失敗"
+          }, :status => 401
+        end
       end
     end
   end
