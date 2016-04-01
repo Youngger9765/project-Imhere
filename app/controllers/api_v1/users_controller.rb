@@ -131,15 +131,26 @@ class ApiV1::UsersController < ApiController
     if authenticate_user_from_token!
       @user = current_user
 
-      if params[:new_password] == params[:new_password_confirm]
+      if params[:new_password].blank? || params[:new_password].size < 8
+        render :json => {
+          :error => "新密碼空白或少於8個字元"
+        }, :status => 401
+
+      elsif params[:new_password] != params[:new_password_confirm]
+        render :json => {
+          :error => "新密碼及確認新密碼不一致"
+        }, :status => 401
+        
+
+      elsif params[:new_password] == params[:new_password_confirm]
         @user.password = params[:new_password]
         @user.save!
         render :json => {
           :member => {
-            :msg => "Edit Password success!",
+            :msg => "編輯新密碼成功!",
             :email => @user.email
           }
-        }
+        }, :status => 200
       end
 
     else
