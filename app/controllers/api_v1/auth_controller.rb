@@ -8,9 +8,19 @@ class ApiV1::AuthController < ApiController
   def register
     user = User.find_by_email( params[:email].downcase )
 
-    if params[:email].blank?
+    if user
+      render :json => {
+        :error => "帳號已註冊"
+      }, :status => 401
+
+    elsif params[:email].blank?
       render :json => {
         :error => "Email空白"
+      }, :status => 401
+
+    elsif params[:name].blank?
+      render :json => {
+        :error => "名稱空白"
       }, :status => 401
 
     elsif params[:password].blank? || params[:password].size < 8
@@ -18,13 +28,9 @@ class ApiV1::AuthController < ApiController
         :error => "密碼空白或少於8個字元"
       }, :status => 401
 
-    elsif params[:name].blank?
+    elsif params[:confirmed_password] != params[:password]
       render :json => {
-        :error => "名稱空白"
-      }, :status => 401
-    elsif user
-      render :json => {
-        :error => "帳號已註冊"
+        :error => "新密碼及確認新密碼不一致"
       }, :status => 401
 
     else
@@ -49,7 +55,7 @@ class ApiV1::AuthController < ApiController
       else
         if !user.errors[:email].blank?
           render :json => {
-            :error =>  user.errors[:email]
+            :error =>  user.errors[:email][0]
           }, :status => 401
         else
           render :json => {
