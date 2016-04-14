@@ -21,10 +21,14 @@
 
       <% if flash[:alert].present? %>
         <div style = "color: red" class = "alert-danger">
-          <% flash[:alert].each do |key,value|%>
-            <%if value.present?%>
-              <%= value%> <br>
+          <%if flash[:alert].class == Hash %>
+            <% flash[:alert].each do |key,value|%>
+              <%if value.present?%>
+                <%= value%> <br>
+              <%end%>
             <%end%>
+          <%elsif flash[:alert].class == String%>
+            <%= flash[:alert]%>
           <%end%>
         </div>
       <% end %>

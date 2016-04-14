@@ -88,8 +88,14 @@ class Admin::ActivitiesController < ApplicationController
 
   def destroy
     authorize @activity
-    @activity.destroy
+    if @activity.merchants.size > 0 || @activity.lotteries.size > 0
+      flash[:alert] = "此活動已有商品或抽獎連結，無法刪除！"
 
+    else
+      flash[:notice] = "活動成功刪除!"
+      @activity.destroy
+    end
+    
     redirect_to admin_event_activities_path(@event)
   end
 
