@@ -14,7 +14,7 @@
 <h3>活動 banner</h3>
 <div class="div" id="activity-banner">
   <% if @activity.banner.exists? %>
-    <%= image_tag(@activity.banner.url(:medium))%>
+    <%= image_tag(@activity.banner.url(:original))%>
   <%else%>
     <%= image_tag("miss.png")%>
   <%end%>
@@ -23,7 +23,7 @@
 <h3>活動 logo</h3>
 <div class="div" id="activity-logo">
   <% if @activity.logo.exists? %>
-    <%= image_tag(@activity.logo.url(:medium))%>
+    <%= image_tag(@activity.logo.url(:original))%>
   <%else%>
     <%= image_tag("miss.png")%>
   <%end%>

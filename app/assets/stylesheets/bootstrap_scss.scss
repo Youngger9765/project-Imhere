@@ -28,10 +28,11 @@
 
 #activity-banner img{
   width: 100%;
-  height: 300px;
+  height: 500px;
 }
 
 #activity-logo{
+  width: 300px;
   position: static;
   padding: 3px;
   display: inline-flex;
@@ -41,6 +42,11 @@
   top: -300px;
   float: left;
   z-index: 3;
+}
+
+#activity-logo img{
+  width: 300px;
+  height: 300px;
 }
 
 #milestone_logo{
