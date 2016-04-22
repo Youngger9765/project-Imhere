@@ -134,10 +134,11 @@
         <%= link_to "所有商品列表", admin_event_activity_merchants_path(@event,@activity), :class => "btn btn-info" %> 
         <%#= link_to "+建立商品", new_admin_event_activity_merchant_path(@event,@activity), :class => "btn btn-success" %>
       </h1>
-
-      <div class="row">
-        <div class="merchant-description">
-          <%= raw @activity.merchant_description%>
+      <div id="introduceProduct">
+        <div class="row section">
+          <div class="merchant-description editor">
+            <%= raw @activity.merchant_description%>
+          </div>
         </div>
       </div>
     </div>

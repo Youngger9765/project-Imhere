@@ -5,6 +5,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+  background: #F6F8F9;
+}
 //banner & logo
 #event-banner img{
   width: 100%;
@@ -58,6 +61,11 @@
 
 .section{
   padding: 50px;
+  background: white;
+}
+
+#introduceProduct .section{
+  padding: 5px;
 }
 
 .editor{
@@ -67,6 +75,10 @@
 
 .section .editor p{
   margin: 0;
+  img{
+    width:100%;
+    margin: 0; 
+  }
 }
 
 #information_picture img{
@@ -117,8 +129,8 @@
 }
 
 .merchant-description{
-  background-color: honeydew;
-  border-color: honeydew;
+  background-color: white;
+  border-color: white;
   border-width: 5px;
   border-style: solid;
   margin: 5px;
