@@ -143,10 +143,12 @@
 </div>
 
 <hr>
-<div class="form-group">
+<div class="form-group col-md-10" id="editor-introduce">
   <%= f.label :merchant_description, "商品介紹" %>
   <%= f.text_area :merchant_description, :class =>"froala-editor" %>
 </div>
+
+<hr></hr>
 
 <%= f.submit "更新",:class => "btn btn-primary" %>
 
