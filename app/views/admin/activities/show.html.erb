@@ -100,29 +100,32 @@
         </h1>
       <%end%>
       <br>
-      <div class="row">
-        <div class="col-md-3">
-          <h4>
-            <i class="fa fa-home"></i> <br>
-            <%= @activity.location%>
-          </h4>
-          <br>
-          <h4>
-            <i class="fa fa-clock-o"></i><br>
-            開始時間：<br>
-            <%if @activity.start_time%>
-              <%= @activity.start_time.strftime('%F %R')%> 
-            <%end%>
+      <div class="row section">
+        <div class="editor">
+          <div class="col-md-3">
+            <h4>
+              <i class="fa fa-home"></i> <br>
+              <%= @activity.location%>
+            </h4>
             <br>
-            結束時間：<br>
-            <%if @activity.end_time%>
-              <%= @activity.end_time.strftime('%F %R')%>
-            <%end%>
-          </h4>
+            <h4>
+              <i class="fa fa-clock-o"></i><br>
+              開始時間：<br>
+              <%if @activity.start_time%>
+                <%= @activity.start_time.strftime('%F %R')%> 
+              <%end%>
+              <br>
+              結束時間：<br>
+              <%if @activity.end_time%>
+                <%= @activity.end_time.strftime('%F %R')%>
+              <%end%>
+            </h4>
+          </div>
+          <div class="col-md-9">
+            <%=raw @activity.information%>
+          </div>
         </div>
-        <div class="col-md-9">
-          <%=raw @activity.information%>
-        </div>
+        
       </div>
       <hr>
 
