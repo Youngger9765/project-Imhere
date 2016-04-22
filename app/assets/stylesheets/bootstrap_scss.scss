@@ -56,6 +56,19 @@
   display: block;
 }
 
+.section{
+  padding: 50px;
+}
+
+.editor{
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.section .editor p{
+  margin: 0;
+}
+
 #information_picture img{
   width: 100%;
 }
