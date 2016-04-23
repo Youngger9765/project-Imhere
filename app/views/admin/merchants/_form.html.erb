@@ -11,6 +11,18 @@
     <%= f.select :merchantable_id, Activity.all.map{|a| [a.name, a.id]}, :class =>"form-control" %>
   </div>
 
+  <div class="form-group" id="editor-merchant-banner">
+    <%=f.label :banner, "商品banner"%>
+    <div>
+      <%= image_tag(@merchant.banner.url(:original))%>
+    </div>
+    <%=f.file_field :banner%>
+    
+    <% if @merchant.banner.exists? %>
+      <%= check_box_tag "destroy_banner", "1" %> 刪除檔案
+    <%end%>
+  </div>
+
   <div class="form-group">
     <%= f.label :content, "商品內容" %>
     <%= f.text_area :content, :class =>"froala-editor" %>
@@ -24,10 +36,13 @@
   <%= f.error_notification %>
   <div class="form-group">
     <%=f.label :logo, "購買LOGO"%>
+    <div>
+      <%= image_tag(@merchant.logo.url(:original))%>
+    </div>
+    
     <%=f.file_field :logo%>
     
     <% if @merchant.logo.exists? %>
-      <%= image_tag(@merchant.logo.url(:medium))%>
       <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
     <%end%>
   </div>

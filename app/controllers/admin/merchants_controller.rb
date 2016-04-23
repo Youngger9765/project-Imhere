@@ -58,6 +58,11 @@ class Admin::MerchantsController < ApplicationController
       @merchant.save!
     end
 
+    if params[:destroy_banner] == "1"
+      @merchant.banner = nil
+      @merchant.save!
+    end
+
     if @update_status == "assign_activity"
       @event = @merchant.merchantable.event
       @activity = @merchant.merchantable
@@ -77,7 +82,7 @@ class Admin::MerchantsController < ApplicationController
   private
 
   def merchant_params
-    params.require(:merchant).permit( :name, :content, 
+    params.require(:merchant).permit( :name, :content, :banner,
                                       :price, :logo, :merchantable_type,
                                       :merchantable_id, :handle,
                                       specs_attributes: [:id, :name, :selection, :_destroy, 

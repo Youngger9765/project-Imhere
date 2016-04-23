@@ -3,6 +3,13 @@ json.merchant_data do
   json.merchantable_type @merchant.merchantable_type
   json.merchantable_id @merchant.merchantable_id
   json.name @merchant.name
+
+  if @merchant.banner.url == "/images/original/missing.png"
+    json.banner_url nil
+  else
+    json.banner_url @merchant.banner.url
+  end
+
   json.content @merchant.content
   json.handle @merchant.handle
 

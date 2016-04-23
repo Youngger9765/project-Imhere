@@ -13,13 +13,24 @@
 
   <h1>商品介紹</h1>
 
-  <div class="row">
+  <div class="row" id="merchant-show">
     <div class="col-md-8">
       <h2>
         <%=@merchant.name%>
         <%= link_to"編輯", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
-        <%= link_to "刪除", admin_event_activity_merchant_path(@event,@activity, @merchant), :method => :delete, :class => "btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%>
+        <%#= link_to "刪除", admin_event_activity_merchant_path(@event,@activity, @merchant), :method => :delete, :class => "btn btn-danger btn-sm", :data => {:confirm => "are_you_sure" }%>
       </h2>
+      <h3>商品banner</h3> 
+      <div id="merchant-show-banner">
+        <% if @merchant.banner.exists? %>
+          <%= image_tag(@merchant.banner.url(:original))%>
+        <%else%>
+          <%= link_to"新增圖片", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
+        <%end%>
+      </div>
+      
+
+      <h3>商品內容</h3>
       <%= raw @merchant.content%>
       
     </div>
