@@ -83,6 +83,10 @@ class Admin::ActivitiesController < ApplicationController
       @activity.save!
     end
 
+    if params[:merchant_banner] == "1"
+      @activity.merchant_banner = nil
+    end
+
     redirect_to admin_event_activity_path(@event,@activity)
   end
 
@@ -107,7 +111,7 @@ class Admin::ActivitiesController < ApplicationController
                                      :status, :information_picture, :information,
                                      :description, :logo_in_event, :banner,
                                      :milestone_logo_content, :customers_target,
-                                     :merchant_description
+                                     :merchant_description, :merchant_banner
                                      )
   end
 

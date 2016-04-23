@@ -45,7 +45,16 @@ json.activity_info do
   json.longitude @activity.longitude
 end
 
-json.activity_merchant_description @activity.merchant_description
+json.activity_merchant do
+
+  if @activity.merchant_banner.url == "/images/original/missing.png"
+    json.activity_merchant_banner nil
+  else
+    json.activity_merchant_banner @activity.merchant_banner.url
+  end
+
+  json.activity_merchant_description @activity.merchant_description
+end
 
 json.activity_availible_lotteries @public_availible_lotteries.each do |lottery|
   json.id lottery.id

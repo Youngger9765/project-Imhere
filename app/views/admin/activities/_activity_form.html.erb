@@ -50,10 +50,10 @@
 
 <h1>活動頁資訊</h1>
 <hr>
-<div class="form-group">
+<div class="form-group col-md-12" id="editor-activity-banner">
   <h2><%=f.label :banner, "活動banner"%></h2>
   <% if @activity.banner.exists? %>
-    <%= image_tag(@activity.banner.url(:medium))%>
+    <%= image_tag(@activity.banner.url(:original))%>
   <%else%>
     <div style="color:red;">
       <%= "尚未有圖片"%>
@@ -104,11 +104,11 @@
 
 <hr>
 <h2>活動資訊</h2>
-<div class="form-group">
-  <%=f.label :information_picture, "活動資訊圖片"%>
+<div class="form-group col-md-7" id="editor-information-picture">
+  <h3><%=f.label :information_picture, "活動資訊圖片"%></h3>
   <br>
   <% if @activity.information_picture.exists? %>
-    <%= image_tag(@activity.information_picture.url(:medium))%>
+    <%= image_tag(@activity.information_picture.url(:original))%>
   <%else%>
     <div style="color:red;">
       <%= "尚未有圖片"%>
@@ -121,30 +121,50 @@
   <% end %>
 </div>
 
+<div class="clearfix"></div>
+
 <div class="form-group">
-  <%= f.label :start_time ,"開始時間"%>
+  <h3><%= f.label :start_time ,"開始時間"%></h3>
   <%= f.datetime_select :start_time%>
 </div>
 
 <div class="form-group">
-  <%= f.label :end_time ,"結束時間"%>
+  <h3><%= f.label :end_time ,"結束時間"%></h3>
   <%= f.datetime_select :end_time%>
 </div>
 
 <div class="form-group">
-  <%= f.label :location ,"活動地點"%>
+  <h3><%= f.label :location ,"活動地點"%></h3>
   <%= f.text_field :location, :class => "form-control" %>
 </div>
 
 <div class="form-group col-md-7" id="editor-introduce">
-  <%= f.label :information, "活動資訊" %>
-    <%= f.text_area :information, :class =>"froala-editor" %>
+  <h3><%= f.label :information, "活動資訊" %></h3>
+  <%= f.text_area :information, :class =>"froala-editor" %>
   
 </div>
 
 <hr>
+<h2>商品介紹</h2>
+
+<div class="form-group col-md-9" id="editor-merchant-banner">
+    <h3><%=f.label :merchant_banner, "商品banner"%></h3> 
+    <% if @activity.merchant_banner.exists? %>
+      <%= image_tag(@activity.merchant_banner.url(:original))%>
+    <%else%>
+      <div style="color:red;">
+        <%= "尚未有圖片"%>
+      </div>  
+    <% end %>
+    <%=f.file_field :merchant_banner%>
+
+    <% if @activity.merchant_banner.exists? %>
+      <%= check_box_tag "destroy_merchant_banner", "1" %> 刪除檔案
+    <% end %>
+</div>
+
 <div class="form-group col-md-10" id="editor-introduce">
-  <%= f.label :merchant_description, "商品介紹" %>
+  <h3><%= f.label :merchant_description, "商品敘述" %></h3>
   <%= f.text_area :merchant_description, :class =>"froala-editor" %>
 </div>
 
