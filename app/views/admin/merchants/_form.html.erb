@@ -34,7 +34,7 @@
 <div class="col-md-4">
   <h4>商品購買資訊</h4>
   <%= f.error_notification %>
-  <div class="form-group">
+  <div class="form-group" id="editor-merchant-logo">
     <%=f.label :logo, "購買LOGO"%>
     <div>
       <%= image_tag(@merchant.logo.url(:original))%>
