@@ -25,6 +25,7 @@ class Admin::EventsController < ApplicationController
     authorize @event
     @public_activities = @event.activities.where(:status => 1)
     @hide_activities = @event.activities.where(:status => 0)
+    @delete_activities = @event.activities.where(:status => -1)
 
     if params[:activity_id]
       @activity = Activity.find( params[:activity_id] )
