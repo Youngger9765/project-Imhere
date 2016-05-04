@@ -85,6 +85,7 @@ class Admin::ActivitiesController < ApplicationController
 
     if params[:destroy_merchant_banner] == "1"
       @activity.merchant_banner = nil
+      @activity.save!
     end
 
     redirect_to admin_event_activity_path(@event,@activity)
