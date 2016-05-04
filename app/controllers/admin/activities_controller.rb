@@ -83,7 +83,7 @@ class Admin::ActivitiesController < ApplicationController
       @activity.save!
     end
 
-    if params[:merchant_banner] == "1"
+    if params[:destroy_merchant_banner] == "1"
       @activity.merchant_banner = nil
     end
 
