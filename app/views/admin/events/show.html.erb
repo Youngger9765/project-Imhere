@@ -51,21 +51,22 @@
         <div class="event-activity-logo-photo"
           style="background-image:url(<%= a.logo_in_event.url(:original)%>"
         >
-        </div>
-        活動敘述：
-        <%if a.description%>
-          <%if a.description.size < 100%>
-            <div class="div">
-              <%= strip_tags(a.description)%>
-            </div>  
+          <%if a.description%>
+            活動敘述：
+            <%if a.description.size < 100%>
+              <div class="hover_item">
+                <%= strip_tags(a.description)%>
+              </div>  
+            <%else%>
+              <div class="hover_item">
+                <%= strip_tags(a.description[0,100])%>
+              </div>
+            <%end%>
           <%else%>
-            <div class="div">
-              <%= strip_tags(a.description[0,100])%>
-            </div>
+            活動敘述：
+            <h3 class="hover_item">尚未有活動敘述!</h3>
           <%end%>
-        <%else%>
-          <h3>尚未有活動敘述!</h3>
-        <%end%>
+        </div>
       <%end%>
     </div>
   <%end%>
@@ -81,21 +82,22 @@
         <div class="event-activity-logo-photo"
           style="background-image:url(<%= a.logo_in_event.url(:original)%>"
         >
-        </div>
-        活動資訊：
-        <%if a.description%>
-          <%if a.description.size < 100%>
-            <div class="div">
-              <%= strip_tags(a.description)%>
-            </div>  
+          <%if a.description%>
+            活動敘述：
+            <%if a.description.size < 100%>
+              <div class="hover_item">
+                <%= strip_tags(a.description)%>
+              </div>  
+            <%else%>
+              <div class="hover_item">
+                <%= strip_tags(a.description[0,100])%>
+              </div>
+            <%end%>
           <%else%>
-            <div class="div">
-              <%= strip_tags(a.description[0,100])%>
-            </div>
+            活動敘述：
+            <h3 class="hover_item">尚未有活動敘述!</h3>
           <%end%>
-        <%else%>
-          <h3>尚未有活動敘述！</h3>
-        <%end%>
+        </div>
       <%end%>
     </div>
   <%end%>
@@ -111,22 +113,37 @@
         <div class="event-activity-logo-photo"
           style="background-image:url(<%= a.logo_in_event.url(:original)%>"
         >
-        </div>
-        活動資訊：
-        <%if a.description%>
-          <%if a.description.size < 100%>
-            <div class="div">
-              <%= strip_tags(a.description)%>
-            </div>  
+          <%if a.description%>
+            活動敘述：
+            <%if a.description.size < 100%>
+              <div class="hover_item">
+                <%= strip_tags(a.description)%>
+              </div>  
+            <%else%>
+              <div class="hover_item">
+                <%= strip_tags(a.description[0,100])%>
+              </div>
+            <%end%>
           <%else%>
-            <div class="div">
-              <%= strip_tags(a.description[0,100])%>
-            </div>
+            活動敘述：
+            <h3 class="hover_item">尚未有活動敘述!</h3>
           <%end%>
-        <%else%>
-          <h3>尚未有活動敘述！</h3>
-        <%end%>
+        </div>
       <%end%>
     </div>
   <%end%>
 </div>
+
+<script>
+  $(document).ready(function(){
+    console.log("hwllo");
+    $(".event-activity-logo-photo").mouseover(function(){
+      console.log("haha");
+      $(".hover_item").css("opacity","1");
+    });
+    $(".event-activity-logo-photo").mouseout(function(){
+      console.log("kerek");
+      $(".hover_item").css("opacity","0");
+    });
+  });
+</script>
