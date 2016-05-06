@@ -139,7 +139,8 @@
     console.log("hwllo");
     $(".event-activity-logo-photo").mouseover(function(){
       console.log("haha");
-      $(".hover_item").css("opacity","1");
+      $(this).find('.hover_item').css("opacity","1");
+      // $(".hover_item").css("opacity","1");
     });
     $(".event-activity-logo-photo").mouseout(function(){
       console.log("kerek");
