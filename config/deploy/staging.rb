@@ -8,8 +8,8 @@ server '161.202.37.146', user: 'deploy', roles: %w{app db web}, my_property: :my
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
 
-set :deploy_to, '/home/deploy/im-here'
-set :branch, 'staging'
+#set :deploy_to, '/home/deploy/im-here'
+#set :branch, 'staging'
 
 # role-based syntax
 # ==================
