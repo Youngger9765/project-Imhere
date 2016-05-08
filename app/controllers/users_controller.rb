@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     if user
       user.confirmed_at = Time.now
       user.save
-      redirect_to "http://giftbox.imhere3nt.com/star/index.php?eventsId=1#registerOk"
+      redirect_to "http://iamhere.smartboss.com.tw/star/index.php?eventsId=1#registerOk"
     else
-      redirect_to "http://giftbox.imhere3nt.com/star/index.php?eventsId=1#registerFail"
+      redirect_to "http://iamhere.smartboss.com.tw/star/index.php?eventsId=1#registerFail"
     end
   end
 
