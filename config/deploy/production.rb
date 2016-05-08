@@ -6,12 +6,10 @@
 #test: 161.202.37.146
 #master: 52.192.213.194
 
-server '161.202.37.146', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+server '52.192.213.194', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-set :deploy_to, '/home/deploy/im-here'
-set :branch, 'production'
 
 #Capistrano tasks
 #namespace :deploy do
