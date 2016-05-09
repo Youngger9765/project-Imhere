@@ -1,7 +1,7 @@
 class ApiV1::UsersController < ApiController
 
-  before_action :authenticate_user_from_token!
-  before_action :authenticate_user!
+  before_action :authenticate_user_from_token!, :except => [:resetPasswordByToken]
+  before_action :authenticate_user!, :except => [:resetPasswordByToken]
 
   def getUserInfo
     if authenticate_user_from_token!
