@@ -24,8 +24,15 @@ class ApiV1::UsersController < ApiController
 
   def editUserInfo
     if authenticate_user_from_token!
-      @user = current_user
-      @user.update(user_params)
+      if user_params["avatar_gender"] && !(user_params["avatar_gender"] == "male" || user_params["avatar_gender"] == "female")
+        render :json => {
+          :error => "user['avatar_gender']格式錯誤，請輸入 'male' 或 'female'!"
+        }, :status => 401
+
+      else
+        @user = current_user
+        @user.update(user_params)
+      end
 
     else
       render :json => {
