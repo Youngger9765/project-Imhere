@@ -7,6 +7,7 @@ json.user do
   json.latitude @user.latitude
   json.longitude @user.longitude
   json.birthday @user.birthday
+  json.avatar_gender @user.avatar_gender
 
   if @user.head_shot.url == "/images/original/missing.png"
     json.head_shot nil

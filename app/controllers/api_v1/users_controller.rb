@@ -328,7 +328,8 @@ class ApiV1::UsersController < ApiController
   private
 
   def user_params
-    params.require(:user).permit(:name, :phone_number ,:address, :birthday, :head_shot)
+    params.require(:user).permit(:name, :phone_number ,:address, 
+                                  :birthday, :head_shot, :avatar_gender)
   end
 
 
