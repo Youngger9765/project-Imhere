@@ -46,6 +46,7 @@ class Admin::ActivitiesController < ApplicationController
       redirect_to admin_event_activity_path(@event,@activity)
     else
       flash[:alert] = "Create fail!"
+      flash[:alert] = @activity.errors.messages
       render :new
     end
   end
@@ -63,7 +64,7 @@ class Admin::ActivitiesController < ApplicationController
     authorize @activity
 
     if @activity.update(activity_params)
-      
+
       if params[:destroy_logo_in_event] == "1"
         @activity.logo_in_event = nil
         @activity.save!
