@@ -64,7 +64,7 @@ class Admin::NotificationsController < ApplicationController
     end
 
     if params[:destroy_image] == "1"
-      @notification.logo = nil
+      @notification.image = nil
       @notification.save!
     end
 
