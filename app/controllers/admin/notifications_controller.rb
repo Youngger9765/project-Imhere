@@ -63,6 +63,11 @@ class Admin::NotificationsController < ApplicationController
       @notification.save!
     end
 
+    if params[:destroy_image] == "1"
+      @notification.logo = nil
+      @notification.save!
+    end
+
     if params[:no_countdown] == "1"
       @notification.countdown_end_time = nil
       @notification.save!
@@ -79,7 +84,10 @@ class Admin::NotificationsController < ApplicationController
   private
 
   def notification_params
-    params.require(:notification).permit( :title, :start_time, :logo, :content, :url, :countdown_end_time)
+    params.require(:notification).permit( :title, :start_time, :logo, 
+                                          :content, :url, :countdown_end_time,
+                                          :image,
+                                          )
   end
 
   def find_notification

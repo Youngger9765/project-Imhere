@@ -16,6 +16,7 @@
   <tr>
     <td>推播logo</td>
     <td>推播名稱</td>
+    <td>推播大圖</td>
     <td>推播內容</td>
     <td>推播連結</td>
     <td>推播時間</td>
@@ -27,6 +28,7 @@
     <tr>
       <td><%= image_tag(notification.logo.url(:thumb)) %></td>
       <td><%= link_to notification.title, admin_notification_path(notification) %></td>
+      <td><%= image_tag(notification.image.url(:thumb)) %></td>
       <td><%= notification.content %></td>
       <td><%= link_to "連結",notification.url, :target => "_blank" %></td>
       <td><%= notification.start_time.strftime('%F %R') %></td>

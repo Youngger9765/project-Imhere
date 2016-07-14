@@ -17,6 +17,19 @@
 
 <div class="row h3">
   <div class="col-md-2 text-right">
+    推播大圖：
+  </div>
+  <div class="col-md-6">
+    <% if @notification.image.exists? %>
+      <%= image_tag(@notification.image.url(:medium))%>
+    <%else%>
+      <%= link_to "請新增推播圖片", edit_admin_notification_path(@notification), :class => "btn btn-success btn-lg " %>
+    <%end%>
+  </div>
+</div>
+
+<div class="row h3">
+  <div class="col-md-2 text-right">
     推播內容：
   </div>
   <div class="col-md-6">

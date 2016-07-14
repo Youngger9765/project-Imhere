@@ -46,6 +46,7 @@ class Admin::ActivitiesController < ApplicationController
       redirect_to admin_event_activity_path(@event,@activity)
     else
       flash[:alert] = "Create fail!"
+      flash[:alert] = @activity.errors.messages
       render :new
     end
   end
@@ -61,34 +62,39 @@ class Admin::ActivitiesController < ApplicationController
 
   def update
     authorize @activity
-    @activity.update(activity_params)
 
-    if params[:destroy_logo_in_event] == "1"
-      @activity.logo_in_event = nil
-      @activity.save!
-    end
+    if @activity.update(activity_params)
 
-    if params[:destroy_banner] == "1"
-      @activity.banner = nil
-      @activity.save!
-    end
-    
-    if params[:destroy_logo] == "1"
-      @activity.logo = nil
-      @activity.save!
-    end
+      if params[:destroy_logo_in_event] == "1"
+        @activity.logo_in_event = nil
+        @activity.save!
+      end
 
-    if params[:destroy_information_picture] == "1"
-      @activity.information_picture = nil
-      @activity.save!
-    end
+      if params[:destroy_banner] == "1"
+        @activity.banner = nil
+        @activity.save!
+      end
+      
+      if params[:destroy_logo] == "1"
+        @activity.logo = nil
+        @activity.save!
+      end
 
-    if params[:destroy_merchant_banner] == "1"
-      @activity.merchant_banner = nil
-      @activity.save!
-    end
+      if params[:destroy_information_picture] == "1"
+        @activity.information_picture = nil
+        @activity.save!
+      end
 
-    redirect_to admin_event_activity_path(@event,@activity)
+      if params[:destroy_merchant_banner] == "1"
+        @activity.merchant_banner = nil
+        @activity.save!
+      end
+      redirect_to admin_event_activity_path(@event,@activity)
+
+    else
+      flash[:alert] = @activity.errors.messages
+      render :edit
+    end
   end
 
   def destroy
@@ -115,7 +121,8 @@ class Admin::ActivitiesController < ApplicationController
                                      :status, :information_picture, :information,
                                      :description, :logo_in_event, :banner,
                                      :milestone_logo_content, :customers_target,
-                                     :merchant_description, :merchant_banner
+                                     :merchant_description, :merchant_banner,
+                                     :fb_link, :youtube_link, :ig_link, :webo_link,
                                      )
   end
 

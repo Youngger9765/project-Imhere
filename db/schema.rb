@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608150150) do
+ActiveRecord::Schema.define(version: 20160714131034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 20160608150150) do
     t.string   "merchant_banner_content_type"
     t.integer  "merchant_banner_file_size"
     t.datetime "merchant_banner_updated_at"
+    t.string   "fb_link"
+    t.string   "youtube_link"
+    t.string   "ig_link"
+    t.string   "webo_link"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
@@ -163,6 +167,10 @@ ActiveRecord::Schema.define(version: 20160608150150) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.datetime "countdown_end_time"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "orders", force: :cascade do |t|
