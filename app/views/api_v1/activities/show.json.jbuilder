@@ -1,5 +1,6 @@
 if @user
   json.user_name @user.name
+  json.user_favoriting @favoriting
 end
 
 json.activity_data do
@@ -18,6 +19,11 @@ json.activity_data do
   else
     json.logo_url @activity.logo.url
   end
+
+  json.fb_link @fb_link
+  json.youtube_link @youtube_link
+  json.ig_link @ig_link
+  json.webo_link @webo_link
 end
 
 json.activity_achievement @achievement

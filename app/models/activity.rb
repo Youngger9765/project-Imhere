@@ -26,6 +26,9 @@ class Activity < ActiveRecord::Base
   has_many :activity_milestones
   has_many :lotteries
 
+  has_many :user_activity_favoritings, dependent: :destroy
+  has_many :users, :through => :user_activity_favoritings
+
   has_many :merchants, :as => :merchantable
 
   geocoded_by :location
