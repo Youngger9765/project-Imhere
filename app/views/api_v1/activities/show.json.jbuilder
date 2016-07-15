@@ -19,6 +19,11 @@ json.activity_data do
   else
     json.logo_url @activity.logo.url
   end
+
+  json.fb_link @fb_link
+  json.youtube_link @youtube_link
+  json.ig_link @ig_link
+  json.webo_link @webo_link
 end
 
 json.activity_achievement @achievement
