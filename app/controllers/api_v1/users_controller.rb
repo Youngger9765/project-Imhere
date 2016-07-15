@@ -332,6 +332,28 @@ class ApiV1::UsersController < ApiController
     end
   end
 
+  def addFavoriteActivity
+    if authenticate_user_from_token!
+
+      if current_user && !current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
+        @favoriting = current_user.user_activity_favoritings.new
+        @favoriting.activity_id = params[:activity_id]
+        @favoriting.save
+
+        render :json => {
+                :success => "活動已收藏"
+              }, :status => 200
+      else
+        render :json => {
+                :error => "活動已經收藏過了"
+              }, :status => 200
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
   private
 
   def user_params

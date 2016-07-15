@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     post "/clickUserGifts" => "users#clickUserGifts"
     get "/countUserMissGiftsBadge" => "users#countUserMissGiftsBadge"
     post "/clickUserMissGifts" => "users#clickUserMissGifts"
+    post "/addFavoriteActivity" => "users#addFavoriteActivity"
+
 
 
     #event_info/activity_info
