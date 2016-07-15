@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714131034) do
+ActiveRecord::Schema.define(version: 20160715162815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20160714131034) do
     t.integer  "fund"
     t.integer  "shared_people"
     t.integer  "status"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160714131034) do
     t.string   "youtube_link"
     t.string   "ig_link"
     t.string   "webo_link"
+    t.integer  "favoritings_count",                default: 0
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
@@ -103,6 +104,13 @@ ActiveRecord::Schema.define(version: 20160714131034) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+  end
+
+  create_table "favoritings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "lotteries", force: :cascade do |t|
@@ -242,6 +250,13 @@ ActiveRecord::Schema.define(version: 20160714131034) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "user_activity_favoritings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "user_lottery_ships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lottery_id"
@@ -296,6 +311,7 @@ ActiveRecord::Schema.define(version: 20160714131034) do
     t.datetime "click_user_gifts_at",      default: '2016-03-24 01:28:16'
     t.datetime "click_user_miss_gifts_at", default: '2016-03-24 01:28:16'
     t.string   "avatar_gender"
+    t.integer  "favoritings_count",        default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

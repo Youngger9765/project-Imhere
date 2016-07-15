@@ -332,6 +332,93 @@ class ApiV1::UsersController < ApiController
     end
   end
 
+  def addFavoriteActivity
+    if authenticate_user_from_token!
+
+      if !params[:activity_id]
+        render :json => {
+                :error => "請回傳 activity_id"
+              }, :status => 200
+
+      elsif !Activity.find_by(:id => params[:activity_id])
+        render :json => {
+                :error => " 活動 id 錯誤"
+              }, :status => 200
+
+      elsif current_user && !current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
+        @favoriting = current_user.user_activity_favoritings.new
+        @favoriting.activity_id = params[:activity_id]
+        @favoriting.save
+
+        render :json => {
+                :success => "活動收藏完成"
+              }, :status => 200
+      else
+        render :json => {
+                :error => "活動已經收藏過了"
+              }, :status => 200
+      end
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def removeFavoriteActivity
+    if authenticate_user_from_token!
+
+      if !params[:activity_id]
+        render :json => {
+                :error => "請回傳 activity_id"
+              }, :status => 200
+
+      elsif !Activity.find_by(:id => params[:activity_id])
+        render :json => {
+                :error => " 活動 id 錯誤"
+              }, :status => 200
+
+      elsif current_user && current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
+        @favoriting = current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
+        @favoriting.destroy
+
+        render :json => {
+                :success => "移除收藏"
+              }, :status => 200
+      else
+        render :json => {
+                :error => "沒有收藏過此活動"
+              }, :status => 200
+      end
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def showFavoriteActivity
+    if authenticate_user_from_token!
+
+      if current_user
+        @activities = current_user.activities
+        @favoritings_count = current_user.favoritings_count
+
+        render :json => {
+                :favoritings_count => @favoritings_count,
+                :activities => @activities
+              }, :status => 200
+      end
+
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
   private
 
   def user_params
