@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :user_lottery_ships
   has_many :lotteries, :through => :user_lottery_ships
 
-  has_many :user_activity_favoritings
+  has_many :user_activity_favoritings, dependent: :destroy
   has_many :activities, :through => :user_activity_favoritings
 
   has_many :orders
