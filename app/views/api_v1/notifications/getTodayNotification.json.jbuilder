@@ -13,5 +13,11 @@ json.today_notifications @notifications do |notification|
   else
     json.logo_url json.logo_url notification.logo.url
   end
+
+  if notification.image.url == "/images/original/missing.png"
+    json.image_url nil
+  else
+    json.image_url notification.image.url
+  end
   
 end
