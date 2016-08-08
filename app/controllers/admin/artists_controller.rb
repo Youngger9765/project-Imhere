@@ -7,6 +7,7 @@ class Admin::ArtistsController < ApplicationController
   before_action :find_artist, :only => [:show, :edit, :update, :destroy]
 
   def index
+    @artists = Artist.all
     authorize @artists
   end
 

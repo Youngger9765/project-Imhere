@@ -1,0 +1,47 @@
+<%if @index_params == "activity"%>
+  <h3>
+  <%= link_to @event.name, admin_event_path(@event)%> 
+  >
+  <%= link_to "活動列表", admin_event_activities_path(@event)%> 
+  >
+  <%= link_to @activity.name, admin_event_activity_path(@event,@activity)%>
+  >
+  藝人列表 
+  </h3>
+
+<%else%>
+  <h3>所有藝人列表</h3>
+<%end%>
+
+<table class="table">
+  <tr>
+    <td>藝人名稱</td>
+    <td>活動</td>
+    <td>藝人頁面</td>
+    <td>編輯</td>
+    <td>刪除</td>
+  </tr>
+  <%@artists.each do |artist|%>
+    <tr>
+      <td>
+        <%= link_to artist.name,admin_artist_path(artist)%>
+      </td>
+      <td>
+        <%if artist.activities.exist?%>
+          
+        <%else%>
+          "尚未安排"
+        <%end%>
+      </td>
+      <td>
+        <%= link_to "Show", "", :class => "btn btn-primary"%>
+      </td>
+      <td>
+        <%= link_to "Edit",edit_admin_artist_path(artist), :class => "btn btn-success" %>
+      </td>
+        <%= link_to "Delete", "", :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %>
+      </td>
+    </tr>
+  <%end%>
+
+</table>
