@@ -122,7 +122,6 @@ class Admin::ActivitiesController < ApplicationController
                                      :description, :logo_in_event, :banner,
                                      :milestone_logo_content, :customers_target,
                                      :merchant_description, :merchant_banner,
-                                     :fb_link, :youtube_link, :ig_link, :webo_link,
                                      )
   end
 
