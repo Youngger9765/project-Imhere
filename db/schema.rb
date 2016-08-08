@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715162815) do
+ActiveRecord::Schema.define(version: 20160808221246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,10 +60,6 @@ ActiveRecord::Schema.define(version: 20160715162815) do
     t.string   "merchant_banner_content_type"
     t.integer  "merchant_banner_file_size"
     t.datetime "merchant_banner_updated_at"
-    t.string   "fb_link"
-    t.string   "youtube_link"
-    t.string   "ig_link"
-    t.string   "webo_link"
     t.integer  "favoritings_count",                default: 0
   end
 
