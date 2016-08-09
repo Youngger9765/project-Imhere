@@ -27,21 +27,34 @@
         <%= link_to artist.name,admin_artist_path(artist)%>
       </td>
       <td>
-        <%if artist.activities.exist?%>
+        <%if artist.activities.exists?%>
+          <%artist.activities.each do |activity|%>
+            <li><%= link_to activity.name, admin_event_activity_path(activity.event, activity)%></li> 
+          <% end %>
           
         <%else%>
           "尚未安排"
         <%end%>
       </td>
       <td>
-        <%= link_to "Show", "", :class => "btn btn-primary"%>
+        <%= link_to "Show", admin_artist_path(artist), :class => "btn btn-primary"%>
       </td>
       <td>
         <%= link_to "Edit",edit_admin_artist_path(artist), :class => "btn btn-success" %>
       </td>
-        <%= link_to "Delete", "", :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %>
+      <td>
+        <%if artist.activities.exists?%>
+          <%= link_to "Delete", "", :class => "btn btn-danger", :data => {:confirm => "刪除前，請先將藝人從活動移除，並重新整理此頁面！" } %>
+        <%else%>
+          <%= link_to "Delete", admin_artist_path(artist), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %>
+        <%end%>
       </td>
     </tr>
   <%end%>
 
 </table>
+
+<script type="text/javascript">
+  
+
+</script>

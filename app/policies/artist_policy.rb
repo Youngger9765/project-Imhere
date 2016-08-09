@@ -33,4 +33,8 @@ class ArtistPolicy < ApplicationPolicy
   def destroy?
     user.admin? 
   end
+
+  def remove_from_activity?
+    user.admin?
+  end
 end  

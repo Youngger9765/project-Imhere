@@ -93,6 +93,15 @@
       <h1 class = "text-center">
         <%= link_to "新增藝人", new_admin_event_activity_artist_path(@event,@activity), :class => "btn btn-success" %>
       </h1>
+      <div class="row">
+        <% @artists.each do |artist|%>
+          <li class="h3">
+            <%= link_to artist.name, admin_event_activity_artist_path(@event,@activity,artist)%>
+            <%= link_to "delete", remove_from_activity_admin_event_activity_artist_path(@event, @activity,artist), :class => "btn btn-danger",:data => {:confirm => "Are You Sure?" }%>
+          </li>
+
+        <% end %>
+      </div>
 
       <hr>
 

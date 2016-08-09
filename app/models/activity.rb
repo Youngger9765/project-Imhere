@@ -26,6 +26,9 @@ class Activity < ActiveRecord::Base
 
   has_many :merchants, :as => :merchantable
 
+  has_many :activity_artist_ships
+  has_many :artists, :through => :activity_artist_ships
+
   geocoded_by :location
   after_validation :geocode
 

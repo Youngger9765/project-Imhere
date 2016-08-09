@@ -1,0 +1,31 @@
+<% if @activity%>
+  <h2><%= link_to "<< 回到活動", admin_event_activity_path(@event,@activity)%></h2>
+<%end%>
+
+<h1>藝人 
+<% if @activity%>
+  <%= link_to "Edit",edit_admin_event_activity_artist_path(@event,@activity,@artist), :class => "btn btn-success" %>
+<% else%>
+  <%= link_to "Edit",edit_admin_artist_path(@artist), :class => "btn btn-success" %>
+
+<%end%>
+  
+</h1> 
+
+<ul>
+  <h2>基本資料</h2>
+  <li class="h3">名稱：<%=@artist.name%></li>
+  <li class="h3">FB：<%=link_to @artist.fb_link, @artist.fb_link, :target => "_blank"%></li>
+  <li class="h3">Youtube：<%=link_to @artist.youtube_link,@artist.youtube_link, :target => "_blank"%></li>
+  <li class="h3">IG：<%=link_to @artist.ig_link, @artist.ig_link, :target => "_blank"%></li>
+  <li class="h3">Webo：<%=link_to @artist.webo_link, @artist.webo_link, :target => "_blank"%></li>
+</ul> 
+
+<hr>
+
+<ul>
+  <h2>參與活動</h2>
+  <% @artist.activities.each do |activity| %>
+    <li class="h3"><%= link_to activity.name, admin_event_activity_path(activity.event, activity)%></li>
+  <% end %>
+</ul>

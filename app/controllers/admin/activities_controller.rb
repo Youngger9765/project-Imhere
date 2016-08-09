@@ -22,6 +22,7 @@ class Admin::ActivitiesController < ApplicationController
     @milestones = @activity.activity_milestones.order("people ASC")
     @lotteries = @activity.lotteries
     @merchants = @activity.merchants
+    @artists = @activity.artists
 
     @customers_target = @activity.customers_target
     @merchant_people_count = @activity.merchants.sum(:orders_count)

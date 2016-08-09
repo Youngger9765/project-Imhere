@@ -1,0 +1,7 @@
+<h1>藝人修改</h1>
+
+<%= form_for @artist, :url => @url do |f| %>
+
+  <%= render :partial => 'artist_form', :locals => { :f => f} %>
+
+<% end %>
