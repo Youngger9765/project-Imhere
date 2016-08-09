@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :users
     resources :orders
     resources :merchants
+    resources :artists
     resources :notifications
 
     resources :lotteries do
@@ -40,6 +41,12 @@ Rails.application.routes.draw do
       resources :activities do
         resources :activity_milestones
         resources :merchants
+
+        resources :artists do
+          member do
+            get :remove_from_activity
+          end
+        end
 
         resources :lotteries do
           resources :users

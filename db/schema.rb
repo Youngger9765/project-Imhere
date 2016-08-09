@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808221246) do
+ActiveRecord::Schema.define(version: 20160809124616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20160808221246) do
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
 
+  create_table "activity_artist_ships", force: :cascade do |t|
+    t.integer  "activity_id"
+    t.integer  "artist_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "activity_artist_ships", ["activity_id"], name: "index_activity_artist_ships_on_activity_id", using: :btree
+  add_index "activity_artist_ships", ["artist_id"], name: "index_activity_artist_ships_on_artist_id", using: :btree
+
   create_table "activity_milestones", force: :cascade do |t|
     t.integer  "activity_id"
     t.integer  "people"
@@ -72,6 +82,18 @@ ActiveRecord::Schema.define(version: 20160808221246) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "fb_link"
+    t.string   "youtube_link"
+    t.string   "ig_link"
+    t.string   "webo_link"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "artists", ["name"], name: "index_artists_on_name", using: :btree
 
   create_table "attachments", force: :cascade do |t|
     t.string   "picture"
