@@ -15,6 +15,7 @@
 
 <table class="table">
   <tr>
+    <td>照片</td>
     <td>藝人名稱</td>
     <td>活動</td>
     <td>藝人頁面</td>
@@ -23,6 +24,13 @@
   </tr>
   <%@artists.each do |artist|%>
     <tr>
+      <td>
+        <% if artist.logo.exists? %>
+          <div class="artist-img-frame-table">
+            <%= link_to image_tag(artist.logo.url(:thumb)),artist.logo.url%>
+          </div>
+        <% end %>
+      </td> 
       <td>
         <%= link_to artist.name,admin_artist_path(artist)%>
       </td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809124616) do
+ActiveRecord::Schema.define(version: 20160809144836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,8 +89,12 @@ ActiveRecord::Schema.define(version: 20160809124616) do
     t.string   "youtube_link"
     t.string   "ig_link"
     t.string   "webo_link"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "artists", ["name"], name: "index_artists_on_name", using: :btree
