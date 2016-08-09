@@ -289,3 +289,28 @@ input.switch:focus ~ label:before
 .lottery_info_card-0{
   color: gainsboro;
 }
+
+.artist-img-frame {
+  width: 200px;
+  height: 200px;
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px; 
+  }
+}
+
+.artist-no-img-frame {
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  background-color: gray;
+}
+
+.artist-img-frame-table{
+  img{
+    max-width: 100px;
+    max-height: 100px; 
+  }
+}

@@ -7,13 +7,21 @@
   <%= link_to "Edit",edit_admin_event_activity_artist_path(@event,@activity,@artist), :class => "btn btn-success" %>
 <% else%>
   <%= link_to "Edit",edit_admin_artist_path(@artist), :class => "btn btn-success" %>
-
 <%end%>
   
 </h1> 
 
 <ul>
   <h2>基本資料</h2>
+  <% if @artist.logo.exists? %>
+    <%= link_to image_tag(@artist.logo.url(:medium)),@artist.logo.url%>
+  <% else%>
+    <% if @activity%>
+      <%= link_to "加入照片",edit_admin_event_activity_artist_path(@event,@activity,@artist), :class => "btn btn-success" %>
+    <% else%>
+      <%= link_to "加入照片",edit_admin_artist_path(@artist), :class => "btn btn-success" %>
+    <%end%>
+  <%end%>
   <li class="h3">名稱：<%=@artist.name%></li>
   <li class="h3">FB：<%=link_to @artist.fb_link, @artist.fb_link, :target => "_blank"%></li>
   <li class="h3">Youtube：<%=link_to @artist.youtube_link,@artist.youtube_link, :target => "_blank"%></li>

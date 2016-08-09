@@ -7,6 +7,9 @@ class Artist < ActiveRecord::Base
   validates_format_of :ig_link, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "ig url 格式錯誤"
   validates_format_of :webo_link, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "微博 url 格式錯誤"
 
+  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+
   has_many :activity_artist_ships
   has_many :activities, :through => :activity_artist_ships
 

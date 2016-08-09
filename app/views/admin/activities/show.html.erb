@@ -95,11 +95,21 @@
       </h1>
       <div class="row">
         <% @artists.each do |artist|%>
-          <li class="h3">
-            <%= link_to artist.name, admin_event_activity_artist_path(@event,@activity,artist)%>
-            <%= link_to "delete", remove_from_activity_admin_event_activity_artist_path(@event, @activity,artist), :class => "btn btn-danger",:data => {:confirm => "Are You Sure?" }%>
-          </li>
-
+          <div class="col-md-3">
+            <% if artist.logo.exists? %>
+              <div class="artist-img-frame">
+                <%= link_to image_tag(artist.logo.url(:medium)),artist.logo.url%>
+              </div>
+            <% else%>
+              <div class="artist-no-img-frame"> 尚未加入圖片</div>
+            <% end %>
+            <div class="text-center">
+              <h3><%= link_to artist.name, admin_event_activity_artist_path(@event,@activity,artist, :class =>"text-center")%></h3>
+            </div>
+            <div class="text-center">
+              <%= link_to "delete", remove_from_activity_admin_event_activity_artist_path(@event, @activity,artist), :class => "btn btn-danger",:data => {:confirm => "Are You Sure?" }%>
+            </div>
+          </div>
         <% end %>
       </div>
 

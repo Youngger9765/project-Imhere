@@ -49,6 +49,9 @@ class Admin::ArtistsController < ApplicationController
     authorize @artist
     if @artist.update(artist_params)
       flash[:notice] = "Edit Success!"
+      if params[:destroy_logo] == "1"
+        @artist.logo = nil
+      end
       
       if params[:activity_id]
         redirect_to admin_event_activity_artist_path(@event, @activity, @artist)
@@ -80,7 +83,7 @@ class Admin::ArtistsController < ApplicationController
 
   def artist_params
     params.require(:artist).permit( :name, :fb_link, :youtube_link,:ig_link, 
-                                    :webo_link,
+                                    :webo_link, :logo,
                                     )
   end
 
