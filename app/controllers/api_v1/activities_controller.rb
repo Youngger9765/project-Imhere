@@ -18,6 +18,7 @@ class ApiV1::ActivitiesController < ApplicationController
     @public_availible_lotteries = @public_lotteries.where('push_time < ? AND end_time > ?', Time.now, Time.now)
     @milestone_logo_content = @activity.milestone_logo_content
     @achievement = @activity.get_achievement
+    @artists = @activity.artists
   end
 
 end

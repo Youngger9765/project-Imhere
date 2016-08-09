@@ -29,6 +29,22 @@ json.activity_milestone_logo_content @milestone_logo_content
 
 json.activity_content @activity.content
 
+json.activity_artists @artists.each do |artist|
+
+  json.id artist.id
+  json.name artist.name
+  json.fb_link artist.fb_link
+  json.youtube_link artist.youtube_link
+  json.ig_link artist.ig_link
+  json.webo_link artist.webo_link
+
+  if artist.logo.url == "/images/original/missing.png"
+    json.logo_url nil
+  else
+    json.logo_url artist.logo.url
+  end
+end
+
 
 json.activity_info do
   json.information @activity.information
