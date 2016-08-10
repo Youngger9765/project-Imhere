@@ -24,6 +24,9 @@ class Admin::ActivitiesController < ApplicationController
     @merchants = @activity.merchants
     @artists = @activity.artists
 
+    activiy_artists_id = @activity.artists.pluck(:id)  
+    @standby_artists = Artist.where.not(id: activiy_artists_id)
+
     @customers_target = @activity.customers_target
     @merchant_people_count = @activity.merchants.sum(:orders_count)
     @lottery_people_count = @activity.lotteries.sum(:users_count)
@@ -65,6 +68,14 @@ class Admin::ActivitiesController < ApplicationController
     authorize @activity
 
     if @activity.update(activity_params)
+
+      if params[:activity][:artist_id]
+        @artist = Artist.find(params[:activity][:artist_id])
+        @ship = ActivityArtistShip.all.create(:activity => @activity,
+                                              :artist => @artist
+                                            )
+        @ship.save!
+      end
 
       if params[:destroy_logo_in_event] == "1"
         @activity.logo_in_event = nil
@@ -109,7 +120,6 @@ class Admin::ActivitiesController < ApplicationController
       @activity.status = 0
       @activity.save
     end
-    
     
     redirect_to admin_event_activities_path(@event)
   end

@@ -56,4 +56,8 @@ class Activity < ActiveRecord::Base
       achievement = "目標尚未設定或設定錯誤"
     end
   end
+
+  def artist_id
+    
+  end
 end

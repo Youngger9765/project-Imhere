@@ -52,6 +52,10 @@ Rails.application.routes.draw do
           resources :users
           resources :prizes
         end
+
+        member do
+          get :choose_artist
+        end
       end
     end
 

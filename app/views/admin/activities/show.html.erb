@@ -91,14 +91,14 @@
 
       <h1 class = "text-center">活動藝人</h1>
       <h1 class = "text-center">
-        <%= link_to "新增藝人", new_admin_event_activity_artist_path(@event,@activity), :class => "btn btn-success" %>
+        <%= link_to "建立新藝人", new_admin_event_activity_artist_path(@event,@activity), :class => "btn btn-default" %>
       </h1>
       <div class="row">
         <% @artists.each do |artist|%>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <% if artist.logo.exists? %>
               <div class="artist-img-frame">
-                <%= link_to image_tag(artist.logo.url(:medium)),artist.logo.url%>
+                <%= image_tag(artist.logo.url(:medium))%>
               </div>
             <% else%>
               <div class="artist-no-img-frame"> 尚未加入圖片</div>
@@ -111,6 +111,18 @@
             </div>
           </div>
         <% end %>
+        <div class="col-md-4">
+          <%= form_for @activity, :url => admin_event_activity_path(@event,@activity) do |f| %>
+            <div class="form-group">
+              <h2>
+                <%= f.label :artist_id ,"選取藝人"%>
+                <br>
+                <%= f.select :artist_id, @standby_artists.all.map{|a| [a.name, a.id]}, :class =>"form-control" %>
+              </h2>
+            </div>
+            <%= f.submit "選取",:class => "btn btn-primary" %>
+          <% end %>
+        </div>
       </div>
 
       <hr>
