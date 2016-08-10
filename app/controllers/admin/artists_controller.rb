@@ -2,9 +2,17 @@ class Admin::ArtistsController < ApplicationController
   layout "admin"
   before_action :authenticate_user! 
   before_action :user_admin?
-  before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy, :remove_from_activity]
-  before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy, :remove_from_activity]
-  before_action :find_artist, :only => [:show, :edit, :update, :destroy, :remove_from_activity]
+  before_action :find_event, :only =>[:index, :new, :create, :show, :edit, 
+                                      :update, :destroy, :remove_from_activity, 
+                                      :activity_choose,
+                                    ]
+  before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, 
+                                          :update, :destroy, :remove_from_activity, 
+                                          :activity_choose,
+                                        ]
+  before_action :find_artist, :only => [:show, :edit, :update, :destroy, 
+                                        :remove_from_activity, :activity_choose,
+                                      ]
 
   def index
     @artists = Artist.all
