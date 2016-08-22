@@ -13,7 +13,7 @@
 
 <h3>Subdomain: 
   <% if @activity.subdomain%>
-    <span><%= link_to "#{@activity.subdomain}.#{front_domain_name}","#{@activity.subdomain}.#{front_domain_name}"%></span> 
+    <span><%= @activity.subdomain%></span> 
   <%else%>
     <span style="color: red;">尚未填寫</span> 
   <%end%>
