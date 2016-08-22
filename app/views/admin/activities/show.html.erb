@@ -10,6 +10,14 @@
   活動名稱：<%= @activity.name%>（<%= @activity.status_word%>）
   <%= link_to "編輯", edit_admin_event_activity_path(@event,@activity), :class => "btn btn-success" %>
 </h2>
+
+<h3>Subdomain: 
+  <% if @activity.subdomain%>
+    <span><%= link_to "#{@activity.subdomain}.#{front_domain_name}","#{@activity.subdomain}.#{front_domain_name}"%></span> 
+  <%else%>
+    <span style="color: red;">尚未填寫</span> 
+  <%end%>
+</h3>
 <hr>
 <h3>活動 banner</h3>
 <div class="div" id="activity-banner" 
