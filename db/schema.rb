@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809144836) do
+ActiveRecord::Schema.define(version: 20160822134934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160809144836) do
     t.integer  "merchant_banner_file_size"
     t.datetime "merchant_banner_updated_at"
     t.integer  "favoritings_count",                default: 0
+    t.string   "subdomain"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
