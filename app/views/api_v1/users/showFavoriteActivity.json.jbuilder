@@ -12,4 +12,6 @@ json.activities @activities.each do |a|
   json.end_time a.end_time
   json.status a.status
 
+  json.last_view_time @favoritings.find_by(:activity_id => a.id).last_view_time
+
 end
