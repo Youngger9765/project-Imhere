@@ -3,8 +3,10 @@ json.miss_merchants @miss_availible_merchants.each do |merchant|
   
   if merchant.merchantable
     json.activity_name merchant.merchantable.name
+    json.activity_end_time merchant.merchantable.end_time
   else
     json.activity_name nil
+    json.activity_end_time nil
   end
 
   json.name merchant.name
@@ -19,6 +21,7 @@ json.miss_merchants @miss_availible_merchants.each do |merchant|
   json.content merchant.content
   json.merchant_price merchant.price
   json.users_count merchant.orders_count
+
 end
 
 json.miss_lotteries @miss_overtime_lotteries.each do |lottery|
