@@ -1,6 +1,6 @@
 if @user
   json.user_name @user.name
-  json.user_favoriting @favoriting
+  json.user_favoriting @favoriting_count
 end
 
 json.activity_data do

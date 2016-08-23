@@ -7,7 +7,12 @@ class ApiV1::ActivitiesController < ApplicationController
   def show
     if params[:auth_token]
       @user = User.find_by(:authentication_token => params[:auth_token])
-      @favoriting = @user.activities.where(:id => params[:id]).count()
+      @favoriting_count = @user.activities.where(:id => params[:id]).count()
+      if @user.user_activity_favoritings.find_by(:activity_id => params[:id])
+        @favoriting = @user.user_activity_favoritings.find_by(:activity_id => params[:id])
+        @favoriting.last_view_time = Time.now
+        @favoriting.save!
+      end
     end
     
     @event = Event.find(params[:event_id])
