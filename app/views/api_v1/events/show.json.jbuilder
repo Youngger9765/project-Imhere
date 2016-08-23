@@ -26,6 +26,12 @@ json.activities @activities.each do |a|
     json.logo a.logo_in_event.url
   end
 
+  if a.banner.url == "/images/original/missing.png"
+    json.logo nil
+  else
+    json.banner a.banner.url
+  end
+
   json.name a.name
   json.description a.description
   json.achivement a.get_achievement
