@@ -405,11 +405,6 @@ class ApiV1::UsersController < ApiController
       if current_user
         @activities = current_user.activities
         @favoritings_count = current_user.favoritings_count
-
-        render :json => {
-                :favoritings_count => @favoritings_count,
-                :activities => @activities
-              }, :status => 200
       end
 
     else
