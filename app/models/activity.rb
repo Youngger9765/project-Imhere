@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :message => "活動名稱不得空白！"
+  validates_uniqueness_of :subdomain, :message => "subdomain 已經被使用！"
 
   belongs_to :event
 

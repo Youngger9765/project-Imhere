@@ -41,6 +41,8 @@ class Admin::ActivitiesController < ApplicationController
 
 
   def create
+
+    raise
     
     @activity = @event.activities.new(activity_params)
     authorize @activity
