@@ -348,7 +348,13 @@ class ApiV1::UsersController < ApiController
       elsif current_user && !current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
         @favoriting = current_user.user_activity_favoritings.new
         @favoriting.activity_id = params[:activity_id]
-        @favoriting.save
+        
+        if @favoriting.save
+          activity_favoritings_count = UserActivityFavoriting.where(:activity_id => params[:activity_id]).size
+          activity = Activity.find(params[:activity_id])
+          activity.favoritings_count = activity_favoritings_count
+          activity.save
+        end
 
         render :json => {
                 :success => "活動收藏完成"
@@ -381,7 +387,13 @@ class ApiV1::UsersController < ApiController
 
       elsif current_user && current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
         @favoriting = current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
-        @favoriting.destroy
+        
+        if @favoriting.destroy
+          activity_favoritings_count = UserActivityFavoriting.where(:activity_id => params[:activity_id]).size
+          activity = Activity.find(params[:activity_id])
+          activity.favoritings_count = activity_favoritings_count
+          activity.save
+        end
 
         render :json => {
                 :success => "移除收藏"
