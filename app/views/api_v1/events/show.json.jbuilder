@@ -35,4 +35,5 @@ json.activities @activities.each do |a|
   json.name a.name
   json.description a.description
   json.achivement a.get_achievement
+  json.favoritings_count a.favoritings_count
 end
