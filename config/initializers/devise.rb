@@ -260,5 +260,9 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   fb_config = YAML.load(File.read("#{Rails.root}/config/facebook.yml"))[Rails.env]
-  config.omniauth :facebook, fb_config["app_id"], fb_config["secret"], scope: 'public_profile,email', info_fields: 'email, name'
+  config.omniauth :facebook, fb_config["app_id"], fb_config["secret"], 
+                  scope: 'public_profile,email', 
+                  info_fields: 'email, name',
+                  secure_image_url: true,
+                  image_size:  'large'
 end
