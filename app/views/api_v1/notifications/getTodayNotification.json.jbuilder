@@ -20,4 +20,6 @@ json.today_notifications @notifications do |notification|
     json.image_url notification.image.url
   end
   
+  json.is_user_clicked notification.user_clicked_list.include?(@user.id.to_s)
+  
 end

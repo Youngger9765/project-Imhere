@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823134209) do
+ActiveRecord::Schema.define(version: 20160907152109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,8 +191,8 @@ ActiveRecord::Schema.define(version: 20160823134209) do
     t.datetime "start_time"
     t.text     "content"
     t.string   "url"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20160823134209) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "user_clicked_list",  default: [],              array: true
   end
 
   create_table "orders", force: :cascade do |t|
