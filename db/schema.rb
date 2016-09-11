@@ -49,10 +49,6 @@ ActiveRecord::Schema.define(version: 20160907152109) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
-    t.string   "milestone_logo_file_name"
-    t.string   "milestone_logo_content_type"
-    t.integer  "milestone_logo_file_size"
-    t.datetime "milestone_logo_updated_at"
     t.text     "milestone_logo_content"
     t.integer  "customers_target"
     t.text     "merchant_description"
@@ -106,11 +102,6 @@ ActiveRecord::Schema.define(version: 20160907152109) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "documents", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_time"
@@ -127,13 +118,6 @@ ActiveRecord::Schema.define(version: 20160907152109) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
-  end
-
-  create_table "favoritings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "lotteries", force: :cascade do |t|
@@ -332,9 +316,9 @@ ActiveRecord::Schema.define(version: 20160907152109) do
     t.string   "fb_email"
     t.string   "fb_name"
     t.string   "fb_head_shot"
-    t.datetime "click_notification_at",    default: '2016-03-18 13:00:54'
-    t.datetime "click_user_gifts_at",      default: '2016-03-24 01:28:16'
-    t.datetime "click_user_miss_gifts_at", default: '2016-03-24 01:28:16'
+    t.datetime "click_notification_at",    default: '2016-09-11 16:19:15'
+    t.datetime "click_user_gifts_at",      default: '2016-09-11 16:19:15'
+    t.datetime "click_user_miss_gifts_at", default: '2016-09-11 16:19:15'
     t.string   "avatar_gender"
     t.integer  "favoritings_count",        default: 0
   end
