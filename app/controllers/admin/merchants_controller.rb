@@ -1,7 +1,7 @@
 class Admin::MerchantsController < ApplicationController
   
   layout "admin"
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
   before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
@@ -84,8 +84,8 @@ class Admin::MerchantsController < ApplicationController
   def merchant_params
     params.require(:merchant).permit( :name, :content, :banner,
                                       :price, :logo, :merchantable_type,
-                                      :merchantable_id, :handle, :description,
-                                      specs_attributes: [:id, :name, :selection, :_destroy, 
+                                      :merchantable_id, :handle, :description, :sponsor,
+                                      specs_attributes: [:id, :name, :selection, :_destroy,
                                       selections_attributes:[:id, :name, :_destroy ]
                                       ]
                                     )
