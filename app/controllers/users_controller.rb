@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
       redirect_url = "http://" + subdomain + "." + front_domain_name + "#registerOk"
       redirect_to redirect_url
-    
+
     else
       redirect_url = "http://" + subdomain + "." + front_domain_name + "#registerFail"
       redirect_to redirect_url
