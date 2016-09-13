@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907152109) do
+ActiveRecord::Schema.define(version: 20160913141602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20160907152109) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+    t.string   "sponsor"
   end
 
   add_index "merchants", ["shopify_product_id"], name: "index_merchants_on_shopify_product_id", using: :btree

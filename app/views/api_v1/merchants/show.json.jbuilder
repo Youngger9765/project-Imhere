@@ -20,15 +20,17 @@ json.merchant_data do
   end
 
   json.price @merchant.price
-  
+
   json.spec_selection @merchant.specs do |spec|
     json.spec_name spec.name
-    
+
     selection_items=[]
     spec.selections.each do |s|
       selection_items << s.name
     end
-    
+
     json.selection_items selection_items
-  end 
+  end
+
+  json.sponsor @merchant.sponsor
 end

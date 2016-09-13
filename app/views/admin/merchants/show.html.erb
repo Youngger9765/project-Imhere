@@ -28,26 +28,32 @@
           <%= link_to"新增圖片", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
         <%end%>
       </div>
-      
 
       <h3>商品內容</h3>
       <%= raw @merchant.content%>
-      
+
+      <h3>贊助商</h3>
+      <h4><%= @merchant.sponsor%></h4>
+
+      <br>
+      <br>
+
     </div>
+
     <div class="col-md-4">
       <h1>
         商品購買資訊
       </h1>
       <h3>商品敘述：</h3>
       <h4><%= simple_format @merchant.description%></h4>
-      
-      <h3>商品logo:</h3> 
+
+      <h3>商品logo:</h3>
       <% if @merchant.logo.exists? %>
         <%= image_tag(@merchant.logo.url(:medium))%>
       <%else%>
         <%= link_to"新增圖片", edit_admin_event_activity_merchant_path(@event,@activity,@merchant), :class =>"btn btn-success btn-lg" %>
       <%end%>
-      <br> 
+      <br>
       <h4>規格:</h4>
       <%@merchant.specs.each do |spec|%>
         <h4>
@@ -55,7 +61,7 @@
           <%= select_tag "#{spec.name} 選項", options_for_select(spec.selections.map{ |u| [u.name, u.name] }) %>
         </h4>
       <%end%>
-      
+
       <h2>單價: $ <%= @merchant.price%></h2>
       <hr>
     </div>
@@ -69,7 +75,7 @@
   >
   <%= @merchant.name%>
   </h3>
-  
+
   <%= simple_form_for @merchant, :url => admin_merchant_path(@merchant) do |f| %>
     <%= render :partial => 'assign_type', :locals => { :f => f} %>
   <% end %>
