@@ -289,7 +289,6 @@ class ApiV1::UsersController < ApiController
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
       @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
 
-      
       win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
       overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
       miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
@@ -346,7 +345,7 @@ class ApiV1::UsersController < ApiController
       elsif current_user && !current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
         @favoriting = current_user.user_activity_favoritings.new
         @favoriting.activity_id = params[:activity_id]
-        
+
         if @favoriting.save
           activity_favoritings_count = UserActivityFavoriting.where(:activity_id => params[:activity_id]).size
           activity = Activity.find(params[:activity_id])
@@ -385,7 +384,7 @@ class ApiV1::UsersController < ApiController
 
       elsif current_user && current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
         @favoriting = current_user.user_activity_favoritings.find_by(:activity_id => params[:activity_id])
-        
+
         if @favoriting.destroy
           activity_favoritings_count = UserActivityFavoriting.where(:activity_id => params[:activity_id]).size
           activity = Activity.find(params[:activity_id])
@@ -421,6 +420,31 @@ class ApiV1::UsersController < ApiController
     else
       render :json => {
         :error => "auth_token is wrong!"
+      }, :status => 401
+    end
+  end
+
+  def confirm
+    token = params[:confirmation_token]
+    user = User.find_by(:confirmation_token => token)
+
+    if user
+      if user.email == params[:email]
+        user.confirmed_at = Time.now
+        user.save
+
+        render :json => {
+          :success => "帳號驗證成功！"
+        }, :status => 200
+      else
+        render :json => {
+          :error => "email 錯誤！"
+        }, :status => 401
+      end
+
+    else
+      render :json => {
+        :error => "confirmation_token 錯誤！"
       }, :status => 401
     end
   end

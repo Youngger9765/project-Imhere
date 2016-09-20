@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     post "/addFavoriteActivity" => "users#addFavoriteActivity"
     post "/removeFavoriteActivity" => "users#removeFavoriteActivity"
     post "/showFavoriteActivity" => "users#showFavoriteActivity"
+    post "/confirm" => "users#confirm"
 
 
     #event_info/activity_info
