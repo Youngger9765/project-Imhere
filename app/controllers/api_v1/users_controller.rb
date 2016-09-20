@@ -9,11 +9,10 @@ class ApiV1::UsersController < ApiController
 
       if @user.fb_token
         @fb_lock = "fb 已綁定"
-      
+
       else
         @fb_lock = nil
       end
-      
 
     else
       render :json => {

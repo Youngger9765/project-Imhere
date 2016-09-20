@@ -84,7 +84,7 @@ class ApiV1::AuthController < ApiController
       end
 
       success = user && user.valid_password?(params[:password])
-    
+
     elsif params[:access_token]
 
       fb_data = User.get_fb_data( params[:access_token] )

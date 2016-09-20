@@ -3,12 +3,12 @@ require "open-uri"
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
          :omniauthable, :omniauth_providers => [:facebook]
-  
-  validates :name, presence: true         
+
+  validates :name, presence: true
   validates_with EmailDomainValidator
 
   before_create :generate_authentication_token
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def self.get_fb_data(access_token)
-    res = RestClient.get "https://graph.facebook.com/v2.4/me",  
+    res = RestClient.get "https://graph.facebook.com/v2.4/me",
     { :params => { :access_token => access_token, :fields =>["id", "name", "email", "picture"] } }
 
     if res.code == 200
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-      # Case 1: Find existing user by facebook uid
+    # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
     if user
       user.fb_name = auth[:info][:name]
@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
       user.fb_head_shot = auth[:info][:image]
       user.fb_token = auth.credentials.token
       user.fb_raw_data = auth
-      user.skip_confirmation! 
+      user.skip_confirmation!
       user.save!
       return user
     end
@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
       existing_user.fb_uid = auth.uid
       existing_user.fb_token = auth.credentials.token
       existing_user.fb_raw_data = auth
-      existing_user.skip_confirmation! 
+      existing_user.skip_confirmation!
       existing_user.save!
       return existing_user
     end
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
       image_url = user.process_uri(auth.info.image)
       user.head_shot = URI.parse(image_url)
     end
-    
+
     # fb info
     user.fb_uid = auth.uid
     user.fb_token = auth.credentials.token
