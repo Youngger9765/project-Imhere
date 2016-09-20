@@ -1,7 +1,7 @@
 class ApiV1::UsersController < ApiController
 
-  before_action :authenticate_user_from_token!, :except => [:resetPasswordByToken]
-  before_action :authenticate_user!, :except => [:resetPasswordByToken]
+  before_action :authenticate_user_from_token!, :except => [:resetPasswordByToken, :confirm]
+  before_action :authenticate_user!, :except => [:resetPasswordByToken, :confirm]
 
   def getUserInfo
     if authenticate_user_from_token!
@@ -426,7 +426,10 @@ class ApiV1::UsersController < ApiController
 
   def confirm
     token = params[:confirmation_token]
-    user = User.find_by(:confirmation_token => token)
+    user = nil
+    if token.present?
+      user = User.find_by(:confirmation_token => token)
+    end
 
     if user
       if user.email == params[:email]
