@@ -11,8 +11,13 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user.role_id = params[:user][:role_id].to_i
+
+    if @user.role_id == 3 && @user.confirmed_at.blank?
+      @user.confirmed_at = Time.now
+    end
+
     @user.save!
-    
+
     redirect_to admin_users_path
   end
 
