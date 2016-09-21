@@ -4,14 +4,14 @@
     <td>策展名稱</td>
     <td>頁面呈現</td>
     <td>編輯</td>
-    <td>刪除</td>
+    <!-- <td>刪除</td> -->
   </tr>
   <%@events.each do |event|%>
     <tr>
       <td><%= link_to event.name, admin_event_path(event) %></td>
       <td><%= link_to "Show", admin_event_path(event), :class => "btn btn-primary"%></td>
       <td><%= link_to "Edit", edit_admin_event_path(event), :class => "btn btn-success" %></td>
-      <td><%= link_to "Delete", admin_event_path(event), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %></td>
+<!--       <td><%= link_to "Delete", admin_event_path(event), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %></td> -->
     </tr>
   <%end%>
 
