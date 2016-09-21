@@ -1,0 +1,43 @@
+<table class="table">
+  <tr>
+    <td>策展名</td>
+    <td>活動名稱</td>
+    <td>subdomain</td>
+    <td>狀態</td>
+    <td>頁面呈現</td>
+    <td>編輯</td>
+    <td>刪除</td>
+    <td>回復</td>
+  </tr>
+  <%@activities.each do |activity|%>
+    <tr>
+      <td><%=link_to activity.event.name,admin_event_path(activity.event) %></td>
+      <td>
+        <%= link_to activity.name, admin_event_activity_path(activity.event,activity) %>
+      </td>
+      <td><%= activity.subdomain%></td>
+      <td>
+        <%if activity.status == 0%>
+          下架
+        <%elsif activity.status == 1%>
+          上架
+        <%elsif activity.status == -1%>
+          刪除
+        <%end%>
+      </td> 
+      <td><%= link_to "Show", admin_event_activity_path(activity.event,activity), :class => "btn btn-primary"%></td>
+      <td><%= link_to "Edit", edit_admin_event_activity_path(activity.event,activity), :class => "btn btn-success" %></td>
+      <td>
+        <%if activity.status != -1%>
+          <%= link_to "Delete", admin_event_activity_path(activity.event,activity), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "are_you_sure" } %>
+        <%end%>
+      </td>
+      <td>
+        <%if activity.status == -1%>
+          <%= link_to "還原", admin_event_activity_path(activity.event,activity, :rescue => 1), :method => :delete, :class => "btn btn-info" %>
+        <%end%>
+      </td>
+    </tr>
+  <%end%>
+
+</table>
