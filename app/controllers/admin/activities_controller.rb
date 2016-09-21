@@ -7,7 +7,7 @@ class Admin::ActivitiesController < ApplicationController
   before_action :find_activity, :only =>[:show, :edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+    @activities = @event.activities
     authorize @activities
 
     if params[:activity_id]
@@ -119,8 +119,12 @@ class Admin::ActivitiesController < ApplicationController
       @activity.status = 0
       @activity.save
     end
-    
+
     redirect_to admin_event_activities_path(@event)
+  end
+
+  def index_all
+    @activities = Activity.all
   end
 
   private

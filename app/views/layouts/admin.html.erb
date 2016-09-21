@@ -47,7 +47,8 @@
         <%= link_to('登入', new_session_path(:user),:class => "btn btn-primary" )%> |
         <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook),:class => "btn btn-info" %>
       <% end %>
-      | <%= link_to "策展活動", admin_events_path, :class => "btn btn-warning"%>
+      | <%= link_to "策展", admin_events_path, :class => "btn btn-warning"%>
+      | <%= link_to "活動", admin_activities_all_path, :class => "btn btn-warning"%>
       | <%= link_to "藝人", admin_artists_path, :class => "btn btn-warning"%>
       | <%= link_to "商品", admin_merchants_path, :class => "btn btn-warning"%>
       | <%= link_to "抽獎", admin_lotteries_path, :class => "btn btn-warning"%>
