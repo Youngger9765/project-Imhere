@@ -2,4 +2,8 @@
 
 <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', "http://clockin.com.tw/?confirm_ok&confirmation_token=#{@token}&email=#{@email}"%></p>
+<% @sub = Activity.where.not(:subdomain => nil).where(:status => 1).order("created_at DESC").first.subdomain%>
+
+<% @front_domain = YAML.load(File.read("#{Rails.root}/config/domain_variables.yml"))[Rails.env]["FRONT_DOMAIN"]%>
+
+<p><%= link_to 'Confirm my account', "http://#{@sub}.#{@front_domain}?confirm_ok&confirmation_token=#{@token}&email=#{@email}"%></p>
