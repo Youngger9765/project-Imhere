@@ -2,4 +2,4 @@
 
 <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirm_ok_url(email: @email, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirm my account', "http://clockin.com.tw/?confirm_ok&confirmation_token=#{@token}&email=#{@email}"%></p>
