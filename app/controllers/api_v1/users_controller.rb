@@ -282,10 +282,10 @@ class ApiV1::UsersController < ApiController
       @user = current_user
       user_click_time = @user.click_user_miss_gifts_at
 
-      public_activies_ids = Activity.where(:status => 1).pluck(:id)
-      all_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => public_activies_ids).pluck(:id)
+      overtime_public_activies_ids = Activity.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
+      overtime_public_merchant_ids = Merchant.all.where(:merchantable_type => "Activity").where(:merchantable_id => overtime_public_activies_ids).pluck(:id)
       user_order_merchant_ids = @user.orders.pluck(:merchant_id).uniq
-      miss_merchant_ids = all_public_merchant_ids - user_order_merchant_ids
+      miss_merchant_ids = overtime_public_merchant_ids - user_order_merchant_ids
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
       @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
 
