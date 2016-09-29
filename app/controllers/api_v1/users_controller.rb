@@ -289,16 +289,16 @@ class ApiV1::UsersController < ApiController
       @miss_merchants = Merchant.where(:id => miss_merchant_ids)
       @miss_availible_merchants = @miss_merchants.where(:merchantable_type => "Activity")
 
-      win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
-      overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
-      miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
-      @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
+      # win_lotteries_ids = @user.lotteries.includes(:user_lottery_ships).where(:user_lottery_ships =>{:winner => 1}).pluck(:id)
+      # overtime_lotteries_ids = Lottery.where(:status => 1).where('end_time < ?',Time.now).pluck(:id)
+      # miss_lotteries_ids = overtime_lotteries_ids - win_lotteries_ids
+      # @miss_overtime_lotteries = Lottery.where(:id => miss_lotteries_ids)
 
 
       user_miss_merchants = @miss_availible_merchants.where("created_at > ? ", user_click_time)
-      user_miss_lotteries = @miss_overtime_lotteries.where("end_time > ? ", user_click_time)
+      # user_miss_lotteries = @miss_overtime_lotteries.where("end_time > ? ", user_click_time)
 
-      @user_miss_gifts_badge_count = user_miss_merchants.size + user_miss_lotteries.size
+      @user_miss_gifts_badge_count = user_miss_merchants.size
 
       render :json => {
               :user_miss_gifts_badge_count => @user_miss_gifts_badge_count
