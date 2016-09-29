@@ -7,11 +7,15 @@ class ApiV1::NotificationsController < ApiController
     @user = current_user
     @date_now = Time.now.to_date
     @notifications = Notification.where('start_time < ? AND start_time > ?', Time.now.end_of_day,Time.now.beginning_of_day).order("start_time ASC")
+    @normal_notifications = @notifications.where(:countdown_end_time => nil)
+    @limited_notifications = @notifications.where.not(:countdown_end_time => nil)
   end
 
   def getAlreadyNotification
     @user = current_user
     @notifications = Notification.where('start_time < ?', Time.now).order("start_time DESC")
+    @normal_notifications = @notifications.where(:countdown_end_time => nil)
+    @limited_notifications = @notifications.where.not(:countdown_end_time => nil)
   end
 
   def countNotificationBadge
@@ -34,7 +38,7 @@ class ApiV1::NotificationsController < ApiController
     if params[:notification_id]
       notification = Notification.find(params[:notification_id])
       user_clicked_list = notification.user_clicked_list
-      
+
       if !user_clicked_list.include?(user.id)
         user_clicked_list << user.id
         notification.save!
@@ -43,7 +47,7 @@ class ApiV1::NotificationsController < ApiController
 
 
     render :json => {
-            :success => "記錄點擊推播"
+            :success => "記錄特定點擊推播"
           }, :status => 200
   end
 
