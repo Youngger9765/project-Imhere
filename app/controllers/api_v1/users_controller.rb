@@ -43,7 +43,7 @@ class ApiV1::UsersController < ApiController
   def lockFbLogin
 
     if authenticate_user_from_token!
-      user = current_user      
+      user = current_user
 
       if params[:access_token]
         fb_data = User.get_fb_data( params[:access_token])
@@ -146,7 +146,6 @@ class ApiV1::UsersController < ApiController
         render :json => {
           :error => "新密碼及確認新密碼不一致"
         }, :status => 401
-        
 
       elsif params[:new_password] == params[:new_password_confirm]
         @user.password = params[:new_password]
@@ -448,6 +447,41 @@ class ApiV1::UsersController < ApiController
     else
       render :json => {
         :error => "confirmation_token 錯誤！"
+      }, :status => 401
+    end
+  end
+
+  def modifyClickTime
+    if authenticate_user_from_token!
+
+      user = current_user
+      if params[:click_user_miss_gifts_at]
+        click_user_miss_gifts_at = params[:click_user_miss_gifts_at].to_time
+        user.click_user_miss_gifts_at = click_user_miss_gifts_at
+      end
+
+      if params[:click_user_gifts_at]
+        click_user_gifts_at = params[:click_user_gifts_at].to_time
+        user.click_user_gifts_at = click_user_gifts_at
+      end
+
+      if params[:click_notification_at]
+        click_notification_at = params[:click_notification_at].to_time
+        user.click_notification_at = click_notification_at
+      end
+
+      user.save
+
+      render :json => {
+              :success => "記錄點擊更改",
+              :user_id => user.id,
+              :click_user_miss_gifts_at => user.click_user_miss_gifts_at,
+              :click_user_gifts_at => user.click_user_gifts_at,
+              :click_notification_at => user.click_notification_at
+            }, :status => 200
+    else
+      render :json => {
+        :error => "auth_token is wrong!"
       }, :status => 401
     end
   end
