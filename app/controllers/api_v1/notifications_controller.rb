@@ -19,13 +19,31 @@ class ApiV1::NotificationsController < ApiController
   end
 
   def countNotificationBadge
-    @user = current_user
-    user_click_time = @user.click_notification_at
-    notifications = Notification.where("start_time > ? AND start_time < ?", user_click_time,Time.now)
-    @notification_badge_count = notifications.size
+    user = current_user
+    notifications = Notification.where("start_time < ?",Time.now)
+
+    # normal & limited
+    normal_notifications = notifications.where(:countdown_end_time => nil)
+    limited_notifications = notifications.where.not(:countdown_end_time => nil)
+
+    @normal_notification_badge_count = 0
+    @limited_notification_badge_count = 0
+
+    normal_notifications.each do |notification|
+      if !notification.user_clicked_list.include?(user.id.to_s)
+        @normal_notification_badge_count += 1
+      end
+    end
+
+    limited_notifications.each do |notification|
+      if !notification.user_clicked_list.include?(user.id.to_s)
+        @limited_notification_badge_count += 1
+      end
+    end
 
     render :json => {
-            :notification_badge_count => @notification_badge_count
+            :normal_notification_badge_count => @normal_notification_badge_count,
+            :limited_notification_badge_count => @limited_notification_badge_count
           }, :status => 200
   end
 
@@ -34,12 +52,23 @@ class ApiV1::NotificationsController < ApiController
     user.click_notification_at = Time.now
     user.save
 
+    # all shown normal nortification.user_clicked_list add user.id
+    notifications = Notification.where('start_time < ?', Time.now)
+    normal_notifications = notifications.where(:countdown_end_time => nil)
+
+    normal_notifications.each do |notification|
+      if !notification.user_clicked_list.include?(user.id.to_s)
+        notification.user_clicked_list << user.id
+        notification.save!
+      end
+    end
+
     # optional: if user click the specific item
     if params[:notification_id]
       notification = Notification.find(params[:notification_id])
       user_clicked_list = notification.user_clicked_list
 
-      if !user_clicked_list.include?(user.id)
+      if !user_clicked_list.include?(user.id.to_s)
         user_clicked_list << user.id
         notification.save!
       end
