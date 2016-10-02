@@ -52,17 +52,6 @@ class ApiV1::NotificationsController < ApiController
     user.click_notification_at = Time.now
     user.save
 
-    # all shown normal nortification.user_clicked_list add user.id
-    notifications = Notification.where('start_time < ?', Time.now)
-    normal_notifications = notifications.where(:countdown_end_time => nil)
-
-    normal_notifications.each do |notification|
-      if !notification.user_clicked_list.include?(user.id.to_s)
-        notification.user_clicked_list << user.id
-        notification.save!
-      end
-    end
-
     # optional: if user click the specific item
     if params[:notification_id]
       notification = Notification.find(params[:notification_id])
@@ -71,6 +60,18 @@ class ApiV1::NotificationsController < ApiController
       if !user_clicked_list.include?(user.id.to_s)
         user_clicked_list << user.id
         notification.save!
+      end
+
+    else
+      # all shown normal nortification.user_clicked_list add user.id
+      notifications = Notification.where('start_time < ?', Time.now)
+      normal_notifications = notifications.where(:countdown_end_time => nil)
+
+      normal_notifications.each do |notification|
+        if !notification.user_clicked_list.include?(user.id.to_s)
+          notification.user_clicked_list << user.id
+          notification.save!
+        end
       end
     end
 
