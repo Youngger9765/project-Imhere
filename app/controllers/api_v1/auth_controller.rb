@@ -6,6 +6,7 @@ class ApiV1::AuthController < ApiController
 
 
   def register
+    subdomain = request.subdomain
     user = User.find_by_email( params[:email].downcase )
 
     if user
@@ -43,6 +44,7 @@ class ApiV1::AuthController < ApiController
       user.password = password
       user.name = name
       user.authentication_token = user.generate_authentication_token
+      user.mail_subdomain = subdomain
 
       if user.save
         render :json => {
@@ -154,12 +156,15 @@ class ApiV1::AuthController < ApiController
   end
 
   def reSendConfirmation
+    subdomain = request.subdomain
     user = User.find_by(:email => params[:email])
 
     if user
       if user.confirmed_at
         render :json => { :message => "Email 已認證成功，請嘗試重新登入"}
       else
+        user.mail_subdomain = subdomain
+        user.save!
         user.send_confirmation_instructions
         render :json => { :message => "確認信已發出至指定信箱"}
       end
@@ -170,9 +175,12 @@ class ApiV1::AuthController < ApiController
   end
 
   def sendResetPassword
+    subdomain = request.subdomain
     user = User.find_by(:email => params[:email])
 
     if user
+      user.mail_subdomain = subdomain
+      user.save!
       user.send_reset_password_instructions
       render :json => { :message => "更改密碼確認信已發出至指定信箱"}
     else
