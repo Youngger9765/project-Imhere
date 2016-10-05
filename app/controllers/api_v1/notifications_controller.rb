@@ -53,17 +53,27 @@ class ApiV1::NotificationsController < ApiController
     user.save
 
     # optional: if user click the specific item
-    if params[:notification_id]
-      notification = Notification.find(params[:notification_id])
-      user_clicked_list = notification.user_clicked_list
+    if params[:notification_id] && !params[:notification_id].include?(".") && params[:notification_id].to_i != 0
+      if Notification.where(:id => params[:notification_id]).size == 1
+        notification = Notification.find(params[:notification_id])
+        user_clicked_list = notification.user_clicked_list
 
-      if !user_clicked_list.include?(user.id.to_s)
-        user_clicked_list << user.id
-        notification.save!
+        if !user_clicked_list.include?(user.id.to_s)
+          user_clicked_list << user.id
+          notification.save!
+        end
+
+        render :json => {
+              :success => "記錄特定推播點擊"
+            }, :status => 200
+      else
+        render :json => {
+              :error => "notification not include this id!"
+            }, :status => 401
       end
 
-    else
-      # all shown normal nortification.user_clicked_list add user.id
+    # all shown normal nortification.user_clicked_list add user.id
+    elsif params[:notification_id] && params[:notification_id] == "normal"
       notifications = Notification.where('start_time < ?', Time.now)
       normal_notifications = notifications.where(:countdown_end_time => nil)
 
@@ -73,12 +83,19 @@ class ApiV1::NotificationsController < ApiController
           notification.save!
         end
       end
+
+      render :json => {
+            :success => "記錄一般推播點擊"
+          }, :status => 200
+
+    else
+      render :json => {
+            :erroe => "請確認 notification_id (整數或'normal')"
+          }, :status => 401
     end
 
 
-    render :json => {
-            :success => "記錄特定點擊推播"
-          }, :status => 200
+    
   end
 
 end
