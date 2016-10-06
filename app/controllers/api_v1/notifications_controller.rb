@@ -24,7 +24,8 @@ class ApiV1::NotificationsController < ApiController
 
     # normal & limited
     normal_notifications = notifications.where(:countdown_end_time => nil)
-    limited_notifications = notifications.where.not(:countdown_end_time => nil)
+    limited_notifications = notifications.where.not(:countdown_end_time => nil).where("countdown_end_time > ?",Time.now)
+
 
     @normal_notification_badge_count = 0
     @limited_notification_badge_count = 0
