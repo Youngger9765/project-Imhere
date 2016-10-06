@@ -34,6 +34,11 @@ class ApiV1::AuthController < ApiController
         :error => "新密碼及確認新密碼不一致"
       }, :status => 401
 
+    elsif params[:subdomain].blank?
+      render :json => {
+        :error => "請提供subdomain"
+      }, :status => 401
+
     else
       user = User.new
       email = params[:email].downcase
@@ -44,7 +49,7 @@ class ApiV1::AuthController < ApiController
       user.password = password
       user.name = name
       user.authentication_token = user.generate_authentication_token
-      user.mail_subdomain = subdomain
+      user.mail_subdomain = params[:subdomain]
 
       if user.save
         render :json => {
@@ -136,7 +141,7 @@ class ApiV1::AuthController < ApiController
     else
       render :json => { :error => error_msg,
                         :fb_data => fb_data
-                      }, :status => 401      
+                      }, :status => 401
     end
 
   end
@@ -156,10 +161,13 @@ class ApiV1::AuthController < ApiController
   end
 
   def reSendConfirmation
-    subdomain = request.subdomain
     user = User.find_by(:email => params[:email])
 
-    if user
+    if params[:subdomain].blank?
+      render :json => { :error => "請提供subdomian"}, :status => 401
+
+    elsif user
+      subdomain = params[:subdomain]
       if user.confirmed_at
         render :json => { :message => "Email 已認證成功，請嘗試重新登入"}
       else
@@ -170,15 +178,18 @@ class ApiV1::AuthController < ApiController
       end
 
     else
-      render :json => { :error => "無此Email"}, :status => 400
+      render :json => { :error => "無此Email"}, :status => 401
     end
   end
 
   def sendResetPassword
-    subdomain = request.subdomain
     user = User.find_by(:email => params[:email])
 
-    if user
+    if params[:subdomain].blank?
+      render :json => { :error => "請提供subdomian"}, :status => 401
+
+    elsif user
+      subdomain = params[:subdomain]
       user.mail_subdomain = subdomain
       user.save!
       user.send_reset_password_instructions
