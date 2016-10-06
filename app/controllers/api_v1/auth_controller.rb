@@ -174,7 +174,7 @@ class ApiV1::AuthController < ApiController
         user.mail_subdomain = subdomain
         user.save!
         user.send_confirmation_instructions
-        render :json => { :message => "確認信已發出至指定信箱"}
+        render :json => { :message => "確認信已發出至指定信箱!"}
       end
 
     else
