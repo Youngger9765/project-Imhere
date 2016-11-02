@@ -55,7 +55,7 @@ gem "pundit"
 gem 'rest-client'
 
 #tool
-gem "wysiwyg-rails"
+gem 'wysiwyg-rails', '~> 2.3', '>= 2.3.5'
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'rails-i18n'
