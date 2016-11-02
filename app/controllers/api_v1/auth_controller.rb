@@ -191,9 +191,11 @@ class ApiV1::AuthController < ApiController
     elsif user
       subdomain = params[:subdomain]
       user.mail_subdomain = subdomain
-      user.save!
-      user.send_reset_password_instructions
-      render :json => { :message => "更改密碼確認信已發出至指定信箱"}
+
+      if user.save
+        user.send_reset_password_instructions
+        render :json => { :message => "更改密碼確認信已發出至指定信箱"}
+      end
     else
       render :json => { :error => "無此Email"}, :status => 400
     end
