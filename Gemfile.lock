@@ -279,9 +279,9 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    wysiwyg-rails (2.0.5)
+    wysiwyg-rails (2.3.5)
       font-awesome-rails (~> 4.4, >= 4.4.0.0)
-      railties (>= 3.2, < 5.0)
+      railties (>= 3.2, < 6.0)
 
 PLATFORMS
   ruby
@@ -317,7 +317,7 @@ DEPENDENCIES
   spring
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
-  wysiwyg-rails
+  wysiwyg-rails (~> 2.3, >= 2.3.5)
 
 BUNDLED WITH
-   1.11.2
+   1.13.0
