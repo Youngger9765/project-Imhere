@@ -37,4 +37,6 @@ json.activities @activities.each do |a|
   json.achivement a.get_achievement
   json.favoritings_count a.favoritings_count
   json.subdomain a.subdomain
+  json.start_time a.start_time
+  json.end_time a.end_time
 end
