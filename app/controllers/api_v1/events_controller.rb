@@ -6,6 +6,6 @@ class ApiV1::EventsController < ApiController
 
   def show
     @event = Event.find(params[:id])
-    @activities = @event.activities.order(:start_time)
+    @activities = @event.activities.order('start_time DESC')
   end
 end
