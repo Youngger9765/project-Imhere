@@ -1,7 +1,7 @@
 class Admin::ActivitiesController < ApplicationController
 
   layout "admin"
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
   before_action :user_admin?
   before_action :find_event, :only =>[:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :find_activity, :only =>[:show, :edit, :update, :destroy]
@@ -136,7 +136,7 @@ class Admin::ActivitiesController < ApplicationController
                                      :description, :logo_in_event, :banner,
                                      :milestone_logo_content, :customers_target,
                                      :merchant_description, :merchant_banner,
-                                     :subdomain
+                                     :subdomain, :star_wish_name,
                                      )
   end
 

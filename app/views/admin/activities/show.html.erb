@@ -11,6 +11,14 @@
   <%= link_to "編輯", edit_admin_event_activity_path(@event,@activity), :class => "btn btn-success" %>
 </h2>
 
+<h3> 星願名稱：
+  <% if @activity.star_wish_name%>
+    <span style="color: blue;"><%= @activity.star_wish_name%></span> 
+  <%else%>
+    <span style="color: red;">尚未填寫</span> 
+  <%end%>
+</h3>
+
 <h3>Subdomain: 
   <% if @activity.subdomain%>
     <span style="color: blue;"><%= @activity.subdomain%></span> 
