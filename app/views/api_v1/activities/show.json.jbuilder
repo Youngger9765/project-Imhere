@@ -6,8 +6,9 @@ end
 json.activity_data do
   json.id @activity.id
   json.name @activity.name
+  json.star_wish_name @activity.star_wish_name
   json.status @activity.status
-  
+
   if @activity.banner.url == "/images/original/missing.png"
     json.banner_url nil
   else
@@ -58,6 +59,13 @@ json.activity_info do
   json.start_time @activity.start_time
   json.end_time @activity.end_time
   json.location @activity.location
+
+  if @activity.google_map_icon.url == "/images/original/missing.png"
+    json.google_map_icon_url nil
+  else
+    json.google_map_icon_url @activity.google_map_icon.url
+  end
+
   json.latitude @activity.latitude
   json.longitude @activity.longitude
 end

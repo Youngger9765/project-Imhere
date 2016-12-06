@@ -1,6 +1,7 @@
 class ApiV1::ActivitiesController < ApplicationController
 
   def index
+    @event = Event.find(params[:event_id])
     @activiies = @event.activities.all
   end
 
