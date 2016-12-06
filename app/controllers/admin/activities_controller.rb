@@ -85,7 +85,7 @@ class Admin::ActivitiesController < ApplicationController
         @activity.banner = nil
         @activity.save!
       end
-      
+
       if params[:destroy_logo] == "1"
         @activity.logo = nil
         @activity.save!
@@ -100,6 +100,12 @@ class Admin::ActivitiesController < ApplicationController
         @activity.merchant_banner = nil
         @activity.save!
       end
+
+      if params[:destroy_google_map_icon] == "1"
+        @activity.google_map_icon = nil
+        @activity.save!
+      end
+
       redirect_to admin_event_activity_path(@event,@activity)
 
     else
@@ -136,7 +142,7 @@ class Admin::ActivitiesController < ApplicationController
                                      :description, :logo_in_event, :banner,
                                      :milestone_logo_content, :customers_target,
                                      :merchant_description, :merchant_banner,
-                                     :subdomain, :star_wish_name,
+                                     :subdomain, :star_wish_name, :google_map_icon,
                                      )
   end
 

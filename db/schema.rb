@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206072955) do
+ActiveRecord::Schema.define(version: 20161206075056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,10 @@ ActiveRecord::Schema.define(version: 20161206072955) do
     t.integer  "favoritings_count",                default: 0
     t.string   "subdomain"
     t.string   "star_wish_name"
+    t.string   "google_map_icon_file_name"
+    t.string   "google_map_icon_content_type"
+    t.integer  "google_map_icon_file_size"
+    t.datetime "google_map_icon_updated_at"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree

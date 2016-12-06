@@ -147,6 +147,15 @@
   <%= f.text_field :location, :class => "form-control" %>
 </div>
 
+<div class="form-group">
+  <h3><%=f.label :google_map_icon, "Google Map Icon"%></h3>
+  <%=f.file_field :google_map_icon%>
+
+  <% if @activity.google_map_icon.exists? %>
+    <%= check_box_tag "destroy_google_map_icon", "1" %> 刪除檔案
+  <% end %>
+</div>
+
 <div class="form-group col-md-7" id="editor-introduce">
   <h3><%= f.label :information, "活動資訊" %></h3>
   <%= f.text_area :information, :class =>"froala-editor" %>

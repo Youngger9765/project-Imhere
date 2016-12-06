@@ -19,6 +19,9 @@ class Activity < ActiveRecord::Base
   has_attached_file :merchant_banner, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :merchant_banner, content_type: /\Aimage\/.*\Z/
 
+  has_attached_file :google_map_icon, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :google_map_icon, content_type: /\Aimage\/.*\Z/
+
   has_many :activity_milestones
   has_many :lotteries
 

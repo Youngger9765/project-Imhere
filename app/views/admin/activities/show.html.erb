@@ -163,6 +163,12 @@
               <%= @activity.location%>
             </h4>
             <br>
+            <% if @activity.google_map_icon.exists? %>
+              <div id="google_map_icon">
+                <%= link_to image_tag(@activity.google_map_icon.url(:original)),@activity.google_map_icon.url%>
+              </div>
+            <%end%>
+            <br>
             <h4>
               <i class="fa fa-clock-o"></i><br>
               開始時間：<br>
