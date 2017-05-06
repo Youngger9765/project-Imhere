@@ -28,4 +28,6 @@ every 10.minutes do
   runner "Lottery.log_out", :environment => :development
   runner "Lottery.get_winner_all", :environment => :production
   runner "Lottery.log_out", :environment => :production
+  runner "Lottery.get_winner_all", :environment => :staging
+  runner "Lottery.log_out", :environment => :staging
 end
