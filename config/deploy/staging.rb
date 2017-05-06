@@ -6,7 +6,7 @@
 # server '161.202.37.146', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 
 # GCE
-server '104.199.183.250', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+server '104.199.218.188', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 
 
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
