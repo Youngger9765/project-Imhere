@@ -14,7 +14,9 @@ server '104.199.218.188', user: 'deploy', roles: %w{app db web}, my_property: :m
 
 
 #set :deploy_to, '/home/deploy/im-here'
-#set :branch, 'staging'
+# set :branch, 'staging'
+set :rails_env, 'staging'
+
 
 # role-based syntax
 # ==================
