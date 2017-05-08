@@ -5,8 +5,18 @@
 
 #test: 161.202.37.146
 #master: 52.192.213.194
+#GCE: 104.199.218.188
 
-server '52.192.213.194', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+
+# GCE
+server '104.199.218.188', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+
+# Main
+# server '52.192.213.194', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+
+
+
+
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
