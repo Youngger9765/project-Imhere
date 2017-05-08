@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         # :confirmable, 
+         :confirmable, 
          :omniauthable, :omniauth_providers => [:facebook]
 
   validates :name, presence: true
